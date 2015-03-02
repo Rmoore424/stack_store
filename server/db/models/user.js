@@ -37,7 +37,7 @@ var schema = new mongoose.Schema({
     order: [{type: mongoose.Schema.Types.ObjectId, ref: 'Order'}],
     wishlist: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
     admin: {
-        type: boolean,
+        type: Boolean,
         default: false
     }
 });
