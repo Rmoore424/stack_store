@@ -10,7 +10,7 @@ var schema = new mongoose.Schema({
         address_2: String,
         city: String,
         state: String, 
-        zip, String
+        zip: String
     },
     phone: String,
     email: {
