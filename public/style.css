@@ -36,58 +36,6 @@ navbar {
   margin-top: 40px;
   text-align: center; }
 
-#about {
-  padding-bottom: 50px; }
-  #about p {
-    width: 400px;
-    margin: 0 auto;
-    margin-top: 50px;
-    text-align: justify;
-    font-size: 25px;
-    font-weight: 300; }
-  #about img {
-    display: block;
-    width: 600px;
-    margin: 0 auto;
-    margin-top: 50px; }
-
-tutorial-section {
-  display: block;
-  width: 90%;
-  margin: 10px auto;
-  padding: 20px 0 60px 0; }
-  tutorial-section > h1 {
-    margin: 20px 0 40px 0;
-    text-align: center;
-    font-weight: bold; }
-
-tutorial-video {
-  display: block;
-  width: 600px;
-  margin: 0 auto; }
-  tutorial-video h1 {
-    font-weight: 300;
-    font-size: 24px;
-    margin-bottom: 15px; }
-  tutorial-video iframe {
-    width: 600px;
-    height: 400px; }
-
-tutorial-section-menu {
-  display: block; }
-  tutorial-section-menu:after {
-    content: "";
-    display: table;
-    clear: both; }
-  tutorial-section-menu ul {
-    margin-left: 23px;
-    list-style-type: none;
-    font-weight: 300; }
-    tutorial-section-menu ul li {
-      float: left;
-      margin-right: 40px;
-      padding: 10px;
-      cursor: pointer; }
-      tutorial-section-menu ul li:hover {
-        background: #f3f3f3; }
-
+.panel {
+  width: 50%;
+  margin: 50px auto; }
