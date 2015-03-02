@@ -34,8 +34,8 @@ var schema = new mongoose.Schema({
     google: {
         id: String
     }, 
-    orders: [],
-    wishlist: [],
+    order: [{type: mongoose.Schema.Types.ObjectId, ref: 'Order'}],
+    wishlist: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
     admin: {
         type: boolean,
         default: false
