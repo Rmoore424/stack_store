@@ -11,6 +11,9 @@ var db = mongoose.connect(DATABASE_URI).connection;
 // Require our models -- these should register the model into mongoose
 // so the rest of the application can simply call mongoose.model('User')
 // anywhere the User model needs to be used.
+require('./models/order');
+require('./models/product');
+require('./models/review');
 require('./models/user');
 
 var startDbPromise = new Q(function (resolve, reject) {
