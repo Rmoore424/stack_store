@@ -21,6 +21,7 @@ app.config(function ($stateProvider) {
 app.controller('AdminCtrl', function($scope, $state, $stateParams, AdminFactory) {
 	$scope.editUser = function (email) {
 		AdminFactory.getUser(email).then(function (user) {
+
 			var user = $stateParams.user.email;
 			//how do we make the state below pull in the $scope.user data? /:user
 			$state.go('admin.editUser', { user: user});
@@ -31,7 +32,11 @@ app.controller('AdminCtrl', function($scope, $state, $stateParams, AdminFactory)
 app.factory('AdminFactory', function($http) {
 	return {
 		getUser: function(email) {
+
 			$http.get('/admin', { params: { email: email } }
+
+			$http.get('/admin', { params: { email: email }}
+
 			);
 		}
 	};
