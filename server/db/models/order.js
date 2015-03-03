@@ -7,7 +7,8 @@ var schema = new mongoose.Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     products: {type: mongoose.Schema.Types.ObjectId, ref: 'Product'},
     date: Date,
-    total_charge: Number
+    total_charge: Number,
+    status: { type: String, default: 'Created' }
 });
 
 
