@@ -7,7 +7,9 @@ app.controller('MainController', function ($scope) {
     $scope.menuItems = [
         { label: 'Home', state: 'home' },
         { label: 'About', state: 'about' },
-        { label: 'Tutorial', state: 'tutorial' }
+        { label: 'Tutorial', state: 'tutorial'},
+        // { label: 'Product', state: 'product'},
+        { label: 'Make A Product', state: 'makeProduct'}
     ];
 
 });
