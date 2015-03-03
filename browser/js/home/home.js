@@ -10,15 +10,15 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('HomeCtrl', function ($scope, HomeFactory) {
-	HomeFactory.getProducts().then(function (products) {
-		$scope.products = products;
+	HomeFactory.getVacations().then(function (returnedVacations) {
+		$scope.vacations = returnedVacations;
 	});
 });
 
 app.factory('HomeFactory', function ($http) {
 	return {
-		getProducts: function () {
-			return $http.get('/api/products/products').then(function (response) {
+		getVacations: function () {
+			return $http.get('/api/vacation/vacation').then(function (response) {
 				return response.data;
 			});
 		}

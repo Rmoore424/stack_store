@@ -9,6 +9,7 @@ app.controller('MainController', function ($scope) {
         { label: 'My Cart', state: 'mycart' },
         { label: 'Log In', state: 'login' },
         { label: 'Sign Up', state: 'signup'},
+        { label: 'Make Vacation', state: 'makeVacation'},
         { label: 'Checkout', state: 'checkout'}
     ];
 
