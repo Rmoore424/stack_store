@@ -14,7 +14,7 @@ app.config(function ($stateProvider) {
 
 app.controller('AdminCtrl', function($scope, $state, AdminFactory) {
 	$scope.editUser = function (email) {
-		adminFactory.getUser(email).then(function (user) {
+		AdminFactory.getUser(email).then(function (user) {
 			$state.go('editUser')
 		})
 	}
@@ -24,7 +24,7 @@ app.factory('AdminFactory', function($http) {
 	return {
 		getUser: function(email) {
 			$http.get('/admin', { params: { email: email }}
-			});
+			);
 		}
 	};
 });
