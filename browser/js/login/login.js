@@ -7,31 +7,19 @@ app.config(function ($stateProvider) {
         controller: 'LoginController',
         templateUrl: 'js/login/login.html'
     });
-
 });
 
-app.controller('LoginController', function ($scope, $state, LoginFactory) {
+app.controller('LoginController', function ($scope, $state, AuthService) {
 
     // need to determine whether state change belongs in a diff module
     $scope.loginUser = function (user) {
-        console.log('loginUser called');
-        LoginFactory.authenticateUser(user).then(function (response) {
-            //this is not working it's not going home
+        AuthService.login(user).then(function (response) {
             $state.go('home');
+            //if (response.user) {
+            //} else {
+            //}
         });
     };
 
 
-});
-
-app.factory('LoginFactory', function($http) {
-    return {
-        authenticateUser: function (user) {
-            return $http.post('/login', user).then(function (response) {
-                console.log("authenticateUser called", user);
-                return response.data;
-            });
-        }
-
-    };
 });

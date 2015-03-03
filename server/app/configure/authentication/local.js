@@ -10,7 +10,6 @@ module.exports = function (app) {
     // When passport.authenticate('local') is used, this function will receive
     // the email and password to run the actual authentication logic.
     var strategyFn = function (email, password, done) {
-        console.log("strategyFn called", email);
         UserModel.findOne({ email: email }, function (err, user) {
             if (err) return done(err);
             // user.correctPassword is a method from our UserModel schema.
@@ -24,7 +23,6 @@ module.exports = function (app) {
 
     // A POST /login route is created to handle login.
     app.post('/login', function (req, res, next) {
-        console.log('hey', req.body);
         var authCb = function (err, user) {
 
             if (err) return next(err);
