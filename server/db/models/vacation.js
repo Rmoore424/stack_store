@@ -6,7 +6,8 @@ var schema = new mongoose.Schema({
     description: String,
     price: Number,
     country: String,
-    category: [String]
+    category: [String],
+    image: String
 });
 
 mongoose.model('Vacation', schema);
