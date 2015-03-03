@@ -4,16 +4,26 @@
 
 'use strict';
 
-app.controller('adminCtrl', function($scope, adminFactory) {
+app.config(function ($stateProvider) {
+	$stateProvider.state('admin', {
+		url: '/admin',
+		controller: 'AdminCtrl',
+		templateUrl: 'js/admin/admin.html'
+	});
+});
+
+app.controller('AdminCtrl', function($scope, $state, AdminFactory) {
 	$scope.editUser = function (email) {
-		adminFactory.getUser(email).then()
+		adminFactory.getUser(email).then(function (user) {
+			$state.go('editUser')
+		})
 	}
 })
 
-app.factory('adminFactory', function($http) {
+app.factory('AdminFactory', function($http) {
 	return {
 		getUser: function(email) {
-			$http.get('/admin/editUser', { params: { email: email }}
+			$http.get('/admin', { params: { email: email }}
 			});
 		}
 	};

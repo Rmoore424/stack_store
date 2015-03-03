@@ -8,4 +8,4 @@ router.use('/login', require('../configure/authentication/local'));
 
 router.use('/signup', require('./signup'));
 
-router.use('/admin/editUser', require('./admin/editUser'));
+router.use('/admin', require('./admin'));
