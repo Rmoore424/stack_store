@@ -8,6 +8,7 @@ app.controller('MainController', function ($scope) {
         { label: 'Home', state: 'home' },
         { label: 'My Cart', state: 'mycart' },
         { label: 'Sign Up', state: 'signup'},
+        { label: 'Make Vacation', state: 'makeVacation'},
         { label: 'Checkout', state: 'checkout'}
     ];
 
