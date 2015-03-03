@@ -14,6 +14,6 @@ var schema = new mongoose.Schema({
 schema.virtual('average_rating').get(function(){
     //maybe we need this? maybe we don't?
     return "something";
-})
+});
 
 mongoose.model('Product', schema);
