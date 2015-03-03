@@ -8,4 +8,4 @@ router.use('/login', require('../configure/authentication/local'));
 
 router.use('/signup', require('./signup'));
 
-router.use("/products", require('./products'))
+router.use("/vacation", require('./vacation'));

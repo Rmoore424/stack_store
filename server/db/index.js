@@ -12,7 +12,7 @@ var db = mongoose.connect(DATABASE_URI).connection;
 // so the rest of the application can simply call mongoose.model('User')
 // anywhere the User model needs to be used.
 require('./models/order');
-require('./models/product');
+require('./models/vacation');
 require('./models/review');
 require('./models/user');
 
