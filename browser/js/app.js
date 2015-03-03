@@ -7,10 +7,13 @@ app.controller('MainController', function ($scope) {
     $scope.menuItems = [
         { label: 'Home', state: 'home' },
         { label: 'My Cart', state: 'mycart' },
-        { label: 'Log In', state: 'login' },
         { label: 'Sign Up', state: 'signup'},
         { label: 'Checkout', state: 'checkout'}
     ];
+
+    $scope.rightMenu = [
+        { label: 'Log In', state: 'login' }
+    ]
 
 });
 
