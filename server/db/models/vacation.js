@@ -2,11 +2,12 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    vacation: String,
+    name: String,
     description: String,
     price: Number,
-    country: String,
-    category: [String]
+    region: String,
+    category: [String],
+    imageUrl: String
 });
 
 mongoose.model('Vacation', schema);
