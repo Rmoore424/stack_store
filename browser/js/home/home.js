@@ -9,5 +9,18 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('HomeCtrl', function ($scope) {
+app.controller('HomeCtrl', function ($scope, HomeFactory) {
+	HomeFactory.getVacations().then(function (returnedVacations) {
+		$scope.vacations = returnedVacations;
+	});
+});
+
+app.factory('HomeFactory', function ($http) {
+	return {
+		getVacations: function () {
+			return $http.get('/api/vacation/vacation').then(function (response) {
+				return response.data;
+			});
+		}
+	};
 });

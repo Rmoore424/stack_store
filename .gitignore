@@ -1,6 +1,7 @@
 .idea
 node_modules
 bower_components
-public
+public/
+tobeadded/
 npm-debug.log
 .DS_Store

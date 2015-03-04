@@ -5,16 +5,19 @@
     <title>Stack Store</title>
     <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/style.css" />
+    <link href="/angular-carousel/dist/angular-carousel.css" rel="stylesheet" type="text/css" />
     <script src="/lodash/lodash.js"></script>
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/angular/angular.js"></script>
     <script src="/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="/angular-touch/angular-touch.js"></script>
+    <script src="/angular-carousel/dist/angular-carousel.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/main.js"></script>
 </head>
 <body ng-app="FullstackGeneratedApp" ng-controller="MainController">
-    <navbar items="menuItems"></navbar>
+    <navbar items="menuItems" right-items="rightMenu"></navbar>
     <div ui-view></div>
 </body>
 </html>

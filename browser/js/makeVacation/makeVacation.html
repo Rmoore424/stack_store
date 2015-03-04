@@ -1,0 +1,19 @@
+<div class='panel panel-info'>
+	<pre style="text-align: left;">{{newVacation | json}}</pre>
+	<div class='panel-heading'>
+		<h3 class="panel-title">Add a Vacation</h3>
+	</div>
+	<div class="panel-body">
+	<form name="addVacation" class="form-horizontal" ng-submit="addVacation && submitVacation(newVacation)">
+		<div class="form-group">
+			Vacation: <input name="vacation" required ng-model="newVacation.vacation"><br>
+			Description: <input name="description" required ng-model="newVacation.description"><br>
+			Price: <input name="price" required ng-model="newVacation.price"><br>
+			Country: <input name="country" ng-model="newVacation.country"><br>
+			Category: <input name="category" ng-model="newVacation.category"><br>
+			<!--We need to build in a way to input multiple categories, we could do it with a comma like wikistack tags?-->
+		</div>
+		<button type="Submit">Submit</button>	
+	</form>
+	</div>
+</div>

@@ -8,5 +8,19 @@
     margin-top: 40px;
     text-align: center;
   }
+  .jumbotron {
+  	height: 40vh;
+  	padding: 0;
+  }
+  .jumbo {
+	background-image: url("http://lorempixel.com/g/400/200");
+	background-size: cover;
+	height: 40vh;
+  }
+
+  ul {
+  	width: 100%;
+  	height: 100vh;
+  }
 }
 
