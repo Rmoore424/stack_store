@@ -12,6 +12,10 @@ app.controller('MakeVacationController', function ($scope, MakeVacationFactory) 
         category: []
     };
 
+    var setUpCategories = function (){
+        //will get categories from database
+    };
+
     $scope.submitVacation = function(newVacation){
 	    MakeVacationFactory.addProduct(newVacation).then(function(){
 	    	$scope.newVacation = {
@@ -19,6 +23,7 @@ app.controller('MakeVacationController', function ($scope, MakeVacationFactory) 
 	    	};
 	    });
     };
+
 });
 
 
@@ -28,6 +33,11 @@ app.factory('MakeVacationFactory', function($http) {
         addProduct: function(newVacation) {
             return $http.post('/api/vacation/makeVacation', newVacation).then(function() {
                 console.log("New product successfully added!");
+            });
+        },
+        getCategories: function(){
+            return $http.get('/api/category/categories').then(function (response){
+                return response.data;
             });
         }
     };

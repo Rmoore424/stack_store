@@ -10,3 +10,4 @@ router.use('/admin', require('./admin'));
 
 router.use("/vacation", require('./vacation'));
 
+router.use("/category", require('./category'));

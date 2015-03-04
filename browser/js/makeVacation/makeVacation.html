@@ -6,14 +6,47 @@
 	<div class="panel-body">
 	<form name="addVacation" class="form-horizontal" ng-submit="addVacation && submitVacation(newVacation)">
 		<div class="form-group">
-			Vacation: <input name="vacation" required ng-model="newVacation.vacation"><br>
-			Description: <input name="description" required ng-model="newVacation.description"><br>
-			Price: <input name="price" required ng-model="newVacation.price"><br>
-			Country: <input name="country" ng-model="newVacation.country"><br>
-			Category: <input name="category" ng-model="newVacation.category"><br>
-			<!--We need to build in a way to input multiple categories, we could do it with a comma like wikistack tags?-->
+			<label class='col-sm-4 control-label'>Vacation:</label>
+			<div class="col-sm-8">
+			    <input type="text" required ng-model="newVacation.name" />
+			</div>
 		</div>
-		<button type="Submit">Submit</button>	
+		<div class='form-group'>
+			<label class='col-sm-4 control-label'>Description:</label>
+			<div class="col-sm-8">
+			    <input type="text" required ng-model="newVacation.description" />
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class='col-sm-4 control-label'>Price:</label>
+			<div class="col-sm-8">
+			    <input type="text" required ng-model="newVacation.price" />
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class='col-sm-4 control-label'>Region:</label>
+			<div class="col-sm-8">
+			    <input type="text" required ng-model="newVacation.region" />
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class='col-sm-4 control-label'>Image URL:</label>
+			<div class="col-sm-8">
+			    <input type="text" required ng-model="newVacation.imageUrl" />
+			</div>
+		</div>
+		<div class='form-group'>
+			<label class='col-sm-4 control-label'>Categories:</label>
+			<div class="col-sm-8">
+			    <input type="text" required ng-model="newVacation.category" />
+			    <input type="text" required ng-model="newVacation.category" />
+			    <input type="text" required ng-model="newVacation.category" />
+			</div>
+		</div>
+		
+		<div class="text-center">
+		    <button type='submit' class='btn-success'>Submit</button>
+		</div>
 	</form>
 	</div>
 </div>
