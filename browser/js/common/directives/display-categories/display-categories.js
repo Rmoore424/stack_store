@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 app.directive('currentCategories', function(){
     return {
         restrict: 'E',
