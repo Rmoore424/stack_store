@@ -2,5 +2,6 @@
 node_modules
 bower_components
 public/
+tobeadded/
 npm-debug.log
 .DS_Store
