@@ -11,15 +11,30 @@
         <guestnav ng-show="!nav.loggedIn"></guestnav>
         <usernav ng-show="nav.loggedIn"></usernav>
     </div>
+    <hr />
     <div class="container lower-container">
-        <div class="dropdown">
-            <button class="btn btn-nav dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-            Search By Category
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation" ng-repeat="category in categories"><a role="menuitem" tabindex="-1" href="#">{{ category.name }}</a></li>
-            </ul>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="dropdown">
+                    <button class="btn btn-nav dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    Search By Category
+                    <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation" ng-repeat="category in categories"><a role="menuitem" tabindex="-1" href="#" ng-click="vacationsByCategory(category._id)">{{ category.name }}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <form name="searchForm"class="form-inline" ng-submit="searchByProduct(searchBy)">
+                  <div class="form-group">
+                    <div class="input-group">
+                      <input type="text" id="search" placeholder="Search by Vacation" ng-model="searchBy">
+                      <button class="btn input-group-addon">Search</button>
+                    </div>
+                  </div>
+                </form>
+            </div>
         </div>
     </div>
 </nav>

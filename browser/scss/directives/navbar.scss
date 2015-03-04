@@ -10,6 +10,30 @@ navbar {
 
   .lower-container {
     padding-bottom: 10px;
+
+    .form-group {
+      border-radius: 5px;
+      width: 100%;
+    }
+  }
+
+  .form-inline {
+    .input-group {
+      width: 100%;
+
+      input {
+        width: 80%;
+        height: 28px;
+      }
+      button {
+        width: 20%;
+        position: relative;
+        top: -1px;
+      }
+      .input-group-addon {
+        cursor: pointer;
+      }
+    }
   }
 
   .navbar-right {
@@ -47,5 +71,12 @@ navbar {
     color: white;
     border: 1px solid #c1c1c1;
     border-radius: 5px;
+  }
+
+  hr {
+    width: 90%;
+    opacity: 0.2;
+    margin-top: 0;
+    margin-bottom: 10px;
   }
 }

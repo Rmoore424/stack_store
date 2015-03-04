@@ -9,7 +9,7 @@ app.directive('navbar', function () {
     };
 });
 
-app.controller('NavController', function ($scope, NavFactory, MakeCategoryFactory) {
+app.controller('NavController', function ($scope, NavFactory, MakeCategoryFactory, HomeFactory) {
     
     $scope.userOptions = [
         { label: 'My Account', state: 'myAccount'},
@@ -27,8 +27,14 @@ app.controller('NavController', function ($scope, NavFactory, MakeCategoryFactor
 
     MakeCategoryFactory.getCategories().then(function (categories) {
         $scope.categories = categories;
-    })
-})
+    });
+
+    $scope.vacationsByCategory = function(categoryId) {
+      HomeFactory.getVacationsByCategory(categoryId).then(function (vacations) {
+        HomeFactory.vacations = vacations;
+      })
+    }
+});
 
 app.factory('NavFactory', function (AuthService) {
     return {
