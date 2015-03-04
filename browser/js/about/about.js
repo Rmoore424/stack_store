@@ -12,14 +12,23 @@ app.config(function ($stateProvider) {
 
 app.controller('AboutController', function ($scope) {
 
-    // Images of beautiful Fullstack people.
+    // Images of beautiful vaction areas.
     $scope.images = [
-        'https://pbs.twimg.com/media/B7gBXulCAAAXQcE.jpg:large',
-        'https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-xap1/t31.0-8/10862451_10205622990359241_8027168843312841137_o.jpg',
-        'https://pbs.twimg.com/media/B-LKUshIgAEy9SK.jpg',
-        'https://pbs.twimg.com/media/B79-X7oCMAAkw7y.jpg',
-        'https://pbs.twimg.com/media/B-Uj9COIIAIFAh0.jpg:large',
-        'https://pbs.twimg.com/media/B6yIyFiCEAAql12.jpg:large'
+        'http://4.bp.blogspot.com/-7kf8sxhvoCo/T_h0sf-zXKI/AAAAAAAAAbg/-1QId7Zo-cQ/s1600/Wallpaper3_1024.jpg',
+        'http://upload.wikimedia.org/wikipedia/commons/d/dc/PIA17944-MarsCuriosityRover-AfterCrossingDingoGapSanddune-20140209.jpg',
+        'http://cdn1.buuteeq.com/upload/320/dsc-1575.jpg.1024x0.jpg',
+        'http://allinclusivebermuda.net/wp-content/uploads/2013/08/2601865E-188B-3B72-2E59A3F39194F3B8.jpg'
     ];
 
+    // $scope.makers = ['Eric', 'Richard', 'Alice', 'Heather'];
+
+    // var awesome_adj = ['awesome','breathtaking','amazing','sexy','sweet','cool','wonderful','mindblowing'];
+
+    // var randArrayEl = function(arr) {
+    //     return arr[Math.floor(Math.random() * arr.length)];
+    // };
+
+    // $scope.nameAwesome = function(){
+    //     return 
+    // }
 });
