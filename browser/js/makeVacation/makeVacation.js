@@ -7,14 +7,18 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('MakeVacationController', function ($scope, MakeVacationFactory) {
+app.controller('MakeVacationController', function ($scope, MakeVacationFactory, MakeCategoryFactory) {
     $scope.newVacation = {
         category: []
     };
 
     var setUpCategories = function (){
-        //will get categories from database
+        MakeCategoryFactory.getCategories().then(function (returnedCategories){
+             $scope.categories = returnedCategories;
+         });
     };
+
+    //will need to push category objectId in but option box will only display category.name
 
     $scope.submitVacation = function(newVacation){
 	    MakeVacationFactory.addProduct(newVacation).then(function(){
@@ -24,9 +28,8 @@ app.controller('MakeVacationController', function ($scope, MakeVacationFactory) 
 	    });
     };
 
+    setUpCategories();
 });
-
-
 
 app.factory('MakeVacationFactory', function($http) {
     return {
@@ -35,10 +38,5 @@ app.factory('MakeVacationFactory', function($http) {
                 console.log("New product successfully added!");
             });
         },
-        getCategories: function(){
-            return $http.get('/api/category/categories').then(function (response){
-                return response.data;
-            });
-        }
     };
 });

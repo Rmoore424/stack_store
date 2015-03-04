@@ -26,21 +26,24 @@
 		<div class='form-group'>
 			<label class='col-sm-4 control-label'>Region:</label>
 			<div class="col-sm-8">
-			    <input type="text" required ng-model="newVacation.region" />
+			    <input type="text" ng-model="newVacation.region" />
 			</div>
 		</div>
 		<div class='form-group'>
 			<label class='col-sm-4 control-label'>Image URL:</label>
 			<div class="col-sm-8">
-			    <input type="text" required ng-model="newVacation.imageUrl" />
+			    <input type="text" ng-model="newVacation.imageUrl" />
 			</div>
 		</div>
 		<div class='form-group'>
 			<label class='col-sm-4 control-label'>Categories:</label>
 			<div class="col-sm-8">
-			    <input type="text" required ng-model="newVacation.category" />
-			    <input type="text" required ng-model="newVacation.category" />
-			    <input type="text" required ng-model="newVacation.category" />
+               <select>
+                   <option ng-repeat="category in categories">
+                   {{ category.name }}
+                   </option>
+               </select>
+	           <!-- <<input type="text" required ng-model="newVacation.category" /> -->
 			</div>
 		</div>
 		
