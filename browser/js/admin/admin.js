@@ -24,16 +24,16 @@ app.controller('AdminCtrl', function($scope, $state, $stateParams, $rootScope, A
 	$scope.editUser = function (user) {
 		AdminFactory.getUser(user).then(function (user) {
 			$scope.user = user;
-			$rootScope.$broadcast('user', { user: user });
+			// $rootScope.$broadcast('user', { user: user });
 			//console.log('editUser', $stateParams);
 			//how do we make the state below pull in the $scope.user data? /:user
 			$state.go('admin.editUser', { id: user._id });
 		});
 	};
 
-	$scope.$on('user', function(user) {
-				console.log("hey", user);
-			});
+	// $scope.$on('user', function(user) {
+	// 			console.log("hey", user);
+	// 		});
 
 	$scope.saveUserEdits = function (user) {
 		AdminFactory.saveUser(user).then(function (user) {
@@ -54,7 +54,7 @@ app.factory('AdminFactory', function($http) {
 		saveUser: function(email) {
 
 			return $http.put('/api/admin/admin/save', { params: { email: email } }).then(function (response) {
-				console.log('saveUser', response.data);
+				console.log('saveUser', response);
 				return response.data;
 			});
 		}
