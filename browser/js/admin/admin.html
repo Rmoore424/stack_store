@@ -1,4 +1,4 @@
-<section id="admin" ng-controller='AdminCtrl'>
+<section id="admin" ng-controller='UserCtrl'>
 <div class='panel panel-info'>
     <div class='panel-heading'>
         <h2 class='panel-title'>Administration</h2>
@@ -12,8 +12,25 @@
             </div>
             <button type='submit' class='btn-success'>Submit</button>
         </form>
+    </div>
+
+    <div class='panel-body' ng-controller="HomeCtrl">
+        <form name='vacation_options' class='form-horizontal' ng-submit='editUser(user.email)'>
+            <div class='user_options'>
+                <h4>Edit Vacation</h4><br>
+                <label>Select Vacation</label><br>
+                <select>
+                    <option ng-repeat="vacation in vacations" value="{{ vacation.name }}">{{ vacation.name }}</option>
+                </select>
+            </div>
+            <button type='submit' class='btn-success'>Submit</button>
+        </form>
         
     </div>
+
+
 </div>
+
+
 <div ui-view></div>   
 </section>

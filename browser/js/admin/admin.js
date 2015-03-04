@@ -5,25 +5,38 @@
 'use strict';
 
 app.config(function ($stateProvider) {
+	//do we need the controller below?
 	$stateProvider.state('admin', {
-		url: '/admin',
-		controller: 'AdminCtrl',
+		url: '/admin/user',
+		controller: 'UserCtrl',
 		templateUrl: 'js/admin/admin.html'
 	});
 
 	$stateProvider.state('admin.editUser', {
 		url: '/:id/editUser',
-		controller: 'AdminCtrl',
+		controller: 'UserCtrl',
 		templateUrl: 'js/admin/editUser.html'
+	});
+
+	$stateProvider.state('admin.editVacation', {
+		url: '/:id/editVacation',
+		controller: 'AdminCtrl',
+		templateUrl: 'js/admin/editVacation.html'
 	});
 });
 
-app.controller('AdminCtrl', function($scope, $state, $stateParams, $rootScope, AdminFactory) {
+app.controller('AdminCtrl', function(){
+
+});
+
+app.controller('UserCtrl', function($scope, $state, $stateParams, UserFactory) {
 	$scope.user;
+	$scope.hello = true;
 
 	$scope.editUser = function (user) {
-		AdminFactory.getUser(user).then(function (user) {
+		UserFactory.getUser(user).then(function (user) {
 			$scope.user = user;
+			console.log($scope.user);
 			// $rootScope.$broadcast('user', { user: user });
 			//console.log('editUser', $stateParams);
 			//how do we make the state below pull in the $scope.user data? /:user
@@ -36,27 +49,44 @@ app.controller('AdminCtrl', function($scope, $state, $stateParams, $rootScope, A
 	// 		});
 
 	$scope.saveUserEdits = function (user) {
-		AdminFactory.saveUser(user).then(function (user) {
+		UserFactory.saveUser(user).then(function (user) {
 			
 			$state.go('admin');
 		});
 	};
 });
 
-app.factory('AdminFactory', function($http) {
+app.controller('VacationCtrl', function($scope, $state, $stateParams, VacationFactory) {
+	$scope.user;
+
+	$scope.editVacation = function (vacation) {
+		VacationFactory.getVacation(vacation).then(function (vacation) {
+			$scope.vacation = vacation;
+			$state.go('admin.editVacation', { id: vacation._id});
+		});
+	};
+});
+
+app.factory('UserFactory', function($http) {
 	return {
 		getUser: function(email) {
 
-			return $http.get('/api/admin/admin', { params: { email: email } }).then(function (response) {
+			return $http.get('/api/admin/admin/user', { params: { email: email } }).then(function (response) {
 				return response.data;
 			});
 		},
 		saveUser: function(user) {
-			console.log(user);
+			console.log("saveUser", user);
 			return $http.put('/api/admin/admin/save', user).then(function (response) {
-				console.log('saveUser', response);
+				console.log('saveUser and show response', response);
 				return response.data;
 			});
 		}
+	};
+});
+
+app.factory('VacationFactory', function($http) {
+	return {
+		// getVacation: function()
 	};
 });

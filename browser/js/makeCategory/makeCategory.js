@@ -8,13 +8,22 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('MakeCategoryController', function ($scope, MakeCategoryFactory) {
-    $scope.newCategory;
 
-    $scope.submitCategory = function(newCategory){
-	    MakeCategoryFactory.addCategory(newCategory).then(function(){
-	    	$scope.newCategory = {};
-	    });
+    var displayCategories = function(){
+        MakeCategoryFactory.getCategories().then(function (returnedCategories){
+            $scope.categories = returnedCategories;
+        });
     };
+    
+    $scope.submitCategory = function(newCategory){
+        MakeCategoryFactory.addCategory(newCategory).then(function(){
+            $scope.newCategory = {};
+        });
+        displayCategories();
+    };
+
+    displayCategories();
+
 });
 
 app.factory('MakeCategoryFactory', function($http) {
@@ -31,3 +40,4 @@ app.factory('MakeCategoryFactory', function($http) {
         }
     };
 });
+
