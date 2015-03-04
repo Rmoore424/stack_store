@@ -6,7 +6,7 @@ var schema = new mongoose.Schema({
     description: String,
     price: Number,
     region: String,
-    category: [String],
+    category: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
     imageUrl: String
 });
 
