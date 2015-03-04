@@ -49,11 +49,18 @@ app.controller('UserCtrl', function($scope, $state, $stateParams, UserFactory) {
 	// 		});
 
 	$scope.saveUserEdits = function (user) {
-		UserFactory.saveUser(user).then(function (user) {
-			
+		UserFactory.saveUser(user).then(function (user) {	
 			$state.go('admin');
 		});
 	};
+
+	$scope.deleteUser = function (user) {
+		console.log('this is doing something');
+		UserFactory.deleteUser().then(function () {
+			$state.go('admin');
+		});
+	};
+
 });
 
 app.controller('VacationCtrl', function($scope, $state, $stateParams, VacationFactory) {
@@ -79,6 +86,13 @@ app.factory('UserFactory', function($http) {
 			console.log("saveUser", user);
 			return $http.put('/api/admin/admin/save', user).then(function (response) {
 				console.log('saveUser and show response', response);
+				return response.data;
+			});
+		},
+		deleteUser: function(user) {
+			console.log("deleting!", user);
+			return $http.delete('/api/admin/admin/deleteUser', user).then(function (response) {
+				console.log("almost done deleting");
 				return response.data;
 			});
 		}

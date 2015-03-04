@@ -1,0 +1,28 @@
+<section id="editUser" ng-controller='VacationCtrl'>
+<div class='panel panel-info'>
+    <div class='panel-heading'>
+        <h2 class='panel-title'>Edit Vacation</h2>
+    </div>
+    <div class='panel-body'>
+        <form name='signupForm' class='form-horizontal' ng-submit='saveVacationEdits(vacation)' novalidate>
+            <div class='form-group'>
+                <label>Vacation Name</label><br>
+                <input type="text" ng-model="vacation.name" required> {{ vacation.name }} </input><br>
+                <label>Vacation Description</label><br>
+                <input type="text" ng-model="vacation.description" required> {{ vacation.description }}</input><br>
+                <label>Price</label><br>
+                <input type='number' ng-model='vacation.price' required> {{ vacation.price }}</input><br>
+                <label>Region</label><br>
+                <input type='text' name="region" ng-model='vacation.region' required></input><br>
+                <label>Category</label><br>
+                <input type='text' name="category" ng-model='vacation.category' required >{{ vacation.category }} </input><br>
+                <label>URL</label><br>
+                <input type='text' name="imageUrl" ng-model='vacation.imageUrl' required >{{ vacation.image.Url }} </input><br>
+            </div>
+            <button type='submit' class='btn-success'>Save Changes</button>
+        </form>
+        
+    </div>
+</div>
+<div ui-view></div>   
+</section>

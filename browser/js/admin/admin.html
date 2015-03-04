@@ -14,6 +14,22 @@
         </form>
     </div>
 
+    <div class='panel-body' ng-controller="UserCtrl">
+        <form name='deleteUser' class='form-horizontal' ng-submit='deleteUser(user)'>
+            <div class='delete user'>
+                <h4>Delete User</h4><br>
+                <div class='form-group'>
+                <label>Email Address</label><br>
+                <input type='email' ng-model='user.email' required> {{ user.email }}</input><br>
+            </div>
+            <button type='submit' class='btn-success'>Delete User</button>
+        </form>
+        
+    </div>
+
+
+
+
     <div class='panel-body' ng-controller="HomeCtrl">
         <form name='vacation_options' class='form-horizontal' ng-submit='editUser(user.email)'>
             <div class='user_options'>
@@ -27,6 +43,8 @@
         </form>
         
     </div>
+
+
 
 
 </div>

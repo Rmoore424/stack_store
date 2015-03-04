@@ -4,7 +4,7 @@
         <h2 class='panel-title'>Edit User Info</h2>
     </div>
     <div class='panel-body'>
-        <form name='editUserForm' class='form-horizontal' ng-submit='saveUserEdits(user)' novalidate>
+        <form name='editUserForm' ng-submit='saveUserEdits(user)' class='form-horizontal' novalidate>
             <div class='form-group'>
                 <label>First Name</label><br>
                 <input type="text" ng-model="user.first_name" required> {{ user.first_name }} </input><br>
@@ -22,7 +22,30 @@
             <button type='submit' class='btn-success'>Save Changes</button>
            <span class="help-block" ng-show="signupForm.confirmPassword.$error.match">Passwords do not match.</span>
         </form>
-        
+    </div>
+</div>
+<div ui-view></div>   
+</section>
+
+<section id="deleteUser" ng-controller="UserCtrl">
+<div class='panel panel-info'>
+    <div class='panel-heading'>
+        <h2 class='panel-title'>Delete User</h2>
+    </div>
+    <div class='panel-body'>
+        <form name='editUserForm' ng-submit='deleteUser(user)' class='form-horizontal' novalidate>
+            <div class='form-group'>
+                <label>First Name</label><br>
+                <input type="text" ng-model="user.first_name" required> {{ user.first_name }} </input><br>
+                <label>Last Name</label><br>
+                <input type="text" ng-model="user.last_name" required> {{ user.last_name }}</input><br>
+                <label>Email Address</label><br>
+                <input type='email' ng-model='user.email' required> {{ user.email }}</input><br>
+                <label>Admin Status</label><br>
+                <input type='checkbox' ng-model='user.admin'></input><br>
+            </div>
+            <button type='submit' class='btn-success'>Delete User</button>
+        </form>
     </div>
 </div>
 <div ui-view></div>   
