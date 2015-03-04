@@ -1,10 +1,10 @@
-<section id="admin" ng-controller='AdminController'>
+<section id="admin" ng-controller='AdminCtrl'>
 <div class='panel panel-info'>
     <div class='panel-heading'>
-        <h2 class='panel-title'>Adminstration</h2>
+        <h2 class='panel-title'>Administration</h2>
     </div>
     <div class='panel-body'>
-        <form name='user_options' class='form-horizontal' ng-submit='AdminCtrl(user)'>
+        <form name='user_options' class='form-horizontal' ng-submit='editUser(user.email)'>
             <div class='user_options'>
                 <h4>Change User's Information</h4><br>
                 <label>Enter User's Email Address</label><br>
