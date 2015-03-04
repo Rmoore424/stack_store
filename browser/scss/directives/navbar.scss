@@ -3,6 +3,14 @@ navbar {
   display: block;
   background: #a1a1a1;
 
+  div.container {
+    margin: 0;
+    width: 100%;
+  }
+
+  .navbar-right {
+    margin-right: 1%;
+  }
   fullstack-logo {
     padding-top: 10px;
     margin-right: 20px;
@@ -12,7 +20,7 @@ navbar {
   a {
     color: white;
     &:hover {
-      color: white;
+      color: red;
     }
   }
 

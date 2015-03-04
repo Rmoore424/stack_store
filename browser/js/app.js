@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt']);
+var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'angular-carousel']);
 
 app.controller('MainController', function ($scope) {
 
@@ -7,13 +7,13 @@ app.controller('MainController', function ($scope) {
     $scope.menuItems = [
         { label: 'Home', state: 'home' },
         { label: 'My Cart', state: 'mycart' },
-        { label: 'Sign Up', state: 'signup'},
         { label: 'Make Vacation', state: 'makeVacation'},
         { label: 'Checkout', state: 'checkout'}
     ];
 
     $scope.rightMenu = [
-        { label: 'Log In', state: 'login' }
+        { label: 'Log In', state: 'login' },
+        { label: 'Sign Up', state: 'signup'}
     ]
 
 });
