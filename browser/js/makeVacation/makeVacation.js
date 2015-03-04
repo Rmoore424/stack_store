@@ -34,11 +34,6 @@ app.factory('MakeVacationFactory', function($http) {
             return $http.post('/api/vacation/makeVacation', newVacation).then(function() {
                 console.log("New product successfully added!");
             });
-        },
-        getCategories: function(){
-            return $http.get('/api/category/categories').then(function (response){
-                return response.data;
-            });
         }
     };
 });

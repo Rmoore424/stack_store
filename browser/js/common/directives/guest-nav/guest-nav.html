@@ -1,6 +1,6 @@
 <ul class="nav navbar-nav navbar-right">
     <li><a ui-sref-active="active" ui-sref="mycart"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
-    <li ng-repeat="item in rightItems">
+    <li ng-repeat="item in generalOptions">
         <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
     </li>
 </ul>

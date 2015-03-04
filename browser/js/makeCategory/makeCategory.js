@@ -17,13 +17,16 @@ app.controller('MakeCategoryController', function ($scope, MakeCategoryFactory) 
     };
 });
 
-
-
 app.factory('MakeCategoryFactory', function($http) {
     return {
         addCategory: function(newCategory) {
             return $http.post('/api/category/makeCategory', newCategory).then(function() {
                 console.log("New category successfully added!");
+            });
+        },
+        getCategories: function(){
+            return $http.get('/api/category/categories').then(function (response){
+                return response.data;
             });
         }
     };

@@ -11,4 +11,15 @@
         <guestnav ng-show="!nav.loggedIn"></guestnav>
         <usernav ng-show="nav.loggedIn"></usernav>
     </div>
+    <div class="container lower-container">
+        <div class="dropdown">
+            <button class="btn btn-nav dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            Search By Category
+            <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation" ng-repeat="category in categories"><a role="menuitem" tabindex="-1" href="#">{{ category.name }}</a></li>
+            </ul>
+        </div>
+    </div>
 </nav>
