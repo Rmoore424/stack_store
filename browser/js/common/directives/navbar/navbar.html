@@ -8,17 +8,7 @@
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
         </ul>
-        <ul ng-show="!nav.loggedIn" class="nav navbar-nav navbar-right">
-                <li><a ui-sref-active="active" ui-sref="mycart"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
-                <li ng-repeat="item in rightItems">
-                    <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-                </li>
-        </ul>
-        <ul ng-show="nav.loggedIn" class="nav navbar-nav navbar-right">
-                <li><a ui-sref-active="active" ui-sref="mycart"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
-                <li ng-repeat="item in userItems">
-                    <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-                </li>
-        </ul>
+        <guestnav ng-show="!nav.loggedIn"></guestnav>
+        <usernav ng-show="nav.loggedIn"></usernav>
     </div>
 </nav>
