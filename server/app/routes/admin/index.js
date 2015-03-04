@@ -14,10 +14,10 @@ router.get('/admin', function (req, res, next) {
 });
 
 router.put('/admin/save', function (req, res, next) {
-	console.log("body is", req.body);
+	console.log("body is", req.body );
 	UserModel.findOneAndUpdate( { email: req.body.email }, req.body, function (err, user) {
 		if (err) next(err);
-		console.log('back end', user);
+		console.log('back end', user );
 		res.send(user);
 	});
 });

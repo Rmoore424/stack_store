@@ -51,9 +51,9 @@ app.factory('AdminFactory', function($http) {
 				return response.data;
 			});
 		},
-		saveUser: function(email) {
-
-			return $http.put('/api/admin/admin/save', { params: { email: email } }).then(function (response) {
+		saveUser: function(user) {
+			console.log(user);
+			return $http.put('/api/admin/admin/save', user).then(function (response) {
 				console.log('saveUser', response);
 				return response.data;
 			});
