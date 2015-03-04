@@ -4,7 +4,9 @@ app.directive('navbar', function () {
         restrict: 'E',
         scope: {
           items: '=',
-          rightItems: '='
+          rightItems: '=',
+          userItems: '=',
+          nav: '='
         },
         templateUrl: 'js/common/directives/navbar/navbar.html'
     };
