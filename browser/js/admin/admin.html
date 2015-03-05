@@ -14,14 +14,15 @@
         </form>
     </div>
 
-    <div class='panel-body' ng-controller="UserCtrl">
-        <form name='deleteUser' class='form-horizontal' ng-submit='editUser(user.email)'>
+    <div class='panel-body' ng-controller="DeleteUserCtrl">
+        <form name='deleteUser' class='form-horizontal' ng-submit='findUserToDelete(userToDelete.email)'>
             <div class='delete user'>
                 <h4>Delete User</h4><br>
-                <label>Email Address</label><br>
-                <input type='email' ng-model='user.email' required> {{ user.email }}</input><br>
+                <label>Enter User's Email Address</label><br>
+                <input type='email' ng-model='userToDelete.email' required></input><br>
             </div>
-            <button type='submit' class='btn-success'>Delete User</button>
+            <button type='submit' class='btn-success'>Submit
+            </button>
         </form>      
     </div>
 

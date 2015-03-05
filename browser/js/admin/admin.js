@@ -18,6 +18,12 @@ app.config(function ($stateProvider) {
 		templateUrl: 'js/admin/editUser.html'
 	});
 
+	$stateProvider.state('admin.deleteUser', {
+		url: '/:id/deleteUser',
+		controller: 'DeleteUserCtrl',
+		templateUrl: 'js/admin/deleteUser.html'
+	});
+
 	$stateProvider.state('admin.editVacation', {
 		url: '/:id/editVacation',
 		controller: 'AdminCtrl',
@@ -43,24 +49,51 @@ app.controller('UserCtrl', function($scope, $state, $stateParams, UserFactory) {
 			$state.go('admin.editUser', { id: user._id });
 		});
 	};
-
-	// $scope.$on('user', function(user) {
-	// 			console.log("hey", user);
-	// 		});
-
+	
 	$scope.saveUserEdits = function (user) {
 		UserFactory.saveUser(user).then(function (user) {	
 			$state.go('admin');
 		});
 	};
+});
 
-	$scope.deleteUser = function (user) {
-		console.log('this is doing something');
-		UserFactory.getUser().then(function () {
-			$state.go('admin');
+app.controller('DeleteUserCtrl', function( $scope, $state, $stateParams, DeleteUserFactory) {
+	$scope.userToDelete;
+
+	$scope.findUserToDelete = function (user) {
+		console.log('this is happening');
+		DeleteUserFactory.findUserToDelete(user).then(function (user) {
+			$scope.userToDelete = user;
+			console.log("$scope",$scope.userToDelete);
+			// console.log("user", user);
+			$state.go('admin.deleteUser', { id: user._id});
 		});
 	};
 
+	$scope.deleteUser = function (user) {
+		console.log('this is doing something');
+		DeleteUserFactory.deleteUser(user).then(function () {
+			$state.go('admin.deleteUser');
+		});
+	};
+});
+
+app.factory('DeleteUserFactory', function($http) {
+	return {
+		findUserToDelete: function(email) {
+			return $http.get('/api/admin/admin/user', { params: { email: email } }).then(function (response) {
+				console.log(response.data);
+				return response.data;
+			});
+		},
+		deleteUser: function(user) {
+			console.log("deleting!", user);
+			return $http.delete('/api/admin/admin/deleteUser', user).then(function (response) {
+				console.log("almost done deleting");
+				return response.data;
+			});
+		}
+	};
 });
 
 app.controller('VacationCtrl', function($scope, $state, $stateParams, VacationFactory) {
@@ -77,7 +110,6 @@ app.controller('VacationCtrl', function($scope, $state, $stateParams, VacationFa
 app.factory('UserFactory', function($http) {
 	return {
 		getUser: function(email) {
-
 			return $http.get('/api/admin/admin/user', { params: { email: email } }).then(function (response) {
 				return response.data;
 			});
@@ -89,15 +121,9 @@ app.factory('UserFactory', function($http) {
 				return response.data;
 			});
 		},
-		deleteUser: function(user) {
-			console.log("deleting!", user);
-			return $http.delete('/api/admin/admin/deleteUser', user).then(function (response) {
-				console.log("almost done deleting");
-				return response.data;
-			});
-		}
 	};
 });
+
 
 app.factory('VacationFactory', function($http) {
 	return {
