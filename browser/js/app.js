@@ -7,20 +7,13 @@ app.controller('MainController', function ($scope) {
     $scope.menuItems = [
         { label: 'Home', state: 'home' },
         { label: 'About', state: 'about'},
-        { label: 'Make Vacation', state: 'makeVacation'},
-        { label: 'Checkout', state: 'checkout'}
     ];
 
-    $scope.rightMenu = [
-        { label: 'Log Out', state: 'login'},
-        { label: 'My Account', state: 'myAccount'},
-        { label: 'My Orders', state: 'myOrders'},
-        { label: 'Log In', state: 'login'},
-        { label: 'Sign Up', state: 'signup'}
+    $scope.adminOptions = [
+        { label: 'Make Vacation', state: 'makeVacation'}
     ];
 
 });
-
 
 app.config(function ($urlRouterProvider, $locationProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)

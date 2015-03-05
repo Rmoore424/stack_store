@@ -2,12 +2,23 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    name: String,
-    description: String,
-    price: Number,
+    name: {
+    	type: String,
+    	required: true
+    },
+    description: { 
+    	type: String,
+    	required: true
+    },
+    price: {
+    	type: Number,
+    	required: true
+    },
     region: String,
-    category: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
+    category: { type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}], required: true },
     imageUrl: String
 });
 
-mongoose.model('Vacation', schema);
+var Vacation = mongoose.model('Vacation', schema);
+
+module.exports = Vacation;

@@ -22,7 +22,7 @@ router.get('/admin/user', function (req, res, next) {
 });
 
 router.put('/admin/save', function (req, res, next) {
-	console.log("body is", req.body );
+	console.log("body is", req.body);
 	UserModel.findOneAndUpdate( { email: req.body.email }, req.body, function (err, user) {
 		if (err) next(err);
 		console.log('back end', user );
