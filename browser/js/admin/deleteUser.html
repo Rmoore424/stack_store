@@ -1,10 +1,10 @@
-<section id="deleteUser" ng-controller="DeleteUserCtrl">
+<section id="deleteUser" ng-controller="AdminCtrl">
 <div class='panel panel-info'>
     <div class='panel-heading'>
         <h2 class='panel-title'>Delete User</h2>
     </div>
     <div class='panel-body'>
-        <form name='deleteUserForm' ng-submit='deleteUser(userToDelete)' class='form-horizontal' novalidate>{{userToDelete}}
+        <form name='deleteUserForm' ng-submit='deleteUser(userToDelete)' class='form-horizontal' novalidate>
             <div class='form-group'>
                 <label>First Name</label><br>
                 <input type="text" ng-model="userToDelete.first_name" required></input><br>

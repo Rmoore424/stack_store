@@ -1,4 +1,4 @@
-<section id="admin" ng-controller='UserCtrl'>
+<section id="admin" ng-controller='AdminCtrl'>
 <div class='panel panel-info'>
     <div class='panel-heading'>
         <h2 class='panel-title'>Administration</h2>
@@ -14,7 +14,7 @@
         </form>
     </div>
 
-    <div class='panel-body' ng-controller="DeleteUserCtrl">
+    <div class='panel-body'>
         <form name='deleteUser' class='form-horizontal' ng-submit='findUserToDelete(userToDelete.email)'>
             <div class='delete user'>
                 <h4>Delete User</h4><br>
@@ -26,7 +26,7 @@
         </form>      
     </div>
 
-    <div class='panel-body' ng-controller="HomeCtrl">
+    <div class='panel-body'>
         <form name='vacation_options' class='form-horizontal' ng-submit='editUser(user.email)'>
             <div class='user_options'>
                 <h4>Edit Vacation</h4><br>
