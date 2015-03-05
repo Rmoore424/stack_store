@@ -22,7 +22,7 @@ router.get('/admin/user', function (req, res, next) {
 });
 
 router.delete('/admin/deleteUser', function (req, res, next) {
-	UserModel.findOne({ email: req.query.email }, function (err, user) {
+	UserModel.findOneAndRemove( {_id: req.query._id }, function (err, user) {
 		if (err) next(err);
 		console.log('back end', user);
 		res.send(user);

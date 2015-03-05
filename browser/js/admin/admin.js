@@ -8,19 +8,19 @@ app.config(function ($stateProvider) {
 	//do we need the controller below?
 	$stateProvider.state('admin', {
 		url: '/admin/user',
-		controller: 'UserCtrl',
+		controller: 'AdminCtrl',
 		templateUrl: 'js/admin/admin.html'
 	});
 
 	$stateProvider.state('admin.editUser', {
 		url: '/:id/editUser',
-		controller: 'UserCtrl',
+		controller: 'AdminCtrl',
 		templateUrl: 'js/admin/editUser.html'
 	});
 
 	$stateProvider.state('admin.deleteUser', {
 		url: '/:id/deleteUser',
-		controller: 'DeleteUserCtrl',
+		controller: 'AdminCtrl',
 		templateUrl: 'js/admin/deleteUser.html'
 	});
 
@@ -31,14 +31,7 @@ app.config(function ($stateProvider) {
 	});
 });
 
-app.controller('AdminCtrl', function(){
-
-});
-
-app.controller('UserCtrl', function($scope, $state, $stateParams, UserFactory) {
-	$scope.user;
-	$scope.hello = true;
-
+app.controller('AdminCtrl', function($scope, $state, $stateParams, UserFactory, DeleteUserFactory){
 	$scope.editUser = function (user) {
 		UserFactory.getUser(user).then(function (user) {
 			$scope.user = user;
@@ -49,16 +42,12 @@ app.controller('UserCtrl', function($scope, $state, $stateParams, UserFactory) {
 			$state.go('admin.editUser', { id: user._id });
 		});
 	};
-	
+
 	$scope.saveUserEdits = function (user) {
 		UserFactory.saveUser(user).then(function (user) {	
 			$state.go('admin');
 		});
 	};
-});
-
-app.controller('DeleteUserCtrl', function( $scope, $state, $stateParams, DeleteUserFactory) {
-	$scope.userToDelete;
 
 	$scope.findUserToDelete = function (user) {
 		console.log('this is happening');
@@ -76,6 +65,13 @@ app.controller('DeleteUserCtrl', function( $scope, $state, $stateParams, DeleteU
 			$state.go('admin.deleteUser');
 		});
 	};
+
+	$scope.editVacation = function (vacation) {
+		VacationFactory.getVacation(vacation).then(function (vacation) {
+			$scope.vacation = vacation;
+			$state.go('admin.editVacation', { id: vacation._id});
+		});
+	};
 });
 
 app.factory('DeleteUserFactory', function($http) {
@@ -88,22 +84,11 @@ app.factory('DeleteUserFactory', function($http) {
 		},
 		deleteUser: function(user) {
 			console.log("deleting!", user);
-			return $http.delete('/api/admin/admin/deleteUser', user).then(function (response) {
+			return $http.delete('/api/admin/admin/deleteUser', { params: { _id: user._id } }).then(function (response) {
 				console.log("almost done deleting");
 				return response.data;
 			});
 		}
-	};
-});
-
-app.controller('VacationCtrl', function($scope, $state, $stateParams, VacationFactory) {
-	$scope.user;
-
-	$scope.editVacation = function (vacation) {
-		VacationFactory.getVacation(vacation).then(function (vacation) {
-			$scope.vacation = vacation;
-			$state.go('admin.editVacation', { id: vacation._id});
-		});
 	};
 });
 
