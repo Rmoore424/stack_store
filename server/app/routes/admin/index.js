@@ -5,13 +5,13 @@ module.exports = router;
 var mongoose = require('mongoose');
 var UserModel = mongoose.model('User');
 
-// router.get('/admin', function (req, res, next) {
-// 	UserModel.findOne({ email: req.query.email }, function (err, user) {
-// 		if (err) next(err);
-// 		console.log('back end', user);
-// 		res.send(user);
-// 	});
-// });
+router.get('/admin', function (req, res, next) {
+	UserModel.findOne({ email: req.query.email }, function (err, user) {
+		if (err) next(err);
+		console.log('back end', user);
+		res.send(user);
+	});
+});
 
 router.get('/admin/user', function (req, res, next) {
 	UserModel.findOne({ email: req.query.email }, function (err, user) {
