@@ -56,7 +56,7 @@ app.controller('UserCtrl', function($scope, $state, $stateParams, UserFactory) {
 
 	$scope.deleteUser = function (user) {
 		console.log('this is doing something');
-		UserFactory.deleteUser().then(function () {
+		UserFactory.getUser().then(function () {
 			$state.go('admin');
 		});
 	};
