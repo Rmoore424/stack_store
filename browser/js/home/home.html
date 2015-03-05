@@ -1,4 +1,4 @@
-<section id="home">
+<section id="home" ng-controller='HomeCtrl'>
 	<div class="jumbotron">
 			<ul rn-carousel rn-carousel-auto-slide="5" class="image">
 				<li><div class="jumbo"></div></li>
@@ -6,5 +6,5 @@
 				<li><div class="jumbo"></div></li>
 			</ul>
 	</div>
-	<widget class="col-sm-3 " ng-repeat="vacation in vacations.name"></widget>
+	<vacation class="col-sm-3 " ng-repeat="vacation in vacations.vacations"></vacation>
 </section>

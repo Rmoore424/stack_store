@@ -5,9 +5,21 @@ var mongoose = require('mongoose');
 var VacationModel = mongoose.model('Vacation');
 var CategoryModel = mongoose.model('Category');
 
+
 router.get('/vacation', function (req, res, next) {
+	console.log(req.query);
+	VacationModel.findOne({ _id: req.query.id })
+		.exec(function (err, vacation) {
+			console.log("vacation:", vacation);
+			if (err) next(err);
+			res.send(vacation);
+		});
+});
+
+router.get('/vacations', function (req, res, next) {
 	VacationModel.find({})
 		.exec(function (err, vacations) {
+			console.log("vacations:", vacations);
 			if (err) next(err);
 			res.send(vacations);
 		});
