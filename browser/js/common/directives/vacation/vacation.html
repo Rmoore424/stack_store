@@ -3,6 +3,7 @@
 	<p class='text-center'>{{ vacation.description }}</p>
 	<p class='text-center'>${{ vacation.price }}</p>
 	<div class='text-center'>
+		<button class="btn btn-success" ng-click="getCurrentVacation(vacation)">Go To Page</button>
 		<button class="btn btn-info" ng-click="addVacationToCart(vacation)">Add to Cart</button>
 	</div>
 

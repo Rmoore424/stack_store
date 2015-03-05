@@ -9,19 +9,24 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('HomeCtrl', function ($scope, HomeFactory) {
+app.controller('HomeCtrl', function ($scope, $rootScope, HomeFactory) {
+	//ask about this in code review
 	$scope.vacations = HomeFactory;
 
 	HomeFactory.getVacations().then(function (returnedVacations) {
 		HomeFactory.vacations = returnedVacations;
 	});
+
+	// $scope.on('currentVacation', function() {
+	// 	$rootScope.$broadcast('currentVacation');
+	// })
 });
 
 app.factory('HomeFactory', function ($http) {
 	return {
 		vacations: [],
 		getVacations: function () {
-			return $http.get('/api/vacation/vacation').then(function (response) {
+			return $http.get('/api/vacation/vacations').then(function (response) {
 				return response.data;
 			});
 		},
