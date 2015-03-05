@@ -12,7 +12,7 @@ router.get('/vacation', function (req, res, next) {
 		});
 });
 
-router.post('/makeVacation', function (req, res, next) {
+router.post('/makeVacation', function (req, res, next) {	
     VacationModel.create(req.body, function(err, vacation){
     	if(err) next(err);
     	res.send(vacation);

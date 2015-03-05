@@ -7,24 +7,44 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('MakeVacationController', function ($scope, MakeVacationFactory, MakeCategoryFactory) {
-    $scope.newVacation = {
-        category: []
-    };
+app.controller('MakeVacationController', function ($scope, $compile, MakeVacationFactory, MakeCategoryFactory) {
+
+    var catArr = [];
 
     var setUpCategories = function (){
         MakeCategoryFactory.getCategories().then(function (returnedCategories){
              $scope.categories = returnedCategories;
-         });
+        });
     };
 
-    //will need to push category objectId in but option box will only display category.name
+    $scope.addCategory = function (){
+        var categoryId = $scope.catEl._id;
+        if(catArr.indexOf(categoryId) == -1)
+            catArr.push(categoryId);
+        else{
+            alert("Category is already present!");
+            return;
+        }
+
+        var categoryTemp ='<p id="'+categoryId+'">'+$scope.catEl.name+' <a ng-click="deleteCategory()" class="btn btn-danger">x</a></p>';
+        var catComp = $compile(categoryTemp)($scope);
+        $('#catDisplay').append(catComp);
+    };
+
+    $scope.deleteCategory = function(){
+        var idGet = $(event.target).parent().attr('id');
+        catArr = catArr.filter(function (data){
+            return data !== idGet;
+        });
+        $('a').parent().remove("#" + idGet);
+    };
 
     $scope.submitVacation = function(newVacation){
-	    MakeVacationFactory.addProduct(newVacation).then(function(){
-	    	$scope.newVacation = {
-	    		category: []
-	    	};
+        newVacation.category = catArr;
+        MakeVacationFactory.addProduct(newVacation).then(function(){
+	    	$scope.newVacation = {};
+            $('#catDisplay').children().remove();
+            setUpCategories();
 	    });
     };
 
@@ -37,6 +57,6 @@ app.factory('MakeVacationFactory', function($http) {
             return $http.post('/api/vacation/makeVacation', newVacation).then(function() {
                 console.log("New product successfully added!");
             });
-        },
+        }
     };
 });
