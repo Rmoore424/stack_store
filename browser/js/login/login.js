@@ -11,12 +11,6 @@ app.config(function ($stateProvider) {
 
 app.controller('LoginController', function ($scope, $window, $state, AuthService, NavFactory) {
     // need to determine whether state change belongs in a diff module
-    $scope.loginUser = function (user) {
-        AuthService.login(user).then(function (response) {
-            NavFactory.setUser();
-            $state.go('home');
-        });
-    };
 
     $scope.getFacebook = function () {
         $window.location.href = "auth/facebook";
