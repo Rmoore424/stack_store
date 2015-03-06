@@ -1,4 +1,5 @@
 <section id="admin" ng-controller='AdminCtrl'>
+<div class='row'>
 <div class='panel panel-info'>
     <div class='panel-heading'>
         <h2 class='panel-title'>Administration</h2>
@@ -13,6 +14,7 @@
             <button type='submit' class='btn-success'>Submit</button>
         </form>
     </div>
+</div
 
     <div class='panel-body'>
         <form name='deleteUser' class='form-horizontal' ng-submit='findUserToDelete(userToDelete.email)'>
