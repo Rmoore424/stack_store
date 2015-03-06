@@ -22,4 +22,3 @@ app.controller('VacationPgCtrl', function($scope, $stateParams, $state, Vacation
 
 	setUpReviews();
 });
-
