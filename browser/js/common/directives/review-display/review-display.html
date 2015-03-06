@@ -1,0 +1,16 @@
+<section id="reviews">
+	<div class="panel panel-default">
+	<div class="panel-heading">Reviews for {{vacation.name}}</div>
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="review in reviews" id="{{review._id}}">
+				{{review.date}}<br>
+				<strong>{{review.rating}}/5 Stars</strong><br>
+				{{review.user}} is empty as needs to have user associated with it!<br> 
+				{{review.product}}<br>
+				{{review.text}}<br>
+				<a ng-click="editReview()" class="btn btn-warning">Edit Review</a>
+				<a ng-click="deleteReview()" class="btn btn-danger">Delete Review</a>
+			</li>
+		</ul>
+	</div>
+</section>
