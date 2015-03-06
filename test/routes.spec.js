@@ -34,18 +34,18 @@ describe('Server', function () {
 		});
 	});
 
-	describe('GET /admin/user', function () {
+	describe('GET /user', function () {
 		it('should get 200', function (done) {
 			agent
-				.get('/api/admin/admin/user')
+				.get('/api/admin/user')
 				.expect(200, done);
 		});
 	});
 
-	describe('PUT /admin/save', function () {
+	describe('PUT /user', function () {
 		it('should find a user by email and update that user', function (done) {
 			agent
-				.put('/api/admin/admin/save')
+				.put('/api/user')
 				.send({first_name: "Alice", last_name: "Kindheart", email: user.email})
 				.end(function (err, response) {
 					User.findOne({first_name: "Alice"}, function (err, returnedUser) {
@@ -59,15 +59,15 @@ describe('Server', function () {
 
 	describe('GET /categories', function () {
 		it('should get 200', function (done) {
-			agent.get('/api/category/categories')
+			agent.get('/api/categories')
 				.expect(200, done);
 			});
 	});
 
-	describe('POST /makeCategories', function () {
+	describe('POST /categories', function () {
 		it('should create a new category', function (done) {
 			agent
-				.post('/api/category/makeCategory')
+				.post('/api/categories')
 				.send({name: 'space', description: 'space is awesome'})
 				.end(function (err, response) {
 				Category.findOne({name: 'space'}, function (err, returnedCategory) {
@@ -79,10 +79,10 @@ describe('Server', function () {
 		});
 	});
 
-	describe('POST /signup', function () {
+	describe('POST /user', function () {
 		it('should create a new user', function (done) {
 			agent
-				.post('/api/signup/signup')
+				.post('/api/user')
 				.send({first_name: 'Rich', last_name: 'Moore', email: 'rmoore424@gmail.com', password: 'abc123'})
 				.end(function (err, response) {
 					User.findOne({email: 'rmoore424@gmail.com'}, function (err, returnedUser) {
