@@ -1,3 +1,4 @@
+"use strict";
 app.factory('CategoriesFactory', function ($http) {
 	return {
 		createCategory: function(newCategory) {
@@ -20,7 +21,7 @@ app.factory('CategoriesFactory', function ($http) {
         		return response.data;
         	});
         }
-	}
+	};
 });
 
 //Might want to add a getOneCategory function if needed -RICH

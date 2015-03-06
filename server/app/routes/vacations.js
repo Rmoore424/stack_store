@@ -31,7 +31,7 @@ router.get('/category/:id', function (req, res, next) {
 	VacationModel.find({})
 	.exec(function (err, vacations) {
 		vacations = vacations.filter(function (el) {
-			return el.category.indexOf(req.query.id) > -1;
+			return el.category.indexOf(req.params.id) > -1;
 		});
 		res.send(vacations);
 	});

@@ -31,7 +31,7 @@ app.config(function ($stateProvider) {
 	});
 });
 
-app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory, DeleteUserFactory){
+app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory, VacationsFactory){
 	$scope.editUser = function (user) {
 		UserFactory.getUser(user).then(function (user) {
 			$scope.user = user;
@@ -67,7 +67,7 @@ app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory,
 	};
 
 	$scope.editVacation = function (vacation) {
-		VacationFactory.getVacation(vacation).then(function (vacation) {
+		VacationsFactory.getVacation(vacation).then(function (vacation) {
 			$scope.vacation = vacation;
 			$state.go('admin.editVacation', { id: vacation._id});
 		});

@@ -1,3 +1,4 @@
+"use strict";
 app.factory("VacationsFactory", function ($http) {
 	return {
 		getVacations: function () {
@@ -11,12 +12,12 @@ app.factory("VacationsFactory", function ($http) {
 			});
 		},
 		getVacationsByCategory: function (id) {
-			return $http.get('/api/vacations/category' + id).then(function (response) {
+			return $http.get('/api/vacations/category/' + id).then(function (response) {
 				return response.data;
 			});
 		},
 		createVacation: function (vacation) {
-			return $http.post('/api/vacations').then(function (response) {
+			return $http.post('/api/vacations', vacation).then(function (response) {
 				return response.data;
 			});
 		},
@@ -26,12 +27,12 @@ app.factory("VacationsFactory", function ($http) {
 			});
 		},
 		updateVacation: function (vacation) {
-			return $http.put('/api/vacations').then(function (response) {
+			return $http.put('/api/vacations', vacation).then(function (response) {
 				return response.data;
 			});
 		}
-	}
-})
+	};
+});
 
 //may want to pass id as argument for delete and update 
 //instead of whole vacation object -RICH

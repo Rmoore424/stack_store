@@ -9,9 +9,10 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('HomeCtrl', function ($scope, VacationsFactory) {
+app.controller('HomeCtrl', function ($scope, $state, HomeViewFactory, VacationsFactory) {
+	$scope.homeView = HomeViewFactory;
 
-	VacationsFactory.getVacations().then(function (returnedVacations) {
-		$scope.vacations = returnedVacations;
-	});
+    VacationsFactory.getVacations().then(function (vacations) {
+        HomeViewFactory.vacations = vacations;
+    });
 });

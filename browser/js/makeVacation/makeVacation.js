@@ -41,7 +41,7 @@ app.controller('MakeVacationController', function ($scope, $compile, VacationsFa
 
     $scope.submitVacation = function(newVacation){
         newVacation.category = catArr;
-        VacationsFactory.addProduct(newVacation).then(function(){
+        VacationsFactory.createVacation(newVacation).then(function(){
 	    	$scope.newVacation = {};
             $('#catDisplay').children().remove();
             setUpCategories();

@@ -1,3 +1,4 @@
+"use strict";
 app.factory('UserFactory', function($http) {
 	return {
 		getUser: function(email) {

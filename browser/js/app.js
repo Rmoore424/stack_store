@@ -3,9 +3,13 @@ var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', '
 
 app.controller('MainController', function ($scope, $state, AuthService, UserFactory) {
     $scope.isLoggedIn = false;
-    UserFactory.validateUser().then(function (returnedUser) {
-        if (returnedUser) {
+    $scope.isAdmin = false;
+    UserFactory.validateUser().then(function (responseObj) {
+        if (responseObj) {
             $scope.isLoggedIn = true;
+            if (responseObj.user.admin) {
+                $scope.isAdmin = true;
+            }
         }
     });
     //not necessary but we can use this for something
@@ -25,12 +29,6 @@ app.controller('MainController', function ($scope, $state, AuthService, UserFact
             $state.go('home');
         });
     };
-    // Given to the <navbar> directive to show the menu.
-
-    $scope.adminOptions = [
-        { label: 'Make Vacation', state: 'makeVacation'}
-    ];
-
 });
 
 app.config(function ($urlRouterProvider, $locationProvider) {

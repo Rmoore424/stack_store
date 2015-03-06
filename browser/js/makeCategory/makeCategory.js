@@ -16,7 +16,7 @@ app.controller('MakeCategoryController', function ($scope, CategoriesFactory) {
     };
     
     $scope.submitCategory = function(newCategory){
-        CategoriesFactory.addCategory(newCategory).then(function(){
+        CategoriesFactory.createCategory(newCategory).then(function(){
             $scope.newCategory = {};
         });
         displayCategories();

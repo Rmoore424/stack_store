@@ -7,7 +7,7 @@ app.directive('navbar', function () {
     };
 });
 
-app.controller('NavController', function ($scope, VacationsFactory, CategoriesFactory) {
+app.controller('NavController', function ($scope, $state, VacationsFactory, CategoriesFactory, HomeViewFactory) {
     console.log($scope);
 
     $scope.menuItems = [
@@ -27,15 +27,21 @@ app.controller('NavController', function ($scope, VacationsFactory, CategoriesFa
         { label: 'Sign Up', state: 'signup'}
     ];
 
+    $scope.adminOptions = [
+        { label: 'Make Vacation', state: 'makeVacation'}
+    ];
+
     CategoriesFactory.getCategories().then(function (categories) {
         $scope.categories = categories;
     });
 
-    $scope.vacationsByCategory = function(categoryId) {
+    $scope.getVacationsByCategory = function(categoryId) {
       VacationsFactory.getVacationsByCategory(categoryId).then(function (vacations) {
-        //HomeFactory.vacations = vacations;
+        HomeViewFactory.vacations = vacations;
+        $state.go('home');
       });
     };
+
 });
         //vacationsByCategory needs to be changed as well -RICH
         //should probably go in MainController
