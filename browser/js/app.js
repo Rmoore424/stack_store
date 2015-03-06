@@ -1,7 +1,7 @@
 'use strict';
 var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'angular-carousel']);
 
-app.controller('MainController', function ($scope, $state, AuthService, HomeFactory) {
+app.controller('MainController', function ($scope, $state, AuthService, UserFactory) {
     $scope.isLoggedIn = false;
     UserFactory.validateUser().then(function (returnedUser) {
         if (returnedUser) {
@@ -20,6 +20,7 @@ app.controller('MainController', function ($scope, $state, AuthService, HomeFact
 
     $scope.loginUser = function (user) {
         AuthService.login(user).then(function (response) {
+            console.log(response);
             $scope.isLoggedIn = true;
             $state.go('home');
         });

@@ -6,6 +6,6 @@ router.use('/login', require('../configure/authentication/local'));
 
 router.use('/user', require('./user'));
 
-router.use("/vacations", require('./vacation'));
+router.use("/vacations", require('./vacations'));
 
-router.use("/categories", require('./category'));
+router.use("/categories", require('./categories'));

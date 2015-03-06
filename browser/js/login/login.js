@@ -1,7 +1,6 @@
 'use strict';
 app.config(function ($stateProvider) {
 
-    // Register our *about* state.
     $stateProvider.state('login', {
         url: '/login',
         controller: 'LoginController',
@@ -9,9 +8,8 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('LoginController', function ($scope, $window, $state, AuthService, NavFactory) {
+app.controller('LoginController', function ($scope, $window, $state, AuthService) {
     // need to determine whether state change belongs in a diff module
-
     $scope.getFacebook = function () {
         $window.location.href = "auth/facebook";
     };

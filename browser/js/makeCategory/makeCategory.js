@@ -7,7 +7,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('MakeCategoryController', function ($scope, MakeCategoryFactory) {
+app.controller('MakeCategoryController', function ($scope, CategoriesFactory) {
 
     var displayCategories = function(){
         CategoriesFactory.getCategories().then(function (returnedCategories){

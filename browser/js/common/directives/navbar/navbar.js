@@ -7,7 +7,7 @@ app.directive('navbar', function () {
     };
 });
 
-app.controller('NavController', function ($scope, MakeCategoryFactory, HomeFactory) {
+app.controller('NavController', function ($scope, VacationsFactory, CategoriesFactory) {
     console.log($scope);
 
     $scope.menuItems = [
@@ -33,7 +33,7 @@ app.controller('NavController', function ($scope, MakeCategoryFactory, HomeFacto
 
     $scope.vacationsByCategory = function(categoryId) {
       VacationsFactory.getVacationsByCategory(categoryId).then(function (vacations) {
-        HomeFactory.vacations = vacations;
+        //HomeFactory.vacations = vacations;
       });
     };
 });

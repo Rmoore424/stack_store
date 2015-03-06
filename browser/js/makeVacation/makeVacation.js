@@ -7,7 +7,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('MakeVacationController', function ($scope, $compile, MakeVacationFactory, MakeCategoryFactory) {
+app.controller('MakeVacationController', function ($scope, $compile, VacationsFactory, CategoriesFactory) {
 
     var catArr = [];
 

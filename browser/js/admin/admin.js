@@ -31,7 +31,7 @@ app.config(function ($stateProvider) {
 	});
 });
 
-app.controller('AdminCtrl', function($scope, $state, $stateParams, UserFactory, DeleteUserFactory){
+app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory, DeleteUserFactory){
 	$scope.editUser = function (user) {
 		UserFactory.getUser(user).then(function (user) {
 			$scope.user = user;
