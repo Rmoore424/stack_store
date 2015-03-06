@@ -95,13 +95,13 @@ app.factory('DeleteUserFactory', function($http) {
 app.factory('UserFactory', function($http) {
 	return {
 		getUser: function(email) {
-			return $http.get('/api/admin/admin/user', { params: { email: email } }).then(function (response) {
+			return $http.get('/api/user', { params: { email: email } }).then(function (response) {
 				return response.data;
 			});
 		},
 		saveUser: function(user) {
 			console.log("saveUser", user);
-			return $http.put('/api/admin/admin/save', user).then(function (response) {
+			return $http.put('/api/user', user).then(function (response) {
 				console.log('saveUser and show response', response);
 				return response.data;
 			});
