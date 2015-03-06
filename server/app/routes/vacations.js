@@ -9,7 +9,6 @@ var CategoryModel = mongoose.model('Category');
 router.get('/', function (req, res, next) {
 	VacationModel.find({})
 		.exec(function (err, vacations) {
-			console.log("vacations:", vacations);
 			if (err) next(err);
 			res.send(vacations);
 		});
@@ -17,10 +16,8 @@ router.get('/', function (req, res, next) {
 
 //this route gets one vaction by id, look at req.params
 router.get('/:id', function (req, res, next) {
-	console.log(req.query);
-	VacationModel.findOne({ _id: req.query.id })
+	VacationModel.findOne({ _id: req.params.id })
 		.exec(function (err, vacation) {
-			console.log("vacation:", vacation);
 			if (err) next(err);
 			res.send(vacation);
 		});

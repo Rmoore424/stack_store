@@ -8,8 +8,7 @@ app.directive('navbar', function () {
 });
 
 app.controller('NavController', function ($scope, $state, VacationsFactory, CategoriesFactory, HomeViewFactory) {
-    console.log($scope);
-
+    
     $scope.menuItems = [
         { label: 'Home', state: 'home' },
         { label: 'About', state: 'about'},
