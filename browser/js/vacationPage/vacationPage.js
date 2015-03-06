@@ -9,8 +9,8 @@ app.config(function ($stateProvider) {
 	});
 });
 
-// app.controller('VacationPgCtrl', function($scope, $stateParams, $state, SingleVacationFactory) {
-// 	SingleVacationFactory.getSingleVacation($stateParams.id).then(function(vacation) {
-// 		$scope.vacation = vacation;
-// 	});
-// });
+app.controller('VacationPgCtrl', function($scope, $stateParams, $state, VacationsFactory) {
+	VacationsFactory.getOneVacation($stateParams.id).then(function(vacation) {
+		$scope.vacation = vacation;
+	});
+});
