@@ -57,17 +57,17 @@ describe('Server', function () {
 		});
 	});
 
-	describe('GET /category', function () {
+	describe('GET /categories', function () {
 		it('should get 200', function (done) {
-			agent.get('/api/category')
+			agent.get('/api/categories')
 				.expect(200, done);
 			});
 	});
 
-	describe('POST /category', function () {
+	describe('POST /categories', function () {
 		it('should create a new category', function (done) {
 			agent
-				.post('/api/category')
+				.post('/api/categories')
 				.send({name: 'space', description: 'space is awesome'})
 				.end(function (err, response) {
 				Category.findOne({name: 'space'}, function (err, returnedCategory) {

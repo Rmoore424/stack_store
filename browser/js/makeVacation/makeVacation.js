@@ -12,7 +12,7 @@ app.controller('MakeVacationController', function ($scope, $compile, MakeVacatio
     var catArr = [];
 
     var setUpCategories = function (){
-        MakeCategoryFactory.getCategories().then(function (returnedCategories){
+        CategoriesFactory.getCategories().then(function (returnedCategories){
              $scope.categories = returnedCategories;
         });
     };
@@ -41,7 +41,7 @@ app.controller('MakeVacationController', function ($scope, $compile, MakeVacatio
 
     $scope.submitVacation = function(newVacation){
         newVacation.category = catArr;
-        MakeVacationFactory.addProduct(newVacation).then(function(){
+        VacationsFactory.addProduct(newVacation).then(function(){
 	    	$scope.newVacation = {};
             $('#catDisplay').children().remove();
             setUpCategories();
@@ -51,12 +51,4 @@ app.controller('MakeVacationController', function ($scope, $compile, MakeVacatio
     setUpCategories();
 });
 
-app.factory('MakeVacationFactory', function($http) {
-    return {
-        addProduct: function(newVacation) {
-            return $http.post('/api/vacation/makeVacation', newVacation).then(function() {
-                console.log("New product successfully added!");
-            });
-        }
-    };
-});
+//addProduct is now createVacation -RICH

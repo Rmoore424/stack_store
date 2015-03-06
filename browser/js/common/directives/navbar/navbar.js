@@ -23,29 +23,15 @@ app.controller('NavController', function ($scope, NavFactory, MakeCategoryFactor
         { label: 'Sign Up', state: 'signup'}
     ];
 
-    $scope.nav = NavFactory;
+    //$scope.nav = NavFactory;
 
-    MakeCategoryFactory.getCategories().then(function (categories) {
+    CategoriesFactory.getCategories().then(function (categories) {
         $scope.categories = categories;
     });
 
     $scope.vacationsByCategory = function(categoryId) {
-      HomeFactory.getVacationsByCategory(categoryId).then(function (vacations) {
+      VacationsFactory.getVacationsByCategory(categoryId).then(function (vacations) {
         HomeFactory.vacations = vacations;
       })
     }
-});
-
-app.factory('NavFactory', function (AuthService) {
-    return {
-        loggedIn: false,
-        setUser: function () {
-             var self = this;
-             AuthService.getLoggedInUser().then(function (user) {
-                if (user) {
-                    self.loggedIn = true;
-                }
-             });
-        } 
-    };
 });

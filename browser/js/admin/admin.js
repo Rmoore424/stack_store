@@ -51,7 +51,7 @@ app.controller('AdminCtrl', function($scope, $state, $stateParams, UserFactory, 
 
 	$scope.findUserToDelete = function (user) {
 		console.log('this is happening');
-		DeleteUserFactory.findUserToDelete(user).then(function (user) {
+		UserFactory.getUser(user).then(function (user) {
 			$scope.userToDelete = user;
 			console.log("$scope",$scope.userToDelete);
 			// console.log("user", user);
@@ -61,7 +61,7 @@ app.controller('AdminCtrl', function($scope, $state, $stateParams, UserFactory, 
 
 	$scope.deleteUser = function (user) {
 		console.log('this is doing something');
-		DeleteUserFactory.deleteUser(user).then(function () {
+		UserFactory.deleteUser(user).then(function () {
 			$state.go('admin.deleteUser');
 		});
 	};
@@ -71,47 +71,5 @@ app.controller('AdminCtrl', function($scope, $state, $stateParams, UserFactory, 
 			$scope.vacation = vacation;
 			$state.go('admin.editVacation', { id: vacation._id});
 		});
-	};
-});
-
-app.factory('DeleteUserFactory', function($http) {
-	return {
-		findUserToDelete: function(email) {
-			return $http.get('/api/admin/admin/user', { params: { email: email } }).then(function (response) {
-				console.log(response.data);
-				return response.data;
-			});
-		},
-		deleteUser: function(user) {
-			console.log("deleting!", user);
-			return $http.delete('/api/admin/admin/deleteUser', { params: { _id: user._id } }).then(function (response) {
-				console.log("almost done deleting");
-				return response.data;
-			});
-		}
-	};
-});
-
-app.factory('UserFactory', function($http) {
-	return {
-		getUser: function(email) {
-			return $http.get('/api/user', { params: { email: email } }).then(function (response) {
-				return response.data;
-			});
-		},
-		saveUser: function(user) {
-			console.log("saveUser", user);
-			return $http.put('/api/user', user).then(function (response) {
-				console.log('saveUser and show response', response);
-				return response.data;
-			});
-		},
-	};
-});
-
-
-app.factory('VacationFactory', function($http) {
-	return {
-		// getVacation: function()
 	};
 });

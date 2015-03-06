@@ -15,7 +15,7 @@ router.get('/', function (req, res, next) {
 		});
 });
 
-//this route gets one vaction by id
+//this route gets one vaction by id, look at req.params
 router.get('/:id', function (req, res, next) {
 	console.log(req.query);
 	VacationModel.findOne({ _id: req.query.id })
