@@ -9,3 +9,5 @@ router.use('/user', require('./user'));
 router.use("/vacations", require('./vacations'));
 
 router.use("/categories", require('./categories'));
+
+router.use("/review", require('./review'));
