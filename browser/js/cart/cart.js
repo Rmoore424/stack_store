@@ -10,9 +10,9 @@ app.config(function ($stateProvider) {
 
 
 app.controller('CartController', function ($scope, $window, $state) {
-    
+    //need to call a function that populates the product refs with the product properties
 
-    
+
     $scope.getTotal = function(){
 	    var total = 0;
 	    for(var i = 0; i < $scope.cart.items.length; i++){
