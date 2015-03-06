@@ -4,7 +4,7 @@ module.exports = router;
 var mongoose = require('mongoose');
 var CategoryModel = mongoose.model('Category');
 
-router.get('/categories', function (req, res, next) {
+router.get('/', function (req, res, next) {
 	CategoryModel.find({})
 		.exec(function (err, categories) {
 			if (err) next(err);
@@ -12,7 +12,7 @@ router.get('/categories', function (req, res, next) {
 		});
 });
 
-router.post('/makeCategory', function (req, res, next) {
+router.post('/', function (req, res, next) {
     CategoryModel.create(req.body, function(err, category){
     	if(err) next(err);
     	res.send(category);

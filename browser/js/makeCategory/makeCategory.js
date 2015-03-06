@@ -7,16 +7,16 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('MakeCategoryController', function ($scope, MakeCategoryFactory) {
+app.controller('MakeCategoryController', function ($scope, CategoriesFactory) {
 
     var displayCategories = function(){
-        MakeCategoryFactory.getCategories().then(function (returnedCategories){
+        CategoriesFactory.getCategories().then(function (returnedCategories){
             $scope.categories = returnedCategories;
         });
     };
     
     $scope.submitCategory = function(newCategory){
-        MakeCategoryFactory.addCategory(newCategory).then(function(){
+        CategoriesFactory.addCategory(newCategory).then(function(){
             $scope.newCategory = {};
         });
         displayCategories();
@@ -25,19 +25,3 @@ app.controller('MakeCategoryController', function ($scope, MakeCategoryFactory) 
     displayCategories();
 
 });
-
-app.factory('MakeCategoryFactory', function($http) {
-    return {
-        addCategory: function(newCategory) {
-            return $http.post('/api/category/makeCategory', newCategory).then(function() {
-                console.log("New category successfully added!");
-            });
-        },
-        getCategories: function(){
-            return $http.get('/api/category/categories').then(function (response){
-                return response.data;
-            });
-        }
-    };
-});
-

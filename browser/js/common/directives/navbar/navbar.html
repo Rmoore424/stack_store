@@ -4,12 +4,12 @@
             <fullstack-logo></fullstack-logo>
         </div>
         <ul class="nav navbar-nav">
-            <li ng-repeat="item in items">
+            <li ng-repeat="item in menuItems">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
         </ul>
-        <guestnav ng-show="!nav.loggedIn"></guestnav>
-        <usernav ng-show="nav.loggedIn"></usernav>
+        <guestnav ng-show="!isLoggedIn"></guestnav>
+        <usernav ng-show="isLoggedIn"></usernav>
     </div>
     <hr />
     <div class="container lower-container">
