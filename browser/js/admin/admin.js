@@ -32,10 +32,23 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory, VacationsFactory){
-	$scope.editUser = function (user) {
-		UserFactory.getUser(user).then(function (user) {
+
+	$scope.adminOptions = [
+	{'name': "Edit User", "_id": 0},
+	{'name': 'Delete User', "_id": 1},
+	{'name': 'Create User', "_id": 2}
+	];
+
+	$scope.adminAction = function (id) {
+		$scope.user = user;
+		if (id === 0) {
+			$scope.current.go('admin.editUser');
+		}
+	};
+
+	$scope.findUser = function (email) {
+		UserFactory.getUser(email).then(function (user) {
 			$scope.user = user;
-			console.log($scope.user);
 			// $rootScope.$broadcast('user', { user: user });
 			//console.log('editUser', $stateParams);
 			//how do we make the state below pull in the $scope.user data? /:user

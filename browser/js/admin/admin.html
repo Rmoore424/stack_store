@@ -1,50 +1,24 @@
 <section id="admin" ng-controller='AdminCtrl'>
-<div class='row'>
-    <div class='col-sm-3'>
-        <div class='panel panel-info text-center' id="admin-panel">
-            <div class='panel-heading'>
-                <h2 class='panel-title'>Administration</h2>
-            </div>
-            <div class='panel-body'>
-                <form name='user_options' class='form-horizontal' ng-submit='editUser(user.email)'>
-                    <div class='user_options'>
-                        <h4>Edit User Information</h4><br>
-                        <label>Enter User's Email Address</label><br>
-                        <input type='email' ng-model='user.email'></input>
-                    </div>
-                    <button type='submit' class='btn-success'>Submit</button>
-                </form>
+    <div class='row'>
+        <div class='col-sm-3'>
+            <div class='panel panel-info text-center' id="admin-panel">
+                <div class='panel-heading'>
+                    <h2 class='panel-title'>Administration</h2>
+                </div>
+                <div class='panel-body'>
+                    <form name='user_options' class='form-horizontal' ng-submit='findUser(user.email)'>
+                        <div class='user_options'>
+                            <h4>Find A User</h4><br>
+                            <label>Enter User's Email Address</label><br>
+                            <input type='email' ng-model='user.email'></input>
+                        </div>
+                        <button type='submit' class='btn-success'>Submit</button>
+                    </form>
+                    <dropdown options="adminOptions" title="'Admin Options'"></dropdown>
+
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
-    <div class='panel-body'>
-        <form name='deleteUser' class='form-horizontal' ng-submit='findUserToDelete(userToDelete.email)'>
-            <div class='delete user'>
-                <h4>Delete User</h4><br>
-                <label>Enter User's Email Address</label><br>
-                <input type='email' ng-model='userToDelete.email' required></input><br>
-            </div>
-            <button type='submit' class='btn-success'>Submit
-            </button>
-        </form>      
-    </div>
-
-    <div class='panel-body'>
-        <form name='vacation_options' class='form-horizontal' ng-submit='editUser(user.email)'>
-            <div class='user_options'>
-                <h4>Edit Vacation</h4><br>
-                <label>Select Vacation</label><br>
-                <select>
-                    <option ng-repeat="vacation in vacations" value="{{ vacation.name }}">{{ vacation.name }}</option>
-                </select>
-            </div>
-            <button type='submit' class='btn-success'>Submit</button>
-        </form>        
-    </div>
-
-</div>
-
-<div ui-view></div>   
+        <div class='col-sm-9' ui-view></div>  
+    </div> 
 </section>
