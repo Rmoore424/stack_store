@@ -7,8 +7,10 @@ module.exports = {
     "callbackUrl": "http://127.0.0.1:1337/auth/twitter/callback"
   },
   "FACEBOOK": {
-    "clientID": "336560806541655",
-    "clientSecret": "2f117d2a289fd321e411fdb568d263f2",
+    //"clientID": "336560806541655",
+    "clientID": "1607320759490857",
+    //"clientSecret": "2f117d2a289fd321e411fdb568d263f2",
+    "clientSecret": "d9d687bdb69fa60b0c6af176a134a121", 
     "callbackURL": "http://localhost:1337/auth/facebook/callback"
   },
   "GOOGLE": {

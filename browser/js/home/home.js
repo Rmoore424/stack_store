@@ -12,7 +12,7 @@ app.config(function ($stateProvider) {
 app.controller('HomeCtrl', function ($scope, $rootScope, HomeFactory) {
 	//ask about this in code review
 	$scope.vacations = HomeFactory;
-
+	
 	HomeFactory.getVacations().then(function (returnedVacations) {
 		HomeFactory.vacations = returnedVacations;
 	});

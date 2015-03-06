@@ -20,7 +20,22 @@
             <div class="text-center">
                 <button type='submit' class='btn-success'>Log In!</button>
             </div>
-        </form>
+       </form>
+       <div class="row">
+        <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+               <a class="btn btn-social btn-block btn-facebook" ng-click="getFacebook()">
+                    <i class="fa fa-facebook"></i>
+                    Sign In With Facebook
+                </a> 
+            </div>
+            <div class="col-sm-4">
+                <a class="btn btn-social btn-block btn-google-plus" ng-click="loginWithGoogle">
+                    <i class="fa fa-google"></i>
+                    Sign In With Google
+                </a>
+            </div>
+        </div>
         <p class='text-center'><a ui-sref="signup">Click Here to Sign Up for a New Account</a>
         </p>
     </div>

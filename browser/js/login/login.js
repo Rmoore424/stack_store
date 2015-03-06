@@ -9,8 +9,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('LoginController', function ($scope, $state, AuthService, NavFactory) {
-
+app.controller('LoginController', function ($scope, $window, $state, AuthService, NavFactory) {
     // need to determine whether state change belongs in a diff module
     $scope.loginUser = function (user) {
         AuthService.login(user).then(function (response) {
@@ -18,4 +17,9 @@ app.controller('LoginController', function ($scope, $state, AuthService, NavFact
             $state.go('home');
         });
     };
+
+    $scope.getFacebook = function () {
+        $window.location.href = "auth/facebook";
+    };
+
 });
