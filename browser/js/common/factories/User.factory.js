@@ -19,6 +19,11 @@ app.factory('UserFactory', function($http) {
 			return $http.post('/api/user', user).then(function (response) {
 				return response.data;
 			});
+		},
+		validateUser: function () {
+			return $http.get('session').then(function (response) {
+				return response.data;
+			});
 		}
 	};
 });
