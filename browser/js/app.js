@@ -3,7 +3,7 @@ var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', '
 
 app.controller('MainController', function ($scope, $state, AuthService, HomeFactory) {
     $scope.isLoggedIn = false;
-    HomeFactory.validateUser().then(function (returnedUser) {
+    UserFactory.validateUser().then(function (returnedUser) {
         if (returnedUser) {
             $scope.isLoggedIn = true;
         }

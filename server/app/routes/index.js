@@ -4,10 +4,8 @@ module.exports = router;
 
 router.use('/login', require('../configure/authentication/local'));
 
-router.use('/signup', require('./signup'));
+router.use('/user', require('./user'));
 
-router.use('/admin', require('./admin'));
+router.use("/vacations", require('./vacation'));
 
-router.use("/vacation", require('./vacation'));
-
-router.use("/category", require('./category'));
+router.use("/categories", require('./category'));

@@ -27,26 +27,24 @@ app.controller('NavController', function ($scope, MakeCategoryFactory, HomeFacto
         { label: 'Sign Up', state: 'signup'}
     ];
 
-    MakeCategoryFactory.getCategories().then(function (categories) {
+    CategoriesFactory.getCategories().then(function (categories) {
         $scope.categories = categories;
     });
-//should probably go in MainController
+
     $scope.vacationsByCategory = function(categoryId) {
-      HomeFactory.getVacationsByCategory(categoryId).then(function (vacations) {
+      VacationsFactory.getVacationsByCategory(categoryId).then(function (vacations) {
         HomeFactory.vacations = vacations;
       });
     };
 });
+        //vacationsByCategory needs to be changed as well -RICH
+        //should probably go in MainController
 
-app.factory('NavFactory', function (AuthService) {
-    return {
-        setUser: function () {
-             var self = this;
-             AuthService.getLoggedInUser().then(function (user) {
-                if (user) {
-                    self.loggedIn = true;
-                }
-             });
-        }
-    };
-});
+        // setUser: function () {
+        //      var self = this;
+        //      AuthService.getLoggedInUser().then(function (user) {
+        //         if (user) {
+        //             self.loggedIn = true;
+        //         }
+        //      });
+        // }
