@@ -1,0 +1,28 @@
+<section id="cart">
+	
+	<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Shopping Cart</div>
+
+  <!-- Table -->
+  <table class="table">
+    <thead>
+    	<tr>
+    		<th>Vacation</th>
+    		<th>Price</th>
+    		<th>Quantity</th>
+    	</tr>
+	<tbody>
+		<tr ng-repeat="items in cart">
+			<td>{{ item.name }}</td>
+			<td>{{ item.price }}</td>
+			<td>{{ item.quantity }}</td>
+			<td><button ng-click="removeFromCart({{item}})">Remove from Cart</button></td>
+		</tr>
+	</tbody>
+  </table>
+</div>
+	<div>
+		<h2>Total Price: {{ getTotal() }}</h2>
+	</div>
+</section>

@@ -9,10 +9,16 @@ app.config(function ($stateProvider) {
 	});
 });
 
-app.controller('VacationPgCtrl', function($scope, $stateParams, $state, VacationsFactory, ReviewFactory) {
-	VacationsFactory.getOneVacation($stateParams.name).then(function(vacation) {
+app.controller('VacationPgCtrl', function($scope, $stateParams, $state, VacationsFactory, CartFactory) {
+	VacationsFactory.getOneVacation($stateParams.id).then(function(vacation) {
 		$scope.vacation = vacation;
 	});
+
+	$scope.addToCart = function(product) {
+		CartFactory.getCart().then(function(cart) {
+			cart.items.push({product: product._id, quantity: 1});	
+		});
+	};
 
 	var setUpReviews = function (){
 	    ReviewFactory.getReviews($stateParams.id).then(function (returnedReviews){
