@@ -1,0 +1,40 @@
+<section id="edit">
+<div class='panel panel-info text-center' id="edit-panel">
+    <div class='panel-heading'>
+        <h2 class='panel-title'>Find a {{currentOption.name}}</h2>
+    </div>
+    <div class='panel-body'>
+        <form name='user_options' class='form-horizontal' ng-submit='findOne(searchParam)'>
+            <div class='user_options'>
+                <label>Enter {{currentOption.label}}</label><br>
+                <input type='text' ng-model='searchParam'></input>
+            </div>
+            <button type='submit' class='btn-success'>Submit</button>
+    </form>
+       
+    </div>
+    <div ui-view></div>       
+</div>
+</section>
+
+<!-- <section id="deleteUser" ng-controller="UserCtrl">
+    <div class='panel panel-info'>
+        <div class='panel-heading'>
+            <h2 class='panel-title'>Delete User</h2>
+        </div>
+        <div class='panel-body'>
+            <form name='deleteUserForm' ng-submit='deleteUser(user)' class='form-horizontal' novalidate>
+                <div class='form-group'>
+                    <label>First Name</label><br>
+                    <input type="text" ng-model="user.first_name"> {{ user.first_name }} </input><br>
+                    <label>Last Name</label><br>
+                    <input type="text" ng-model="user.last_name"> {{ user.last_name }}</input><br>
+                    <label>Email Address</label><br>
+                    <input type='email' ng-model='user.email'> {{ user.email }}</input><br>
+                </div>
+                <button type='submit' class='btn-success'>Delete User</button>
+            </form>
+        </div>
+    </div>
+<div ui-view></div>   
+</section> -->

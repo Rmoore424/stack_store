@@ -1,50 +1,36 @@
-<section id="editUser" ng-controller="AdminCtrl">
-<div class='panel panel-info'>
-    <div class='panel-heading'>
-        <h2 class='panel-title'>Edit User Info</h2>
-    </div>
-    <div class='panel-body'>
-        <form name='editUserForm' ng-submit='saveUserEdits(user)' class='form-horizontal' novalidate>
-            <div class='form-group'>
-                <label>First Name</label><br>
-                <input type="text" ng-model="user.first_name" required></input><br>
-                <label>Last Name</label><br>
-                <input type="text" ng-model="user.last_name" required></input><br>
-                <label>Email Address</label><br>
-                <input type='email' ng-model='user.email' required></input><br>
-                <label>Password</label><br>
-                <input type='password' name="password" ng-model='user.password' required></input><br>
-                <label ng-show='password.dirty'>Confirm New Password</label><br>
-                <input ng-show='password.dirty' type='password' name="confirmPassword" ng-model='user.confirmPassword' required password-confirm match-target="user.password"></input>
-                <label>Admin Status</label>
-                <input type='checkbox' ng-model='user.admin'></input><br>
-            </div>
-            <button type='submit' class='btn-success'>Save Changes</button>
-           <span class="help-block" ng-show="signupForm.confirmPassword.$error.match">Passwords do not match.</span>
-        </form>
-    </div>
-</div>
-<div ui-view></div>   
-</section>
-
-<!-- <section id="deleteUser" ng-controller="UserCtrl">
+<section id="editUser">
     <div class='panel panel-info'>
         <div class='panel-heading'>
-            <h2 class='panel-title'>Delete User</h2>
+            <h2 class='panel-title'>Edit {{currentOption.name}}</h2>
         </div>
         <div class='panel-body'>
-            <form name='deleteUserForm' ng-submit='deleteUser(user)' class='form-horizontal' novalidate>
+            <form name='editUserForm' ng-submit='editUserForm.$valid && editOne(toEdit)' novalidate>
                 <div class='form-group'>
-                    <label>First Name</label><br>
-                    <input type="text" ng-model="user.first_name"> {{ user.first_name }} </input><br>
-                    <label>Last Name</label><br>
-                    <input type="text" ng-model="user.last_name"> {{ user.last_name }}</input><br>
-                    <label>Email Address</label><br>
-                    <input type='email' ng-model='user.email'> {{ user.email }}</input><br>
+                    <label class="control-label col-sm-12">First Name</label>
+                    <input type="text" ng-model="toEdit.first_name" required />
                 </div>
-                <button type='submit' class='btn-success'>Delete User</button>
+                <div class="form-group">
+                    <label class="control-label col-sm-12">Last Name</label>
+                    <input type="text" ng-model="toEdit.last_name" required />
+                </div>
+                <div class="form-group">
+                    <label class='control-label col-sm-12'>Email Address</label>
+                    <input type='email' ng-model='toEdit.email' required />
+                </div>
+                <div class="form-group">
+                    <label class='control-label col-sm-12'>Password</label>
+                    <input type='password' name="password" ng-model='toEdit.password' required />
+                </div>
+                    <!--<label ng-show='editUserForm.password.$dirty'>Confirm New Password</label><br>
+                    <input ng-show='editUserForm.password.$dirty' type='password' name="confirmPassword" ng-model='toEdit.password' required password-confirm match-target="toEdit.password"></input></br> -->
+                <div class="form-group">
+                    <label class="control-label col-sm-12">Admin Status</label>
+                    <input type='checkbox' ng-model='toEdit.admin' />
+                </div>
+                <button type='submit' class='btn-success'>Save Changes</button>
+               <!--<span class="help-block" ng-show="editUserForm.confirmPassword.$error.match">Passwords do not match.</span> -->
             </form>
+            <button class="btn-danger" ng-click="deleteOne(toEdit)">Delete</button>
         </div>
     </div>
-<div ui-view></div>   
-</section> -->
+</section>

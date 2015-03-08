@@ -20,13 +20,18 @@ app.controller('MainController', function ($scope, $state, AuthService, UserFact
     $scope.logoutUser = function () {
         AuthService.logout();
         $scope.isLoggedIn = false;
+        $scope.isAdmin = false;
     };
 
     $scope.loginUser = function (user) {
         AuthService.login(user).then(function (response) {
-            console.log(response);
-            $scope.isLoggedIn = true;
-            $state.go('home');
+            if (response) {
+                $scope.isLoggedIn = true;
+                $state.go('home');
+            }
+            if (response.admin) {
+                $scope.isAdmin = true;
+            }
         });
     };
 });

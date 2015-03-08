@@ -1,9 +1,9 @@
 <div class="dropdown">
     <button class="btn btn-nav dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-    Search By Category
+    {{title}}
     <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation" ng-repeat="category in categories"><a role="menuitem" tabindex="-1" href="#" ng-click="getVacationsByCategory(category._id)">{{ category.name }}</a></li>
+        <li role="presentation" ng-repeat="option in options"><a role="menuitem" tabindex="-1" href="#" ng-click="click({item: option})">{{ option.name }}</a></li>
     </ul>
 </div>
