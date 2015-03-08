@@ -11,3 +11,5 @@ router.use("/vacations", require('./vacations'));
 router.use("/categories", require('./categories'));
 
 router.use('/cart', require('./cart'));
+
+router.use("/review", require('./review'));

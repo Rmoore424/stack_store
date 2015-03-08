@@ -10,7 +10,7 @@ app.config(function ($stateProvider) {
 
 app.controller('SignupController', function ($scope, UserFactory) {
 	$scope.signup = function (user) {
-		UserFactory.signupUser(user).then(function (responseObj) {
+		UserFactory.createUser(user).then(function (responseObj) {
 			console.log(responseObj);
 		});
 	};

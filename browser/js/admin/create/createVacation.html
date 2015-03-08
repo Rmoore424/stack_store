@@ -1,0 +1,53 @@
+<section id="createVacation">
+<div class='panel panel-info'>
+    <div class='panel-heading'>
+        <h2 class="panel-title text-center">Add a Vacation</h2>
+    </div>
+    <div class="panel-body">
+    <form name="createVacationForm" class="form-horizontal" ng-submit="createVacationForm.$valid && submitVacation(newVacation)">
+        <div class="form-group">
+            <label class='col-sm-4 control-label'>Vacation:</label>
+            <div class="col-sm-8">
+                <input type="text" required ng-model="newVacation.name" />
+            </div>
+        </div>
+        <div class='form-group'>
+            <label class='col-sm-4 control-label'>Description:</label>
+            <div class="col-sm-8">
+                <input type="text" required ng-model="newVacation.description" />
+            </div>
+        </div>
+        <div class='form-group'>
+            <label class='col-sm-4 control-label'>Price:</label>
+            <div class="col-sm-8">
+                <input type="text" required ng-model="newVacation.price" />
+            </div>
+        </div>
+        <div class='form-group'>
+            <label class='col-sm-4 control-label'>Region:</label>
+            <div class="col-sm-8">
+                <input type="text" ng-model="newVacation.region" />
+            </div>
+        </div>
+        <div class='form-group'>
+            <label class='col-sm-4 control-label'>Image URL:</label>
+            <div class="col-sm-8">
+                <input type="text" ng-model="newVacation.imageUrl" />
+            </div>
+        </div>
+        <div class='form-group'>
+            <label class='col-sm-4 control-label'>Categories:</label>
+            <div class="col-sm-8">
+                <select ng-model="catEl" ng-options="category as category.name for category in categories"></select>
+                <div class="btn btn-primary" ng-click="addCategory(catEl)">Add Category</div>
+                <!-- Maybe be able to toggle tags instead of dropdown -->
+                <div id="catDisplay">Categories Added:</div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type='submit' class='btn-success'>Submit</button>
+        </div>
+    </form>
+</div>
+</section>
+    </div>

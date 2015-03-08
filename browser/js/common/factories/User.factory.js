@@ -12,11 +12,11 @@ app.factory('UserFactory', function($http) {
 			});
 		},
 		deleteUser: function(user) {
-			return $http.delete('/api/user', { params: { _id: user._id } }).then(function (response) {
+			return $http.delete('/api/user/' + user._id).then(function (response) {
 				return response.data;
 			});
 		},
-		signupUser: function (user) {
+		createUser: function (user) {
 			return $http.post('/api/user', user).then(function (response) {
 				return response.data;
 			});

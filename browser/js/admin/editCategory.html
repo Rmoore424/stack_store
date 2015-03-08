@@ -1,0 +1,21 @@
+<section id="editCategory">
+    <div class='panel panel-info'>
+        <div class='panel-heading'>
+            <h2 class='panel-title'>Edit {{currentOption.name}}</h2>
+        </div>
+        <div class='panel-body'>
+            <form name='editCategoryForm' ng-submit='editCategoryForm.$valid && editOne(toEdit)'>
+                <div class='form-group'>
+                    <label class='control-label col-sm-12'>Name</label>
+                    <input type="text" ng-model="toEdit.name" required />
+                </div>
+                <div class='form-group'>
+                    <label class='control-label col-sm-12'>Description</label>
+                    <input type="text" ng-model="toEdit.description" required />
+                </div>
+                <button type='submit' class='btn-success'>Save Changes</button>
+            </form>
+             <button class="btn-danger" ng-click="deleteOne(toEdit)">Delete</button>
+        </div>
+    </div>
+</section>

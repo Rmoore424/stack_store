@@ -7,69 +7,109 @@
 app.config(function ($stateProvider) {
 	//do we need the controller below?
 	$stateProvider.state('admin', {
-		url: '/admin/user',
+		url: '/admin',
 		controller: 'AdminCtrl',
 		templateUrl: 'js/admin/admin.html'
 	});
 
-	$stateProvider.state('admin.editUser', {
-		url: '/:id/editUser',
-		controller: 'AdminCtrl',
+	$stateProvider.state('admin.edit', {
+		url: '/edit',
+		templateUrl: 'js/admin/findOneToEdit.html'
+	});
+
+	$stateProvider.state('admin.edit.editUser', {
+		url: '/:id',
 		templateUrl: 'js/admin/editUser.html'
 	});
 
-	$stateProvider.state('admin.deleteUser', {
-		url: '/:id/deleteUser',
-		controller: 'AdminCtrl',
-		templateUrl: 'js/admin/deleteUser.html'
+	$stateProvider.state('admin.edit.editVacation', {
+		url: '/:id',
+		templateUrl: 'js/admin/editVacation.html'
 	});
 
-	$stateProvider.state('admin.editVacation', {
-		url: '/:id/editVacation',
-		controller: 'AdminCtrl',
-		templateUrl: 'js/admin/editVacation.html'
+	$stateProvider.state('admin.edit.editCategory', {
+		url: '/:id',
+		templateUrl: '/js/admin/editCategory.html'
 	});
 });
 
-app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory, VacationsFactory){
-	$scope.editUser = function (user) {
-		UserFactory.getUser(user).then(function (user) {
-			$scope.user = user;
-			console.log($scope.user);
-			// $rootScope.$broadcast('user', { user: user });
-			//console.log('editUser', $stateParams);
-			//how do we make the state below pull in the $scope.user data? /:user
-			$state.go('admin.editUser', { id: user._id });
-		});
+app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory, VacationsFactory, CategoriesFactory){
+
+	$scope.currentOption = $scope.adminOptions[0];
+	$scope.adminOptions = [
+		{'name': "User",     'label': "User's Email Address"},
+		{'name': "Vacation", 'label': "Vacation Name"},
+		{'name': "Category", 'label': "Category Name"}
+	];
+
+	$scope.adminSearch = function (option) {
+		$scope.currentOption = option;
+		$state.go('admin.edit');
 	};
 
-	$scope.saveUserEdits = function (user) {
-		UserFactory.saveUser(user).then(function (user) {	
-			$state.go('admin');
-		});
+	$scope.adminCreate = function (option) {
+		$scope.currentOption = option;
+		$state.go('admin.create' + option.name);
+	}
+
+	var resolveFind = function (returnedValue) {
+		if (returnedValue) {
+			$scope.toEdit = returnedValue;
+			var childView = ".edit" + $scope.currentOption.name;
+			$state.go('admin.edit' + childView);
+		}
+		else {
+			alert('Does Not Exist');
+		}
+	}
+
+	$scope.findOne = function (searchParam) {
+		if ($scope.currentOption.name === "User") {
+			UserFactory.getUser(searchParam).then(resolveFind);
+		}
+		else if ($scope.currentOption.name === "Vacation") {
+			VacationsFactory.getOneVacation(searchParam).then(resolveFind);
+		}
+		else if ($scope.currentOption.name === "Category") {
+			CategoriesFactory.getOneCategory(searchParam).then(resolveFind);
+		}
 	};
 
-	$scope.findUserToDelete = function (user) {
-		console.log('this is happening');
-		UserFactory.getUser(user).then(function (user) {
-			$scope.userToDelete = user;
-			console.log("$scope",$scope.userToDelete);
-			// console.log("user", user);
-			$state.go('admin.deleteUser', { id: user._id});
-		});
+	$scope.editOne = function (oneToEdit) {
+		if ($scope.currentOption.name === "User") {
+			UserFactory.updateUser(oneToEdit).then(function (user) {
+				$state.go('admin');
+			});
+		}
+		else if ($scope.currentOption.name === "Vacation") {
+			VacationsFactory.updateVacation(oneToEdit).then(function (vacation) {
+				$state.go('admin');
+			});
+		}
+		else if ($scope.currentOption.name === "Category") {
+			CategoriesFactory.updateCategory(oneToEdit).then(function (category) {
+				$state.go('admin');
+			});
+		}
+		alert('Successfully Edited');	
 	};
 
-	$scope.deleteUser = function (user) {
-		console.log('this is doing something');
-		UserFactory.deleteUser(user).then(function () {
-			$state.go('admin.deleteUser');
-		});
-	};
-
-	$scope.editVacation = function (vacation) {
-		VacationsFactory.getVacation(vacation).then(function (vacation) {
-			$scope.vacation = vacation;
-			$state.go('admin.editVacation', { id: vacation._id});
-		});
+	$scope.deleteOne = function (oneToDelete) {
+		if ($scope.currentOption.name === "User") {
+			UserFactory.deleteUser(oneToDelete).then(function (user) {
+				$state.go('admin');
+			});
+		}
+		else if ($scope.currentOption.name === "Vacation") {
+			VacationsFactory.deleteVacation(oneToDelete).then(function (vacation) {
+				$state.go('admin');
+			});
+		}
+		else if ($scope.currentOption.name === "Category") {
+			CategoriesFactory.deleteCategory(oneToDelete).then(function (category) {
+				$state.go('admin');
+			});
+		}
+		alert('Successfully Deleted')
 	};
 });

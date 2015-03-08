@@ -6,13 +6,13 @@ app.factory("VacationsFactory", function ($http) {
 				return response.data;
 			});
 		},
-		getOneVacation: function (id) {
-			return $http.get('/api/vacations/' + id).then(function (response) {
+		getOneVacation: function (name) {
+			return $http.get('/api/vacations/' + name).then(function (response) {
 				return response.data;
 			});
 		},
-		getVacationsByCategory: function (id) {
-			return $http.get('/api/vacations/category/' + id).then(function (response) {
+		getVacationsByCategory: function (category) {
+			return $http.get('/api/vacations/category/' + category._id).then(function (response) {
 				return response.data;
 			});
 		},
@@ -22,7 +22,7 @@ app.factory("VacationsFactory", function ($http) {
 			});
 		},
 		deleteVacation: function (vacation) {
-			return $http.delete('/api/vacations').then(function (response) {
+			return $http.delete('/api/vacations/' + vacation._id).then(function (response) {
 				return response.data;
 			});
 		},

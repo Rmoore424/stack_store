@@ -4,5 +4,5 @@
 	<h4>1 week stay for only ${{ vacation.price }}</h4>
 	<button class="btn btn-warning" ng-click="addToCart(vacation)">Add To Cart</button>
 	<p>{{ vacation.description }}</p>
-	<div ng-repeat="review in vacation.reviews"></div>
+	<review-display></review-display>
 </div>

@@ -1,4 +1,10 @@
-#admin-panel {
+#admin-panel, #edit-panel {
 	width: 80%;
 	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.admin-col {
+	margin-bottom: 10px;
+	padding-left: 45px;
 }
