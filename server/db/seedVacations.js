@@ -76,7 +76,6 @@ var seed = function (name, description, price, category, imageUrl) {
 	var parentCategory;
 	var foundCategory = Category.findOne({name:category}).exec();
 	// console.log(foundCategory);
-	console.log(Category);
 	Category.findOne({name:category}).exec(function (err, category) {
 		if (err) next(err);
 		// console.log(category);

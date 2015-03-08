@@ -1,19 +1,31 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'angular-carousel']);
+var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'angular-carousel', 'ngKookies']);
 
-app.controller('MainController', function ($scope, $state, AuthService, UserFactory) {
+app.controller('MainController', function ($scope, $state, $kookies, AuthService, UserFactory, CartFactory) {
     //$kookies.set('cookie', 'stackation', { expires: 2000000, path: '/'});
 
     $scope.isLoggedIn = false;
     $scope.isAdmin = false;
+
     UserFactory.validateUser().then(function (responseObj) {
         if (responseObj) {
             $scope.isLoggedIn = true;
+            CartFactory.getUserCart(responseObj.user).then(function (cart) {
+                $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+           });
             if (responseObj.user.admin) {
                 $scope.isAdmin = true;
             }
         }
-    });
+        
+    }, function (err) {
+            if (err.status === 401) {
+                CartFactory.createCart().then(function (cart) {
+                    $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+                });
+            }
+        }
+    );
     //not necessary but we can use this for something
     $scope.$on('auth-login-success', function (event, args) {
         alert("Login Successful!");
@@ -26,12 +38,15 @@ app.controller('MainController', function ($scope, $state, AuthService, UserFact
     };
 
     $scope.loginUser = function (user) {
-        AuthService.login(user).then(function (response) {
-            if (response) {
+        AuthService.login(user).then(function (returnedUser) {
+            if (returnedUser) {
                 $scope.isLoggedIn = true;
-                $state.go('home');
+                CartFactory.getUserCart(returnedUser).then(function (cart) {
+                    $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+                    $state.go('home');
+                });
             }
-            if (response.admin) {
+            if (returnedUser.admin) {
                 $scope.isAdmin = true;
             }
         });
