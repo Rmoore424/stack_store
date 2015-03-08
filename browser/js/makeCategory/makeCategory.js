@@ -25,3 +25,6 @@ app.controller('MakeCategoryController', function ($scope, CategoriesFactory) {
     displayCategories();
 
 });
+
+//this needs to go in Admin as well as Make Vacation
+//use signup as make User

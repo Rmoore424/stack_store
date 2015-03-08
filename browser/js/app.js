@@ -7,7 +7,6 @@ app.controller('MainController', function ($scope, $state, AuthService, UserFact
     UserFactory.validateUser().then(function (responseObj) {
         if (responseObj) {
             $scope.isLoggedIn = true;
-            console.log(responseObj.user.admin);
             if (responseObj.user.admin) {
                 $scope.isAdmin = true;
             }

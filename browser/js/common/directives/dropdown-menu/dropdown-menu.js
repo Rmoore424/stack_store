@@ -4,7 +4,7 @@ app.directive('dropdown', function () {
 		restrict: 'E',
 		scope: {
 			options: '=',
-			click: '=',
+			click: '&',
 			title: '='
 		},
 		templateUrl: 'js/common/directives/dropdown-menu/dropdown-menu.html'

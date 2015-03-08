@@ -1,23 +1,15 @@
-<section id="editVacation">
+<section id="editCategory">
     <div class='panel panel-info'>
         <div class='panel-heading'>
             <h2 class='panel-title'>Edit {{currentOption.name}}</h2>
         </div>
         <div class='panel-body'>
-            <form name='editVacationForm' class='form-horizontal' ng-submit='editOne(toEdit)'>
+            <form name='editCategoryForm' class='form-horizontal' ng-submit='editOne(toEdit)'>
                 <div class='form-group'>
                     <label>Name</label><br>
                     <input type="text" ng-model="toEdit.name" required /><br>
                     <label>Description</label><br>
                     <input type="text" ng-model="toEdit.description" required /><br>
-                    <label>Price</label><br>
-                    <input type='number' ng-model='toEdit.price' required /><br>
-                    <label>Region</label><br>
-                    <input type='text' name="region" ng-model='toEdit.region' required /><br>
-                    <label>Categories</label><br>
-                    <input type='text' name="category" ng-model='toEdit.category' required /><br>
-                    <label>ImageUrl</label><br>
-                    <input type='text' name="imageUrl" ng-model='toEdit.imageUrl' /><br>
                 </div>
                 <button type='submit' class='btn-success'>Save Changes</button>
             </form>

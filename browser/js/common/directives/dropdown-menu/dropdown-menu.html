@@ -4,6 +4,6 @@
     <span class="caret"></span>
     </button>
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation" ng-repeat="option in options"><a role="menuitem" tabindex="-1" href="#" ng-click="click(option._id)">{{ option.name }}</a></li>
+        <li role="presentation" ng-repeat="option in options"><a role="menuitem" tabindex="-1" href="#" ng-click="click({item: option})">{{ option.name }}</a></li>
     </ul>
 </div>

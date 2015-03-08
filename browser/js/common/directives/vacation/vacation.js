@@ -9,6 +9,6 @@ app.directive('vacation', function () {
 
 app.controller('ShowVacationPageCtrl', function ($scope, $state) {
 	$scope.showCurrentVacation = function(vacation) {
-		$state.go('vacation', { id: vacation._id });
+		$state.go('vacation', { name: vacation.name });
 	};	
 });

@@ -9,7 +9,6 @@ var UserModel = mongoose.model('User');
 router.get('/', function (req, res, next) {
 	UserModel.findOne({ email: req.query.email }, function (err, user) {
 		if (err) next(err);
-		console.log('back end', user);
 		res.send(user);
 	});
 });
@@ -22,21 +21,23 @@ router.get('/', function (req, res, next) {
 // 	});
 // });
 //delete one user, used to be deleteUser
-router.delete('/', function (req, res, next) {
-	UserModel.findOneAndRemove( {_id: req.query._id }, function (err, user) {
+router.delete('/:id', function (req, res, next) {
+	UserModel.findOneAndRemove( {_id: req.params.id }, function (err, user) {
 		if (err) next(err);
-		console.log('back end', user);
 		res.send(user);
 	});
 });
 
 //update one user, used to be save
 router.put('/', function (req, res, next) {
-	console.log("body is", req.body);
+	var password = req.body.password;
+	req.body.password = "";
 	UserModel.findOneAndUpdate( { email: req.body.email }, req.body, function (err, user) {
 		if (err) next(err);
-		console.log('back end', user );
-		res.send(user);
+		user.password = password;
+		user.save(function (err, user) {
+			res.send(user);
+		});
 	});
 });
 
