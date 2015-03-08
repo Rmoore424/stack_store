@@ -4,20 +4,30 @@
             <h2 class='panel-title'>Edit {{currentOption.name}}</h2>
         </div>
         <div class='panel-body'>
-            <form name='editVacationForm' class='form-horizontal' ng-submit='editOne(toEdit)'>
+            <form name='editVacationForm' ng-submit='editVacationForm.$valid && editOne(toEdit)'>
                 <div class='form-group'>
-                    <label>Name</label><br>
-                    <input type="text" ng-model="toEdit.name" required /><br>
-                    <label>Description</label><br>
-                    <input type="text" ng-model="toEdit.description" required /><br>
-                    <label>Price</label><br>
-                    <input type='number' ng-model='toEdit.price' required /><br>
-                    <label>Region</label><br>
-                    <input type='text' name="region" ng-model='toEdit.region' required /><br>
-                    <label>Categories</label><br>
-                    <input type='text' name="category" ng-model='toEdit.category' required /><br>
-                    <label>ImageUrl</label><br>
-                    <input type='text' name="imageUrl" ng-model='toEdit.imageUrl' /><br>
+                    <label class="control-label col-sm-12">Name</label>
+                    <input type="text" ng-model="toEdit.name" required />
+                </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-12">Description</label>
+                    <input type="text" ng-model="toEdit.description" required />
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-12">Price</label>
+                    <input type='number' ng-model='toEdit.price' required />
+                </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-12">Region</label>
+                    <input type='text' name="region" ng-model='toEdit.region' required />
+                </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-12">Categories</label>
+                    <input type='text' name="category" ng-model='toEdit.category' required />
+                </div>
+                <div class='form-group'>
+                    <label class="control-label col-sm-12">ImageUrl</label>
+                    <input type='text' name="imageUrl" ng-model='toEdit.imageUrl' />
                 </div>
                 <button type='submit' class='btn-success'>Save Changes</button>
             </form>

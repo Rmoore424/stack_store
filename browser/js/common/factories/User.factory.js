@@ -16,7 +16,7 @@ app.factory('UserFactory', function($http) {
 				return response.data;
 			});
 		},
-		signupUser: function (user) {
+		createUser: function (user) {
 			return $http.post('/api/user', user).then(function (response) {
 				return response.data;
 			});

@@ -31,11 +31,6 @@ app.config(function ($stateProvider) {
 		url: '/:id',
 		templateUrl: '/js/admin/editCategory.html'
 	});
-
-	$stateProvider.state('admin.create', {
-		url: '/create',
-		templateUrl: 'js/admin/createOne.html'
-	});
 });
 
 app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory, VacationsFactory, CategoriesFactory){
@@ -47,32 +42,21 @@ app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory,
 		{'name': "Category", 'label': "Category Name"}
 	];
 
-	// $scope.deleteOptions = [
-	// 	{'name': 'User',     'action': 'Delete'},
-	// 	{'name': 'Vacation', 'action': 'Delete'},
-	// 	{'name': 'Category', 'action': 'Delete'}
-	// ];
-
-	// $scope.createOptions = [
-	// 	{'name': 'User', 	 'action': 'Create'},
-	// 	{'name': 'Vacation', 'action': 'Create'},
-	// 	{'name': 'Category', 'action': 'Create'}
-	// ];
-
 	$scope.adminSearch = function (option) {
 		$scope.currentOption = option;
 		$state.go('admin.edit');
 	};
 
 	$scope.adminCreate = function (option) {
-		$state.go('admin.create');
+		$scope.currentOption = option;
+		$state.go('admin.create' + option.name);
 	}
 
 	var resolveFind = function (returnedValue) {
 		if (returnedValue) {
 			$scope.toEdit = returnedValue;
-			var childView = ".edit" + $scope.currentOption.name
-			$state.go('admin.edit' + childView, {id: returnedValue._id});
+			var childView = ".edit" + $scope.currentOption.name;
+			$state.go('admin.edit' + childView);
 		}
 		else {
 			alert('Does Not Exist');
