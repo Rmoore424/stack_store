@@ -9,8 +9,14 @@ app.config(function ($stateProvider) {
 	});
 });
 
-app.controller('VacationPgCtrl', function($scope, $stateParams, $state, VacationsFactory) {
+app.controller('VacationPgCtrl', function($scope, $stateParams, $state, VacationsFactory, CartFactory) {
 	VacationsFactory.getOneVacation($stateParams.id).then(function(vacation) {
 		$scope.vacation = vacation;
 	});
+
+	$scope.addToCart = function(product) {
+		CartFactory.getCart().then(function(cart) {
+			cart.items.push({product: product._id, quantity: 1});	
+		});
+	};
 });

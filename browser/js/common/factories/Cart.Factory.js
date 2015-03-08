@@ -17,7 +17,7 @@ app.factory('CartFactory', function($http) {
 		getCart: function(cart) {
 			return $http.get('/api/cart' + cart.id).then(function (data) {
 				return response.data;
-			};
+			});
 		},
 
 		deleteCart: function(cart) {

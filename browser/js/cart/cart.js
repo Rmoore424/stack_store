@@ -3,7 +3,6 @@ app.config(function ($stateProvider) {
 
 	$stateProvider.state('cart', {
 		url: '/cart',
-		params: { cart.id: null },
 		controller: 'CartCtrl',
 		templateUrl: 'js/cart/cart.html'
 	});
@@ -29,7 +28,6 @@ app.controller('CartCtrl', function ($scope, $stateParams, $window, $state, Cart
     	}
     };
 
-
     $scope.getTotal = function(){
 	    var total = 0;
 	    for(var i = 0; i < $scope.cart.items.length; i++){
@@ -39,13 +37,17 @@ app.controller('CartCtrl', function ($scope, $stateParams, $window, $state, Cart
 	    return total;
 	};
 
-	$scope.addToCart = function(product) {
-		//not sure if this will work without wrapping in a function
-		$scope.loadCart().then($scope.addToCart()
-			cart.items.push(product._id);	
-		);
-    	
-	}
+	//need to add ability to add >1 of an item to cart
+	//need to add a function to increase/decrease qty of an item
+	
+
+	$scope.removeFromCart = function(productToRemove) {
+		CartFactory.getCart().then(function(cart) {
+			$scope.cart = cart.items.filter(function(item) {
+				return item.product._id !== productToRemove._id;
+			});
+		});
+	};
 
 	$scope.loadCart();
 });

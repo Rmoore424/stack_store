@@ -17,7 +17,7 @@
 			<td>{{ item.name }}</td>
 			<td>{{ item.price }}</td>
 			<td>{{ item.quantity }}</td>
-			<td><button>Remove from Cart</button></td>
+			<td><button ng-click="removeFromCart({{item}})">Remove from Cart</button></td>
 		</tr>
 	</tbody>
   </table>
