@@ -18,3 +18,18 @@ router.post('/', function (req, res, next) {
     	res.send(cart);
     });
 });
+
+router.delete('/', function (req, res, next) {
+	CartModel.findOneAndRemove( {_id: req.query._id }, function (err, cart) {
+		if (err) next(err);
+		res.send(cart);
+	});
+});
+
+
+router.put('/', function (req, res, next) {
+	CartModel.findOneAndUpdate( { _id: req.body._id }, req.body, function (err, cart) {
+		if (err) next(err);
+		res.send(cart);
+	});
+});
