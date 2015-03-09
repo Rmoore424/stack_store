@@ -9,15 +9,15 @@ app.config(function ($stateProvider) {
 	});
 });
 
-app.controller('VacationPgCtrl', function($scope, $stateParams, $state, VacationsFactory, ReviewFactory, CartFactory) {
-	VacationsFactory.getOneVacation($stateParams.name).then(function(vacation) {
+app.controller('VacationPgCtrl', function($scope, $kookies, $stateParams, $state, VacationsFactory, ReviewFactory, CartFactory) {
+	VacationsFactory.getOneVacation($stateParams.id).then(function(vacation) {
 		$scope.vacation = vacation;
 	});
 
 	$scope.add = function (product) {
 		CartFactory.addToCart(product);
 	};
-
+	
 	var setUpReviews = function (){
 	    ReviewFactory.getReviews($stateParams.id).then(function (returnedReviews){
 	        $scope.reviews = returnedReviews;

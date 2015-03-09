@@ -15,3 +15,9 @@
 @import 'login/login';
 @import 'signup/signup';
 @import 'admin/admin';
+
+footer {
+	position: fixed;
+	bottom: 1px;
+	opacity: 0.5;
+}

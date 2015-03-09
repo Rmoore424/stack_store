@@ -20,7 +20,7 @@ app.config(function ($stateProvider) {
 	});
 });
 
-app.controller('CreateController', function ($scope, CategoriesFactory, VacationsFactory, UserFactory) {
+app.controller('CreateController', function ($scope, $compile, CategoriesFactory, VacationsFactory, UserFactory) {
 	var catArr = [];
 
 	$scope.addCategory = function (){
