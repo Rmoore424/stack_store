@@ -25,7 +25,6 @@ app.controller('CartCtrl', function ($scope, $stateParams, $kookies, $state, Car
 		$scope.total = total;
 		$scope.populatedItems = items;
 	};
-	console.log($scope.cart);
     CartFactory.getItems($scope.cart)
     	.then(getTotalPrice);
 
