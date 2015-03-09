@@ -15,8 +15,8 @@ router.get('/', function (req, res, next) {
 });
 
 //this route gets one vaction by id, look at req.params
-router.get('/:name', function (req, res, next) {
-	VacationModel.findOne({ name: req.params.name })
+router.get('/:id', function (req, res, next) {
+	VacationModel.findOne({ _id: req.params.id })
 		.exec(function (err, vacation) {
 			if (err) next(err);
 			res.send(vacation);

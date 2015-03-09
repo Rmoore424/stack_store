@@ -1,8 +1,8 @@
 'use strict';
 app.factory('ReviewFactory', function($http){
     return{
-        getReviews: function(){
-            return $http.get('/api/review').then(function (response) {
+        getReviews: function (id) {
+            return $http.get('/api/review/' + id ).then(function (response) {
                 return response.data;
             });
         },
