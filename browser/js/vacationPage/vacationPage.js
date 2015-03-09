@@ -18,6 +18,8 @@ app.controller('VacationPgCtrl', function($scope, $stateParams, $state, Vacation
 		CartFactory.getCart().then(function(cart) {
 			cart.items.push({product: product._id, quantity: 1});	
 		});
+		$state.go('cart');
+
 	};
 
 	var setUpReviews = function (){
