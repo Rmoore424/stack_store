@@ -1,10 +1,11 @@
-	<h2 class='text-center'>{{ vacation.name }}</h2>
-	<img class="vacation-img" src="http://lorempixel.com/g/400/200" /> 
-	<p class='text-center'>{{ vacation.description }}</p>
-	<p class='text-center'>${{ vacation.price }}</p>
-	<div class='text-center'>
-		<button class="btn btn-success" ng-click="showCurrentVacation(vacation)">Go To Page</button>
-		<button class="btn btn-info" ng-click="addToCart(vacation)">Add to Cart</button>
-	</div>
+<h2 class='text-center'>{{ vacation.name }}</h2>
+<img class="vacation-img" src="{{vacation.imageUrl}}" /> 
+<p class='text-center'>{{ vacation.description }}</p>
+<p class='text-center'>${{ vacation.price }}</p>
+<div class='text-center'>
+	<button class="btn btn-success" ng-click="showCurrentVacation(vacation)">Go To Page</button>
+	<button class="btn btn-info" ng-click="addToCart(vacation)">Add to Cart</button>
+</div>
+
 
 

@@ -1,18 +1,24 @@
 'use strict';
 var mongoose = require('mongoose');
 
+function centsToDollars (price) {
+    console.log('price', price);
+    return (price/100).toFixed(2);
+};
+
 var schema = new mongoose.Schema({
     name: {
-    	type: String,
-    	required: true
+        type: String,
+        required: true
     },
     description: { 
-    	type: String,
-    	required: true
+        type: String,
+        required: true
     },
     price: {
-    	type: Number,
-    	required: true
+        type: Number,
+        required: true,
+        get: centsToDollars
     },
     region: String,
     category: { type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}], required: true },
@@ -22,7 +28,7 @@ var schema = new mongoose.Schema({
 
 
 
-schema.methods.computeUrlName = function() {
+schema.methods.computeUrlName = function () {
     var url = this.name.replace(/[\W\s]/g, '_');
     if (url.charAt(url.length-1) == ('_')) {
                 url = url.substring(0, url.length-1);
@@ -30,8 +36,15 @@ schema.methods.computeUrlName = function() {
     this.url_name = url;
 };
 
+schema.methods.dollarsToCents = function () {
+    console.log('do I get called');
+    var price = this.price * 100;
+    this.price = price;
+};
+
 schema.pre('save', function(next) {
     this.computeUrlName();
+    this.dollarsToCents();
     next();
 });
 

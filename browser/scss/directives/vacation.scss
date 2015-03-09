@@ -4,18 +4,26 @@ vacation {
 	border-radius: 5px;
 	display: block;
 	margin-left: 6%;
+	margin-bottom: 10px;
 
 	.vacation-img {
 		width: 90%;
 		margin-left: 5%;
+		height: 30vh;
 	}
 
 	p {
 		margin-top: 10px;
-		font-size: 18px;
+		height: 40px;
+		overflow: auto;
+		font-size: 14px;
 	}
 
 	.btn {
 		margin-bottom: 10px;
+	}
+
+	h2 {
+		font-size: 1.2em;
 	}
 }

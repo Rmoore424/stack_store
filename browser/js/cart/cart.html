@@ -2,7 +2,7 @@
 	
 	<div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Shopping Cart</div>
+  <div class="panel-heading text-center">Shopping Cart</div>
 
   <!-- Table -->
   <table class="table">
@@ -13,16 +13,16 @@
     		<th>Quantity</th>
     	</tr>
 	<tbody>
-		<tr ng-repeat="items in cart">
-			<td>{{ item.name }}</td>
-			<td>{{ item.price }}</td>
+		<tr ng-repeat="item in populatedItems">
+			<td>{{ item.item.name }}</td>
+			<td>{{ item.item.price | currency }}</td>
 			<td>{{ item.quantity }}</td>
-			<td><button ng-click="removeFromCart({{item}})">Remove from Cart</button></td>
+			<td><button ng-click="removeFromCart({{item}}, $index)">Remove from Cart</button></td>
 		</tr>
 	</tbody>
   </table>
 </div>
 	<div>
-		<h2>Total Price: {{ getTotal() }}</h2>
+		<h2>Total Price: {{ total | currency }}</h2>
 	</div>
 </section>

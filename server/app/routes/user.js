@@ -42,9 +42,10 @@ router.put('/', function (req, res, next) {
 });
 
 //create a new user, used to be in signup
+//Ensure index in order for uniqueness to work
 router.post('/', function (req, res, next) {
 	UserModel.create(req.body, function (err, user) {
 		if (err) next(err);
-		res.send(user);
+		res.send(user);	
 	});
 });

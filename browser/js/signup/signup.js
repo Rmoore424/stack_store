@@ -8,10 +8,16 @@ app.config(function ($stateProvider) {
 });
 
 
-app.controller('SignupController', function ($scope, UserFactory) {
+app.controller('SignupController', function ($scope, $kookies, CartFactory, UserFactory) {
 	$scope.signup = function (user) {
-		UserFactory.createUser(user).then(function (responseObj) {
-			console.log(responseObj);
+		UserFactory.createUser(user).then(function (user) {
+			var cart = JSON.parse($kookies.get('cart'));
+			console.log("kookie", cart)
+     		var cartId = cart._id;	
+     		CartFactory.setUserCart(cartId, user).then(function (cart) {
+     			console.log('returnedCart', cart);
+     			$kookies.set('cart', JSON.stringify(cart), {path: '/'});
+			 });
 		});
 	};
 });

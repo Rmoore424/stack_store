@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('HomeCtrl', function ($scope, $state, HomeViewFactory, VacationsFactory, CartFactory) {
+app.controller('HomeCtrl', function ($scope, $state, $kookies, HomeViewFactory, VacationsFactory, CartFactory) {
 	$scope.homeView = HomeViewFactory;
 
     VacationsFactory.getVacations().then(function (vacations) {
@@ -21,9 +21,13 @@ app.controller('HomeCtrl', function ($scope, $state, HomeViewFactory, VacationsF
 	};	
 
     $scope.addToCart = function(product) {
-		CartFactory.getCart().then(function(cart) {
-			cart.items.push({item: product._id, quantity: 1});	
-		});
+        var currentCart = JSON.parse($kookies.get('cart'));
+        currentCart.items.push({item: product._id, quantity: 1});
+
+		CartFactory.updateCart(currentCart).then(function(cart) {
+             $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+             //var ourCart = JSON.parse($kookies.get('cart'));
+		 });
 	};
 
 });
