@@ -7,29 +7,30 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
     $scope.isLoggedIn = false;
     $scope.isAdmin = false;
 
-    UserFactory.validateUser().then(function (responseObj) {
-        if (responseObj) {
+    AuthService.getLoggedInUser().then(function (user) {
+        if (user) {
             $scope.isLoggedIn = true;
-            CartFactory.getUserCart(responseObj.user).then(function (cart) {
-                $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+            CartFactory.getUserCart(user).then(function (cart) {
+                cart = JSON.stringify(cart);
+                $kookies.set('cart', cart, {path: '/'});
            });
-            if (responseObj.user.admin) {
+            if (user.admin) {
                 $scope.isAdmin = true;
             }
         }
-        
-    }, function (err) {
-            if (err.status === 401) {
-                CartFactory.createCart().then(function (cart) {
-                    $kookies.set('cart', JSON.stringify(cart), {path: '/'});
-                });
-            }
+        else {
+            CartFactory.createCart().then(function (cart) {
+                cart = JSON.stringify(cart);
+                $kookies.set('cart', cart, {path: '/'});
+
+            });
         }
-    );
-    //not necessary but we can use this for something
-    $scope.$on('auth-login-success', function (event, args) {
-        alert("Login Successful!");
+        
     });
+    //not necessary but we can use this for something
+    // $scope.$on('auth-login-success', function (event, args) {
+    //     alert("Login Successful!");
+    // });
 
     $scope.logoutUser = function () {
         AuthService.logout();
@@ -42,7 +43,8 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
             if (returnedUser) {
                 $scope.isLoggedIn = true;
                 CartFactory.getUserCart(returnedUser).then(function (cart) {
-                    $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+                    cart = JSON.stringify(cart);
+                    $kookies.set('cart', cart, {path: '/'});
                     $state.go('home');
                 });
             }

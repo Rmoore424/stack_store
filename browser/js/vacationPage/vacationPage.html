@@ -1,8 +1,8 @@
-<div class="text-center">
+<div class="text-center" ng-controller='HomeCtrl'>
 	<h2>{{ vacation.name }}</h2>
 	<img ng-src='{{vacation.imageUrl}}'/>
 	<h4>1 week stay for only ${{ vacation.price }}</h4>
-	<button class="btn btn-info" ng-click="addToCart(vacation)">Add To Cart</button>
+	<button class="btn btn-info" ng-click="add(vacation)">Add To Cart</button>
 	<button class="btn btn-warning" ng-click="leaveReview(vacation)">Leave Review</button>
 	<p>{{ vacation.description }}</p>
 	<review-display></review-display>

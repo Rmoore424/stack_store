@@ -15,14 +15,14 @@ app.controller('SignupController', function ($scope, $state, $kookies, CartFacto
 				alert(responseObj.error);
 			}
 			else {
-				var cart = JSON.parse($kookies.get('cart'));
-	     		var cartId = cart._id;	
+				var cartFromKookies = JSON.parse($kookies.get('cart'));
+	     		var cartId = cartFromKookies._id;	
 	     		CartFactory.setUserCart(cartId, responseObj.user).then(function (cart) {
 	     			alert('Signup Successful');
-	     			$kookies.set('cart', JSON.stringify(cart), {path: '/'});
+	     			cart = JSON.stringify(cart);
+	     			$kookies.set('cart', cart, {path: '/'});
 				 	$state.go('login');
 				 });
 	     	}
-		});
-	};
-});
+	});
+};
