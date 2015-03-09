@@ -1,6 +1,9 @@
-  <ul class="nav navbar-nav navbar-right">
+<ul class="nav navbar-nav navbar-right">
     <li><a ui-sref-active="active" ui-sref="cart"><i class="glyphicon glyphicon-shopping-cart"></i></a></li>
     <li ng-repeat="item in userOptions">
         <a ui-sref-active="active" ui-sref="{{ item.state }}" ng-click="{{ item.click }}">{{ item.label }}</a>
     </li>
+	<li ng-show="isAdmin">
+		<a ui-sref-active="active" ui-sref="admin">Admin Panel</a>
+	</li>
 </ul>

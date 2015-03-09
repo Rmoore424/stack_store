@@ -39,6 +39,9 @@ navbar {
   .navbar-right {
     margin-right: 1%;
   }
+  .btn-nav {
+    max-height: 29px;
+  }
   fullstack-logo {
     padding-top: 10px;
     margin-right: 20px;
@@ -50,6 +53,10 @@ navbar {
     &:hover {
       color: red;
     }
+  }
+
+  .lower-container {
+    padding-bottom: 0;
   }
 
   .nav > li > a {
