@@ -45,7 +45,14 @@ router.put('/', function (req, res, next) {
 //Ensure index in order for uniqueness to work
 router.post('/', function (req, res, next) {
 	UserModel.create(req.body, function (err, user) {
-		if (err) next(err);
-		res.send(user);	
+		if (err) {
+        	if (err.code === 11000 || err.code === 11001) {
+                res.send({error:"User already exists"});
+            }
+            else next(err);
+        }
+            else {
+                res.send({user: user});
+            }
 	});
 });
