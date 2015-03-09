@@ -15,6 +15,7 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
     ];
 
     $scope.userOptions = [
+        { label: 'Checkout', state: 'checkout'},
         { label: 'My Account', state: 'myAccount'},
         { label: 'My Orders', state: 'myOrders'},
         { label: 'Log Out', state: 'login', click: 'logoutUser()'}

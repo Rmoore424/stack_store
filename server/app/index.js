@@ -3,6 +3,9 @@ var express = require('express');
 var app = express();
 module.exports = app;
 require('./configure')(app);
+var stripe = require("stripe")(
+  "sk_test_raiW0RRBcENWkVV2L6534BYv"
+);
 
 app.use('/api', require('./routes'));
 
