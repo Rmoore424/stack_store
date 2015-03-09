@@ -21,23 +21,8 @@ app.controller('HomeCtrl', function ($scope, $state, $kookies, HomeViewFactory, 
 	};	
 
     //maybe goes on main controller so VacationPgCtrl can access it too
-    $scope.addToCart = function(product) {
-        var currentCart = JSON.parse($kookies.get('cart'));
-        var inCart = false;
-            currentCart.items.forEach(function (item) {
-                if(item.item == product._id) {
-                    item.quantity += 1;
-                    inCart = true;
-                }
-            });
-
-            if (!inCart) {
-                currentCart.items.push({item: product._id, quantity: 1});
-            }
-
-		CartFactory.updateCart(currentCart).then(function(cart) {
-             $kookies.set('cart', JSON.stringify(cart), {path: '/'});
-		 });
+    $scope.add = function(product) {
+        CartFactory.addToCart(product);
 	};
 
 });

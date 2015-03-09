@@ -5,7 +5,6 @@
 'use strict';
 
 app.config(function ($stateProvider) {
-	//do we need the controller below?
 	$stateProvider.state('admin', {
 		url: '/admin',
 		controller: 'AdminCtrl',
@@ -15,21 +14,6 @@ app.config(function ($stateProvider) {
 	$stateProvider.state('admin.edit', {
 		url: '/edit',
 		templateUrl: 'js/admin/findOneToEdit.html'
-	});
-
-	$stateProvider.state('admin.edit.editUser', {
-		url: '/:id',
-		templateUrl: 'js/admin/editUser.html'
-	});
-
-	$stateProvider.state('admin.edit.editVacation', {
-		url: '/:id',
-		templateUrl: 'js/admin/editVacation.html'
-	});
-
-	$stateProvider.state('admin.edit.editCategory', {
-		url: '/:id',
-		templateUrl: '/js/admin/editCategory.html'
 	});
 });
 
@@ -56,7 +40,7 @@ app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory,
 		if (returnedValue) {
 			$scope.toEdit = returnedValue;
 			var childView = ".edit" + $scope.currentOption.name;
-			$state.go('admin.edit' + childView);
+			$state.go('admin.edit' + childView, {option: $scope.currentOption.name, id: $scope.toEdit._id});
 		}
 		else {
 			alert('Does Not Exist');
@@ -73,43 +57,5 @@ app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory,
 		else if ($scope.currentOption.name === "Category") {
 			CategoriesFactory.getOneCategory(searchParam).then(resolveFind);
 		}
-	};
-
-	$scope.editOne = function (oneToEdit) {
-		if ($scope.currentOption.name === "User") {
-			UserFactory.updateUser(oneToEdit).then(function (user) {
-				$state.go('admin');
-			});
-		}
-		else if ($scope.currentOption.name === "Vacation") {
-			VacationsFactory.updateVacation(oneToEdit).then(function (vacation) {
-				$state.go('admin');
-			});
-		}
-		else if ($scope.currentOption.name === "Category") {
-			CategoriesFactory.updateCategory(oneToEdit).then(function (category) {
-				$state.go('admin');
-			});
-		}
-		alert('Successfully Edited');	
-	};
-
-	$scope.deleteOne = function (oneToDelete) {
-		if ($scope.currentOption.name === "User") {
-			UserFactory.deleteUser(oneToDelete).then(function (user) {
-				$state.go('admin');
-			});
-		}
-		else if ($scope.currentOption.name === "Vacation") {
-			VacationsFactory.deleteVacation(oneToDelete).then(function (vacation) {
-				$state.go('admin');
-			});
-		}
-		else if ($scope.currentOption.name === "Category") {
-			CategoriesFactory.deleteCategory(oneToDelete).then(function (category) {
-				$state.go('admin');
-			});
-		}
-		alert('Successfully Deleted')
 	};
 });

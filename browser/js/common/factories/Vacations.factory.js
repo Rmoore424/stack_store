@@ -6,8 +6,8 @@ app.factory("VacationsFactory", function ($http) {
 				return response.data;
 			});
 		},
-		getOneVacation: function (id) {
-			return $http.get('/api/vacations/' + id).then(function (response) {
+		getOneVacation: function (name) {
+			return $http.get('/api/vacations/' + name).then(function (response) {
 				return response.data;
 			});
 		},
