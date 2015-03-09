@@ -16,7 +16,7 @@
         <div class="row">
             <dropdown options="categories" click="getVacationsByCategory(item)" title="'Search By Categories'" class="col-sm-3"></dropdown>
             <div class="col-sm-6">
-                <form name="searchForm"class="form-inline" ng-submit="searchByProduct(searchBy)">
+                <form name="searchForm"class="form-inline" ng-submit="getOneVacationByName(req.params.name)">
                   <div class="form-group">
                     <div class="input-group">
                       <input type="text" id="search" placeholder="Search by Vacation" ng-model="searchBy">

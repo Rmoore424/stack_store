@@ -11,6 +11,11 @@ app.factory("VacationsFactory", function ($http) {
 				return response.data;
 			});
 		},
+		getOneVacationByName: function(name) {
+			return $http.get('/api/vacations/' + name).then(function (response) {
+				return response.data;
+			});
+		},
 		getVacationsByCategory: function (category) {
 			return $http.get('/api/vacations/category/' + category._id).then(function (response) {
 				return response.data;
