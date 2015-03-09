@@ -9,15 +9,28 @@ app.config(function ($stateProvider) {
 	});
 });
 
-app.controller('VacationPgCtrl', function($scope, $stateParams, $state, VacationsFactory, ReviewFactory, CartFactory) {
+app.controller('VacationPgCtrl', function($scope, $kookies, $stateParams, $state, VacationsFactory, ReviewFactory, CartFactory) {
 	VacationsFactory.getOneVacation($stateParams.id).then(function(vacation) {
 		$scope.vacation = vacation;
 	});
 
-	$scope.addToCart = function(product) {
-		CartFactory.getCart().then(function(cart) {
-			cart.items.push({product: product._id, quantity: 1});	
-		});
+    $scope.addToCart = function(product) {
+        var currentCart = JSON.parse($kookies.get('cart'));
+        var inCart = false;
+            currentCart.items.forEach(function (item) {
+                if(item.item == product._id) {
+                    item.quantity += 1;
+                    inCart = true;
+                }
+            });
+
+            if (!inCart) {
+                currentCart.items.push({item: product._id, quantity: 1});
+            }
+
+		CartFactory.updateCart(currentCart).then(function(cart) {
+             $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+		 });
 	};
 
 	var setUpReviews = function (){
