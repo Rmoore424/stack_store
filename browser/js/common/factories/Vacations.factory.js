@@ -12,7 +12,7 @@ app.factory("VacationsFactory", function ($http) {
 			});
 		},
 		getOneVacationByName: function(name) {
-			return $http.get('/api/vacations/' + name).then(function (response) {
+			return $http.get('/api/vacations/search/' + name).then(function (response) {
 				return response.data;
 			});
 		},

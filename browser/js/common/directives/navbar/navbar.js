@@ -30,6 +30,10 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
         { label: 'Make Vacation', state: 'makeVacation'}
     ];
 
+    $scope.search = [
+        { label: 'Search', state: 'vacations'}
+    ];
+
     CategoriesFactory.getCategories().then(function (categories) {
         $scope.categories = categories;
     });
@@ -43,15 +47,15 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
 
     $scope.getOneVacationByName = function(productName) {
         VacationsFactory.getOneVacationByName(productName).then(function (vacation) {
-            $scope.vacation=vacation;
-            console.log('vacation', vacation);
+            HomeViewFactory.vacations = [vacation];
+            $state.go('home');
+            
         });
-            $state.go('vacation');
-        console.log('and then this happened');
-
-        
-
     };
+        
+      
+            
+
 
 });
         //vacationsByCategory needs to be changed as well -RICH
