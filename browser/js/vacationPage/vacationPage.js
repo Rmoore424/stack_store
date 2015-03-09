@@ -2,14 +2,14 @@
 
 app.config(function ($stateProvider) {
 	$stateProvider.state('vacation', {
-		url: '/vacation/:name',
-		params: { name: null },
+		url: '/vacation/:id',
+		params: { id: null },
 		controller: 'VacationPgCtrl',
 		templateUrl: 'js/vacationPage/vacationPage.html'
 	});
 });
 
-app.controller('VacationPgCtrl', function($scope, $stateParams, $state, VacationsFactory, CartFactory) {
+app.controller('VacationPgCtrl', function($scope, $stateParams, $state, VacationsFactory, ReviewFactory, CartFactory) {
 	VacationsFactory.getOneVacation($stateParams.id).then(function(vacation) {
 		$scope.vacation = vacation;
 	});
