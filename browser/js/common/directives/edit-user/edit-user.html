@@ -22,9 +22,9 @@
                 </div>
                     <!--<label ng-show='editUserForm.password.$dirty'>Confirm New Password</label><br>
                     <input ng-show='editUserForm.password.$dirty' type='password' name="confirmPassword" ng-model='toEdit.password' required password-confirm match-target="toEdit.password"></input></br> -->
-                <div class="form-group">
+                <div class="form-group" ng-if="isAdmin">
                     <label class="control-label col-sm-12">Admin Status</label>
-                    <input type='checkbox' ng-model='toEdit.admin' />
+                    <input type='checkbox' ng-model='toEdit.admin'/>
                 </div>
                 <button type='submit' class='btn-success'>Save Changes</button>
                <!--<span class="help-block" ng-show="editUserForm.confirmPassword.$error.match">Passwords do not match.</span> -->
