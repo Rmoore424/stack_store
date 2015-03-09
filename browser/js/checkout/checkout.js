@@ -13,6 +13,6 @@ app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CartFactory, 
 
 	AuthService.getLoggedInUser().then(function(user) {
 		$scope.user = user;
-	})
+	});
 
 });
