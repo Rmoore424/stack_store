@@ -46,7 +46,7 @@ router.put('/', function (req, res, next) {
 	VacationModel.findOneAndUpdate({_id: req.body._id}, req.body)
 		.exec(function (err, vacation) {
 			console.log(vacation);
-			if (err) next(err)
+			if (err) next(err);
 			res.send(vacation);
 		});
 });
@@ -54,7 +54,7 @@ router.put('/', function (req, res, next) {
 router.delete('/:id', function (req, res, next) {
 	VacationModel.findOneAndRemove({_id: req.params.id})
 		.exec(function (err, vacation) {
-			if (err) next(err)
+			if (err) next(err);
 			res.send(vacation);
 		});
 });
