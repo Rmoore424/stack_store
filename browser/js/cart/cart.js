@@ -33,35 +33,16 @@ app.controller('CartCtrl', function ($scope, $stateParams, $kookies, $state, Car
 		$scope.cart.items = $scope.cart.items.splice(idx, 1);
 		$scope.populatedItems.splice(idx, 1);
 		CartFactory.updateCart($scope.cart).then(function(cart) {
-             $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+             cart = JSON.stringify(cart);
+             $kookies.set('cart', cart, {path: '/'});
              getTotalPrice($scope.populatedItems);
 		 });
-		// CartFactory.getCart().then(function(cart) {
-		// 	$scope.cart = cart.items.filter(function(item) {
-		// 		return item._id !== productToRemove._id;
-		// 	});
-		// });
 	};
 });
 
-    // $scope.loadCart = function() {
-    // 	if (typeof $scope.cart == undefined) {
-    // 		CartFactory.createCart().then(function (cart) {
-    // 			$scope.cart = cart;
-    // 			console.log('cart created!');
-    // 		});
-    // 	}
-    // 	else {
-    // 		//$scope.cart should already be set if it exists(?) but not sure if this will load without setting some variable to get the promised data
-    // 		CartFactory.getCart($scope.cart).then(function(cart) {
-    // 			console.log(cart);
-    // 		})
-    // 	}
-    // };
+    
 
 	//need to add ability to add >1 of an item to cart
 	//need to add a function to increase/decrease qty of an item
-	
-
-	//$scope.loadCart();
+;
 

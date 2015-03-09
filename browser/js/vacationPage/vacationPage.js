@@ -14,11 +14,9 @@ app.controller('VacationPgCtrl', function($scope, $stateParams, $state, Vacation
 		$scope.vacation = vacation;
 	});
 
-	$scope.addToCart = function(product) {
-		CartFactory.getCart().then(function(cart) {
-			cart.items.push({product: product._id, quantity: 1});	
-		});
-	};
+	$scope.add = function (product) {
+		CartFactory.addToCart(product);
+	}
 
 	var setUpReviews = function (){
 	    ReviewFactory.getReviews($stateParams.id).then(function (returnedReviews){

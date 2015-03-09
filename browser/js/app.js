@@ -8,25 +8,25 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
     $scope.isAdmin = false;
 
     AuthService.getLoggedInUser().then(function (user) {
-        console.log(user);
         if (user) {
             $scope.isLoggedIn = true;
             CartFactory.getUserCart(user).then(function (cart) {
-                $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+                cart = JSON.stringify(cart);
+                $kookies.set('cart', cart, {path: '/'});
            });
             if (user.admin) {
                 $scope.isAdmin = true;
             }
         }
-        
-    }, function (err) {
-            if (err.status === 401) {
-                CartFactory.createCart().then(function (cart) {
-                    $kookies.set('cart', JSON.stringify(cart), {path: '/'});
-                });
-            }
+        else {
+            CartFactory.createCart().then(function (cart) {
+                cart = JSON.stringify(cart);
+                $kookies.set('cart', cart, {path: '/'});
+
+            });
         }
-    );
+        
+    });
     //not necessary but we can use this for something
     // $scope.$on('auth-login-success', function (event, args) {
     //     alert("Login Successful!");
@@ -43,7 +43,8 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
             if (returnedUser) {
                 $scope.isLoggedIn = true;
                 CartFactory.getUserCart(returnedUser).then(function (cart) {
-                    $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+                    cart = JSON.stringify(cart);
+                    $kookies.set('cart', cart, {path: '/'});
                     $state.go('home');
                 });
             }
