@@ -17,7 +17,7 @@ app.controller('SignupController', function ($scope, $kookies, CartFactory, User
      		CartFactory.setUserCart(cartId, user).then(function (cart) {
      			console.log('returnedCart', cart);
      			$kookies.set('cart', JSON.stringify(cart), {path: '/'});
-			 });
+			 })-b;
 		});
 	};
 });
