@@ -1,16 +1,19 @@
 vacation {
-	background-color: #E4FFEA;
+	// background-color: #E4FFEA;
 	border: 1px solid black;
-	border-radius: 5px;
+	// border-radius: 5px;
 	display: block;
 	margin-left: 6%;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
+	background-repeat: no-repeat;
+	background-size: contain;
+	box-shadow: 5px 5px 5px #888888;
 
-	.vacation-img {
-		width: 90%;
+	// .vacation-img {
+		width: 100%;
 		margin-left: 5%;
 		height: 30vh;
-	}
+	// }
 
 	p {
 		margin-top: 10px;
@@ -25,5 +28,34 @@ vacation {
 
 	h2 {
 		font-size: 1.2em;
+		padding: 2px;
+		color: #D9C885;
+		display: inline;
+		margin-top: 5px;
 	}
+
+	div{
+		background-color: rgba(0, 0, 0, 0.70);
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%
+	}
+	
+	.left{
+		float: left;
+	}
+	.right{
+		float: right;
+	}
+
+
+
+}
+
+vacation:hover > div {
+	background-color: rgba(0, 0, 0, 0.50);
+}
+vacation:hover > h2	{
+	font-size: 1em;	
 }
