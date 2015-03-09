@@ -24,5 +24,6 @@ app.controller('SignupController', function ($scope, $state, $kookies, CartFacto
 				 	$state.go('login');
 				 });
 	     	}
-	});
-};
+		});
+	};
+});
