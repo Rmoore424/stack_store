@@ -32,6 +32,14 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
     //     alert("Login Successful!");
     // });
 
+    $scope.$on('auth-login-failed', function (event, args) {
+        $scope.failedAttempt = true;
+    });
+
+     $scope.$on('auth-login-success', function (event, args) {
+        $scope.failedAttempt = false;
+    });
+
     $scope.logoutUser = function () {
         AuthService.logout();
         $scope.isLoggedIn = false;
@@ -39,17 +47,17 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
     };
 
     $scope.loginUser = function (user) {
-        AuthService.login(user).then(function (returnedUser) {
-            if (returnedUser) {
+        AuthService.login(user).then(function (response) {
+            if (response.email) {
                 $scope.isLoggedIn = true;
-                CartFactory.getUserCart(returnedUser).then(function (cart) {
+                CartFactory.getUserCart(response).then(function (cart) {
                     cart = JSON.stringify(cart);
                     $kookies.set('cart', cart, {path: '/'});
                     $state.go('home');
                 });
-            }
-            if (returnedUser.admin) {
-                $scope.isAdmin = true;
+                if (response.admin) {
+                    $scope.isAdmin = true;
+                }
             }
         });
     };
