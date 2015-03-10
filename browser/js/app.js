@@ -1,8 +1,7 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'angular-carousel', 'ngKookies']);
+var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'angular-carousel', 'ngKookies', 'angularPayments']);
 
 app.controller('MainController', function ($scope, $state, $kookies, AuthService, UserFactory, UserStatusFactory, CartFactory) {
-    //$kookies.set('cookie', 'stackation', { expires: 2000000, path: '/'});
 
     $scope.userStatus = UserStatusFactory;
 

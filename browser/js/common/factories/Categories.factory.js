@@ -9,7 +9,7 @@ app.factory('CategoriesFactory', function ($http) {
         getOneCategory: function (name) {
             return $http.get('/api/categories/' + name).then(function (response) {
                 return response.data;
-            })
+            });
         },
         getCategories: function () {
             return $http.get('/api/categories').then(function (response){

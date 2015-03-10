@@ -55,6 +55,6 @@ app.controller('EditController', function ($scope, $state, $stateParams, UserFac
 				$state.go('admin');
 			});
 		}
-		alert('Successfully Deleted')
+		alert('Successfully Deleted');
 	};
-})
+});

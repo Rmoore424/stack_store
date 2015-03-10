@@ -1,7 +1,10 @@
 navbar {
 
   display: block;
-  background: #001D26;
+  background: #003140;
+  .navbar{
+    margin-bottom: 0;
+  }
 
   div.container {
     margin: 0;
@@ -74,7 +77,7 @@ navbar {
   }
 
   .btn-nav {
-    background-color: #001D26;
+    background-color: #003140;
     color: white;
     border: 1px solid #c1c1c1;
     border-radius: 5px;
@@ -84,7 +87,7 @@ navbar {
     width: 90%;
     opacity: 0.2;
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   .btn:focus,

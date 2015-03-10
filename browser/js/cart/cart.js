@@ -12,8 +12,7 @@ app.config(function ($stateProvider) {
 app.controller('CartCtrl', function ($scope, $stateParams, $kookies, $state, CartFactory) {
     //need to call a function that populates the product refs with the product properties
     $scope.cart = JSON.parse($kookies.get('cart'));
-    console.log($scope.cart.items);
-    $scope.populatedItems;
+    // $scope.populatedItems;
 
     var getTotalPrice = function (items) {
     	var total = 0;
@@ -45,5 +44,4 @@ app.controller('CartCtrl', function ($scope, $stateParams, $kookies, $state, Car
 
 	//need to add ability to add >1 of an item to cart
 	//need to add a function to increase/decrease qty of an item
-;
 

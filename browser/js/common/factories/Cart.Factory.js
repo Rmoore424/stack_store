@@ -25,7 +25,7 @@ app.factory('CartFactory', function ($http, $kookies) {
 		deleteCart: function(cart) {
 			return $http.delete('/api/cart' + cart._id).then(function (response) {
 
-			})
+			});
 		},
 		getItems: function(cart) {
 			return $http.get('/api/cart/' + cart._id + '/items').then(function (response) {
@@ -49,5 +49,5 @@ app.factory('CartFactory', function ($http, $kookies) {
 				return response.data;
 			});
 		}
-	}
+	};
 });
