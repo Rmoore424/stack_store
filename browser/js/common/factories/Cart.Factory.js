@@ -29,7 +29,6 @@ app.factory('CartFactory', function($http) {
 
 		getUserCart: function(user) {
 			return $http.get('/api/cart/' + user._id).then(function (response) {
-				console.log("user's cart", response.data);
 				return response.data;
 			});
 		},

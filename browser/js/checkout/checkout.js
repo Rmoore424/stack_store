@@ -19,7 +19,6 @@ app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CartFactory, 
 			//or can we get it on the front end somehow more easily?
 			//if we set the cart like below we still need to calculate total bc
 			$scope.cart = cart;
-			console.log("got the user's cart", cart);
 		})
 	});
 
@@ -27,12 +26,7 @@ app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CartFactory, 
 	    if (result.error) {
 	        $window.alert('it failed! error: ' + result.error.message);
 	    } else {
-	    	console.log("code", code);
-	    	console.log("result", result);
 	        $window.alert('success! token: ' + result.id);
-	        console.log("callback cart", $scope.cart);
-	        console.log("callback cart", $scope.user);
-	        var token = result;
 	        CheckoutFactory.createOrder(result, $scope.cart).then(function (order) {
 	        	console.log("stripeCallback called, order:", order);
 	        })

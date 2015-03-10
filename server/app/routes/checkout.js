@@ -20,19 +20,15 @@ router.post('/', function(req, res, next) {
         // asynchronously called
         if (err) next(err);
         console.log("charge created", charge);
-        CartModel.findOne({
-            _id: req.body.cart._id
-        }).exec(function(err, cart) {
-            console.log("cart found:", cart);
-            OrderModel.create({
-                user: cart.user,
-                //items: cart.items,
-                token: req.body.token,
-                total_charge: 4000 //need to insert cart total here
-            }, function(err, order) {
-                if (err) next(err);
-                res.send(order);
-            });
+        OrderModel.create({
+            user: req.body.cart.user,
+            items: req.body.cart.items,
+            token: req.body.token,
+            total_charge: 4000 //need to insert cart total here
+        }, function(err, order) {
+            if (err) next(err);
+            res.send(order);
         });
     });
 });
+
