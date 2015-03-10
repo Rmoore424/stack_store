@@ -3,7 +3,7 @@
     <li ng-repeat="item in userOptions">
         <a ui-sref-active="active" ui-sref="{{ item.state }}" ng-click="{{ item.click }}">{{ item.label }}</a>
     </li>
-	<li ng-show="UserStatus.isAdmin">
+	<li ng-show="userStatus.isAdmin">
 		<a ui-sref-active="active" ui-sref="admin">Admin Panel</a>
 	</li>
 </ul>

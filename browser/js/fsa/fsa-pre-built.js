@@ -71,7 +71,6 @@
         }
 
         this.getLoggedInUser = function () {
-
             if (this.isAuthenticated()) {
                 return $q.when({ user: Session.user });
             }

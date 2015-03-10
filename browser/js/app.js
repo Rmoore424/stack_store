@@ -43,20 +43,24 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
         UserStatusFactory.isLoggedIn = false;
         UserStatusFactory.isAdmin = false;
         $kookies.remove('cart');
+        $kookies.remove('user');
     };
 
 $scope.loginUser = function (user) {
         AuthService.login(user).then(function (returnedUser) {
-            if (returnedUser) {
+            if (returnedUser.email) {
                 UserStatusFactory.isLoggedIn = true;
                 CartFactory.getUserCart(returnedUser).then(function (cart) {
                     cart = JSON.stringify(cart);
                     $kookies.set('cart', cart, {path: '/'});
                     $state.go('home');
                 });
+                if (returnedUser.admin) {
+                    UserStatusFactory.isAdmin = true;
+                }
             }
-            if (returnedUser.admin) {
-                UserStatusFactory.isAdmin = true;
+            else {
+                $scope.failedAttempt = true;
             }
         });
     };
