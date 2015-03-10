@@ -9,7 +9,8 @@ app.config(function ($stateProvider) {
 
 app.controller('EditUserCtrl', function ($scope, AuthService, UserFactory) {
 	AuthService.getLoggedInUser().then(function (responseObj) {
-		$scope.toEdit = responseObj.user;
+		console.log(responseObj);
+		//$scope.toEdit = responseObj.user;
 	});
 
 	$scope.editOne = function (oneToEdit) {
