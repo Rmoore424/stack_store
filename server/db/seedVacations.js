@@ -89,7 +89,7 @@ var seed = function (name, description, price, category, imageUrl) {
 			price: price,
 			category: parentCategory._id,
 			imageUrl: imageUrl
-		})
+		});
 	});
 };
 

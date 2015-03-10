@@ -1,9 +1,26 @@
-<div class="text-center" ng-controller='HomeCtrl'>
-	<h2>{{ vacation.name }}</h2>
-	<img ng-src='{{vacation.imageUrl}}'/>
-	<h4>1 week stay for only ${{ vacation.price }}</h4>
-	<button class="btn btn-info" ng-click="add(vacation)">Add To Cart</button>
-	<button class="btn btn-warning" ng-click="leaveReview(vacation)">Leave Review</button>
-	<p>{{ vacation.description }}</p>
-	<review-display></review-display>
+<div class="text-left col-lg-12" ng-controller='HomeCtrl'>
+	<h2 class="text-capitalize">{{ vacation.name }}</h2>
+	
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<img ng-src='{{vacation.imageUrl}}'/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
+			<h4>1 week stay for only ${{ vacation.price }}</h4>
+			<p>{{ vacation.description }}</p>
+		</div>
+	
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+			<button class="btn btn-info" ui-sref="cart" ng-click="add(vacation)">Add To Cart</button>
+			<button class="btn btn-warning" ng-click="leaveReview(vacation)">Leave Review</button>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+		<review-display></review-display>
+		</div>
+	</div>
 </div>

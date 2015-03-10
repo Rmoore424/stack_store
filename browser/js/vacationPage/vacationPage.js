@@ -17,7 +17,7 @@ app.controller('VacationPgCtrl', function($scope, $stateParams, $state, Vacation
 	$scope.add = function (product) {
 		CartFactory.addToCart(product);
 	};
-
+	
 	var setUpReviews = function (){
 	    ReviewFactory.getReviews($stateParams.id).then(function (returnedReviews){
 	        $scope.reviews = returnedReviews;
