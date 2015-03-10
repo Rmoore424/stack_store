@@ -6,8 +6,8 @@ var mongoose = require('mongoose');
 var UserModel = mongoose.model('User');
 
 //find one user
-router.get('/', function (req, res, next) {
-	UserModel.findOne({ email: req.query.email }, function (err, user) {
+router.get('/:email', function (req, res, next) {
+	UserModel.findOne({ email: req.params.email }, function (err, user) {
 		if (err) next(err);
 		res.send(user);
 	});

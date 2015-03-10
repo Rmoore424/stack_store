@@ -2,7 +2,7 @@
 app.factory('UserFactory', function($http) {
 	return {
 		getUser: function(email) {
-			return $http.get('/api/user', { params: { email: email } }).then(function (response) {
+			return $http.get('/api/user/' + email).then(function (response) {
 				return response.data;
 			});
 		},
