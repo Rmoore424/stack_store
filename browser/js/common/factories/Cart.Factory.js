@@ -34,7 +34,6 @@ app.factory('CartFactory', function ($http, $kookies) {
 		},
 		//add or remove: look at this too
 		updateCart: function(cartId, product, idx) {
-			console.log('idx', idx);
 			return $http.put('api/cart', {cartId: cartId, product: product, idx: idx}).then(function (response) {
 				return response.data;
 			});
