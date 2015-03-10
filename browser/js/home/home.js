@@ -20,24 +20,15 @@ app.controller('HomeCtrl', function ($scope, $state, $kookies, HomeViewFactory, 
 		$state.go('vacation', { id: vacation._id });
 	};	
 
+    $scope.vacImages = [
+        "http://www.bankingsense.com/wp-content/uploads/2014/07/vacations.jpg",
+        "http://img4.wikia.nocookie.net/__cb20140520211519/middleearthshadowofmordor7723/images/5/50/Yre1o.jpg",
+        "https://wallwidehd.com/wp-content/uploads/Jupiter-Surface-Painting-Wallpaper.jpg"
+    ];
+
     //maybe goes on main controller so VacationPgCtrl can access it too
-    $scope.addToCart = function(product) {
-        var currentCart = JSON.parse($kookies.get('cart'));
-        var inCart = false;
-            currentCart.items.forEach(function (item) {
-                if(item.item == product._id) {
-                    item.quantity += 1;
-                    inCart = true;
-                }
-            });
-
-            if (!inCart) {
-                currentCart.items.push({item: product._id, quantity: 1});
-            }
-
-		CartFactory.updateCart(currentCart).then(function(cart) {
-             $kookies.set('cart', JSON.stringify(cart), {path: '/'});
-		 });
-	};
+ //    $scope.add = function(product) {
+ //        CartFactory.addToCart(product);
+	// };
 
 });

@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 function centsToDollars (price) {
     console.log('price', price);
     return (price/100).toFixed(2);
-};
+}
 
 var schema = new mongoose.Schema({
     name: {

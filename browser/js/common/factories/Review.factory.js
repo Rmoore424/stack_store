@@ -7,7 +7,7 @@ app.factory('ReviewFactory', function($http){
             });
         },
         getVacationReviews: function(vacationId){
-            return $http.get('')
+            // return $http.get('');
         },
         makeReview: function(newReview){
             return $http.post('/api/review', newReview).then(function(){
@@ -16,7 +16,7 @@ app.factory('ReviewFactory', function($http){
         },
         deleteReview: function(revId){
             return $http.delete('/api/review', {params: {_id: revId} }).then(function(){
-                console.log("Review successfully deleted.")
+                console.log("Review successfully deleted.");
             });
         }
     };

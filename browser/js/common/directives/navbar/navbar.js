@@ -10,13 +10,14 @@ app.directive('navbar', function () {
 app.controller('NavController', function ($scope, $state, VacationsFactory, CategoriesFactory, HomeViewFactory) {
     
     $scope.menuItems = [
-        { label: 'Home', state: 'home' },
+        { label: 'Stackations', state: 'home' },
         { label: 'About', state: 'about'},
     ];
 
     $scope.userOptions = [
+        { label: 'Checkout', state: 'checkout'},
         { label: 'My Account', state: 'myAccount'},
-        { label: 'My Orders', state: 'myOrders'},
+        { label: 'My Orders', state: 'orders'},
         { label: 'Log Out', state: 'login', click: 'logoutUser()'}
     ];
 
