@@ -19,7 +19,7 @@
                 <form name="searchForm"class="form-inline" ng-submit="getOneVacationByName(searchBy)" >
                   <div class="form-group">
                     <div class="input-group">
-                      <input type="text" id="search" placeholder="Search by Vacation" ng-model="searchBy"/>
+                      <input type="text" id="search" placeholder="Search by Vacation" ng-model="searchBy" ng-change="showNothing()"/>
                       <button class="btn input-group-addon">Search</button>
                     </div>
                   </div>
@@ -30,6 +30,9 @@
                     <li><a ui-sref-active="active" ui-sref="admin">Go To Admin</a></li>
                 </ul>
             </div>  
+            <div ng-show="vacationSearchByNameFoundNothing">
+                <p>There is no vacation that matches "{{searchBy}}"</p>
+            </div>
         </div>
     </div>
 </nav>

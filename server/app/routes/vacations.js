@@ -25,10 +25,11 @@ router.get('/:id', function (req, res, next) {
 
 //this route looks for one vacation using the vacation name
 router.get('/search/:name', function (req, res, next) {
-	console.log(req.params);
+	console.log('route hit');
 	VacationModel.findOne({ name: req.params.name })
 		.exec(function (err, vacation) {
 			if (err) next(err);
+			if (vacation==='undefined') console.log('it is undefined!!');
 			console.log(req.params.name);
 			res.send(vacation);
 		})

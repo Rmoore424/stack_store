@@ -34,6 +34,12 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
         { label: 'Search', state: 'vacations'}
     ];
 
+    $scope.vacationSearchByNameFoundNothing = false;
+
+    $scope.showNothing = function() {
+        $scope.vacationSearchByNameFoundNothing=false;
+    };
+
     CategoriesFactory.getCategories().then(function (categories) {
         $scope.categories = categories;
     });
@@ -47,8 +53,12 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
 
     $scope.getOneVacationByName = function(productName) {
         VacationsFactory.getOneVacationByName(productName).then(function (vacation) {
-            HomeViewFactory.vacations = [vacation];
-            $state.go('home');
+            if (!vacation) {
+                $scope.vacationSearchByNameFoundNothing = true;
+            } else {
+                HomeViewFactory.vacations = [vacation];
+                $state.go('home');
+            }
             
         });
     };
