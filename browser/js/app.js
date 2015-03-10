@@ -40,6 +40,9 @@ app.controller('MainController', function ($scope, $state, $cookieStore, AuthSer
         UserStatusFactory.isLoggedIn = false;
         UserStatusFactory.isAdmin = false;
         $cookieStore.remove('cart');
+         CartFactory.createCart().then(function (cart) {
+            $cookieStore.put('cart', cart);
+         });
     };
 
 $scope.loginUser = function (user) {

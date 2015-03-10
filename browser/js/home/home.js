@@ -17,7 +17,7 @@ app.controller('HomeCtrl', function ($scope, $state, HomeViewFactory, VacationsF
     });
 
     $scope.showCurrentVacation = function(vacation) {
-		$state.go('vacation', { id: vacation._id });
+		$state.go('vacation', { id: vacation._id , name: vacation.name});
 	};	
 
     $scope.vacImages = [
