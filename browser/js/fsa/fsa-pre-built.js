@@ -65,6 +65,11 @@
             return data.user;
         };
 
+        var onFailedLogin = function (err) {
+            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+            return err;
+        }
+
         this.getLoggedInUser = function () {
 
             if (this.isAuthenticated()) {
@@ -78,7 +83,7 @@
         };
 
         this.login = function (credentials) {
-            return $http.post('/login', credentials).then(onSuccessfulLogin);
+            return $http.post('/login', credentials).then(onSuccessfulLogin, onFailedLogin);
         };
 
         this.logout = function () {

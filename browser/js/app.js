@@ -30,6 +30,14 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
     //     alert("Login Successful!");
     // });
 
+    $scope.$on('auth-login-failed', function (event, args) {
+        $scope.failedAttempt = true;
+    });
+
+     $scope.$on('auth-login-success', function (event, args) {
+        $scope.failedAttempt = false;
+    });
+
     $scope.logoutUser = function () {
         AuthService.logout();
         UserStatusFactory.isLoggedIn = false;
@@ -37,7 +45,7 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
         $kookies.remove('cart');
     };
 
-    $scope.loginUser = function (user) {
+$scope.loginUser = function (user) {
         AuthService.login(user).then(function (returnedUser) {
             if (returnedUser) {
                 UserStatusFactory.isLoggedIn = true;
