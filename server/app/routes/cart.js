@@ -27,9 +27,8 @@ router.post('/', function (req, res, next) {
     });
 });
 
-//I don't think we ever delete a cart --RICH
-router.delete('/', function (req, res, next) {
-	CartModel.findOneAndRemove( {_id: req.query._id }, function (err, cart) {
+router.delete('/:id', function (req, res, next) {
+	CartModel.findOneAndRemove( {_id: req.params.id }, function (err, cart) {
 		if (err) next(err);
 		res.send(cart);
 	});
@@ -75,6 +74,14 @@ router.put('/remove', function (req, res, next) {
 router.put('/add', function (req, res, next) {
 	CartModel.findOneAndUpdate( {_id: req.body.cartId }, {$push: {items: req.body.product }}, function (err, cart) {
 		if (err) next(err);
+		res.status(200).end();
+	})
+})
+
+router.put('/clear', function (req, res, next) {
+	CartModel.findOneAndUpdate( {_id: req.body.cartId}, {$set: { items: []}}, function (err, cart) {
+		if (err) next(err);
+		console.log("empty cart", cart);
 		res.status(200).end();
 	})
 })

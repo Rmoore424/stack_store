@@ -14,4 +14,4 @@ router.use('/cart', require('./cart'));
 
 router.use("/review", require('./review'));
 
-router.use("/checkout", require('./checkout'));
+router.use("/order", require('./order'));

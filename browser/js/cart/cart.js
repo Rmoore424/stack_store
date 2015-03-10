@@ -9,26 +9,15 @@ app.config(function ($stateProvider) {
 });
 
 
-app.controller('CartCtrl', function ($scope, $stateParams, $cookieStore, $state, CartFactory) {
+
+app.controller('CartCtrl', function ($scope, $stateParams, $cookieStore, $state, CartFactory, MathFactory) {
     //need to call a function that populates the product refs with the product properties
-    //$scope.cart = $cookieStore.get('cart');
-    // $scope.populatedItems;
-    var cart;
-    var getTotalPrice = function (items) {
-    	var total = 0;
-	    for(var i = 0; i < items.length; i++){
-	        var item = items[i];
-	        if (item) {
-	        	total += (item.item.price * item.quantity);
-	        }
-	    }
-		$scope.total = total;
-		$scope.populatedItems = items;
-	};
-    CartFactory.getItems($cookieStore.get('cart'))
-    	.then(function (items) {
-    		cart = $cookieStore.get('cart');
-    		getTotalPrice(items);
+    var cart = $cookieStore.get('cart');
+
+    CartFactory.getItems(cart)
+    	.then( function(items) {
+    		$scope.populatedItems = items;	
+    		$scope.total = MathFactory.getTotalPrice(items)
     	});
 
 	$scope.removeFromCart = function(productToRemove, idx) {
@@ -37,8 +26,8 @@ app.controller('CartCtrl', function ($scope, $stateParams, $cookieStore, $state,
 		$cookieStore.put('cart', cart);
 
 		CartFactory.removeFromCart(cart._id, productToRemove._id).then(function () {
-             getTotalPrice($scope.populatedItems);
-		 });
+             $scope.total = MathFactory.getTotalPrice($scope.populatedItems);
+         });
 	};
 });
 

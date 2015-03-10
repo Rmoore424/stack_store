@@ -11,28 +11,30 @@ app.config(function ($stateProvider) {
 
 app.controller('CheckoutCtrl', function ($scope, $state, $cookieStore, CartFactory, AuthService, $window, CheckoutFactory) {
 
+	var cart;
 	AuthService.getLoggedInUser().then(function(user) {
 		$scope.user = user;
-		CartFactory.getUserCart(user).then(function(cart) {
-			//need to get access to the total price 
-			//i set up code in the model but commented out for now
-			//or can we get it on the front end somehow more easily?
-			//if we set the cart like below we still need to calculate total bc
-			$scope.cart = cart;
-			console.log("got the user's cart", cart);
-		})
+		//$cookies.getObject('cart');
+		cart = $cookieStore.get('cart');
+		CartFactory.getItems(cart)
+    	.then( function(items) {
+    		$scope.total = MathFactory.getTotalPrice(items)
+    	});
 	});
 
 	$scope.stripeCallback = function (code, result) {
 	    if (result.error) {
 	        $window.alert('it failed! error: ' + result.error.message);
 	    } else {
-	        $window.alert('success! token: ' + result.id);
-	        var token = result;
-	        CheckoutFactory.createOrder(result, $scope.cart).then(function (order) {
+	        $window.alert('Processing... wait a moment...');
+	        OrderFactory.createOrder(result, cart, $scope.total).then(function (order) {
 	        	console.log("stripeCallback called, order:", order);
-	        })
-
+	        	CartFactory.clearCart(cart._id).then(function(emptyCart) {
+	        		$cookieStore.put('cart', emptyCart);
+	        		cart = emptyCart;
+	        	});
+	        	$state.go('order-confirmation', {id: order._id});
+	        });
 	    }
 	};
 });
