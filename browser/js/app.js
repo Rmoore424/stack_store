@@ -1,53 +1,66 @@
 'use strict';
 var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'angular-carousel', 'ngKookies', 'angularPayments']);
 
-app.controller('MainController', function ($scope, $state, $kookies, AuthService, UserFactory, CartFactory, $window) {
-    //$kookies.set('cookie', 'stackation', { expires: 2000000, path: '/'});
+app.controller('MainController', function ($scope, $state, $kookies, AuthService, UserFactory, UserStatusFactory, CartFactory) {
 
-    $scope.isLoggedIn = false;
-    $scope.isAdmin = false;
+    $scope.userStatus = UserStatusFactory;
 
-    UserFactory.validateUser().then(function (responseObj) {
-        if (responseObj) {
-            $scope.isLoggedIn = true;
-            CartFactory.getUserCart(responseObj.user).then(function (cart) {
-                $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+    AuthService.getLoggedInUser().then(function (user) {
+        if (user) {
+            UserStatusFactory.isLoggedIn = true;
+            CartFactory.getUserCart(user).then(function (cart) {
+                cart = JSON.stringify(cart);
+                $kookies.set('cart', cart, {path: '/'});
            });
-            if (responseObj.user.admin) {
-                $scope.isAdmin = true;
+            if (user.admin) {
+                UserStatusFactory.isAdmin = true;
             }
+        }
+        else {
+            CartFactory.createCart().then(function (cart) {
+                cart = JSON.stringify(cart);
+                $kookies.set('cart', cart, {path: '/'});
+
+            });
         }
         
-    }, function (err) {
-            if (err.status === 401) {
-                CartFactory.createCart().then(function (cart) {
-                    $kookies.set('cart', JSON.stringify(cart), {path: '/'});
-                });
-            }
-        }
-    );
+    });
     //not necessary but we can use this for something
-    $scope.$on('auth-login-success', function (event, args) {
-        alert("Login Successful!");
+    // $scope.$on('auth-login-success', function (event, args) {
+    //     alert("Login Successful!");
+    // });
+
+    $scope.$on('auth-login-failed', function (event, args) {
+        $scope.failedAttempt = true;
+    });
+
+     $scope.$on('auth-login-success', function (event, args) {
+        $scope.failedAttempt = false;
     });
 
     $scope.logoutUser = function () {
         AuthService.logout();
-        $scope.isLoggedIn = false;
-        $scope.isAdmin = false;
+        UserStatusFactory.isLoggedIn = false;
+        UserStatusFactory.isAdmin = false;
+        $kookies.remove('cart');
+        $kookies.remove('user');
     };
 
-    $scope.loginUser = function (user) {
+$scope.loginUser = function (user) {
         AuthService.login(user).then(function (returnedUser) {
-            if (returnedUser) {
-                $scope.isLoggedIn = true;
+            if (returnedUser.email) {
+                UserStatusFactory.isLoggedIn = true;
                 CartFactory.getUserCart(returnedUser).then(function (cart) {
-                    $kookies.set('cart', JSON.stringify(cart), {path: '/'});
+                    cart = JSON.stringify(cart);
+                    $kookies.set('cart', cart, {path: '/'});
                     $state.go('home');
                 });
+                if (returnedUser.admin) {
+                    UserStatusFactory.isAdmin = true;
+                }
             }
-            if (returnedUser.admin) {
-                $scope.isAdmin = true;
+            else {
+                $scope.failedAttempt = true;
             }
         });
     };

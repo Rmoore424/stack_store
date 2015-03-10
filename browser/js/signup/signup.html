@@ -32,13 +32,18 @@
             <div class='form-group'>
                 <label class='col-sm-4 control-label'>Confirm Password:</label>
                 <div class="col-sm-8">
-                    <input type='password' name="confirmPassword" ng-model='user.confirmPassword' required password-confirm match-target="user.password" />
+                    <input type='password' name="confirmPassword" ng-model='user.confirmPassword' ng-model-options: "{ updateOn: 'blur', debounce: 2000 }" required password-confirm match-target="user.password" />
                 </div>
             </div>
             <div class="text-center">
                 <button type='submit' class='btn-success'>Sign Up!</button>
             </div>
-           <div class="text-center" ng-show="signupForm.confirmPassword.$error.match"><span class="help-block">Passwords do not match!</span></div>
+           <div class="text-center" ng-show="signupForm.confirmPassword.$error.match && signupForm.confirmPassword.$dirty">
+                <span class="help-block">Passwords do not match!</span>
+            </div>
+           <div class ="text-center" ng-show="duplicateUser">
+                <span class="help-block">User already exists</span>
+            </div>
         </form>
     </div>
 </div>
