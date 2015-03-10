@@ -1,8 +1,8 @@
 'use strict';
 app.factory('OrderFactory', function($http) {
 	return {
-		createOrder: function(token, cart) {
-			return $http.post('/api/order/', {token: token.id, cart: cart}).then(function (response) {
+		createOrder: function(token, cart, total) {
+			return $http.post('/api/order/', {token: token.id, cart: cart, total: total}).then(function (response) {
 				console.log("New order created");
 				return response.data;
 			});

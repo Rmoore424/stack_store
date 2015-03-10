@@ -9,17 +9,16 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CartFactory, AuthService, $window, OrderFactory) {
+app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CartFactory, AuthService, $window, OrderFactory, MathFactory) {
 
 	AuthService.getLoggedInUser().then(function(user) {
 		$scope.user = user;
-		CartFactory.getUserCart(user).then(function(cart) {
-			//need to get access to the total price 
-			//i set up code in the model but commented out for now
-			//or can we get it on the front end somehow more easily?
-			//if we set the cart like below we still need to calculate total bc
-			$scope.cart = cart;
-		})
+		//$cookies.getObject('cart');
+		$scope.cart = JSON.parse($kookies.get('cart'));
+		CartFactory.getItems($scope.cart)
+    	.then( function(items) {
+    		$scope.total = MathFactory.getTotalPrice(items)
+    	});
 	});
 
 	$scope.stripeCallback = function (code, result) {
@@ -27,11 +26,15 @@ app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CartFactory, 
 	        $window.alert('it failed! error: ' + result.error.message);
 	    } else {
 	        $window.alert('Processing... wait a moment...');
-	        OrderFactory.createOrder(result, $scope.cart).then(function (order) {
+	        OrderFactory.createOrder(result, $scope.cart, $scope.total).then(function (order) {
 	        	console.log("stripeCallback called, order:", order);
-	        	CartFactory.deleteCart($scope.cart).then(
-	        		$state.go('order-confirmation', {id: order._id})
-	        		);
+	        	CartFactory.clearCart($scope.cart._id).then(function(cart) {
+	        		var parsedCart = JSON.stringify(cart);
+	        		//$cookies.setObject('cart', cart)
+	        		$kookies.set('cart', parsedCart, { path: '/'});
+	        		$scope.cart = cart;
+	        	});
+	        	$state.go('order-confirmation', {id: order._id});
 	        });
 	    }
 	};

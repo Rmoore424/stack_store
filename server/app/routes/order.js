@@ -18,7 +18,7 @@ router.get('/:id', function (req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    console.log(req.body.token);
+    console.log("type of total", typeof req.body.total);
     stripe.charges.create({
         amount: 4000, //need to insert cart total here in pennies
         currency: "usd",

@@ -1,6 +1,10 @@
 <section id="checkout">
-	<h1>Checkout</h1>
-	<div class='panel panel-info col-sm-8'>
+<h1 class="text-center">Checkout</h1>
+<div>
+	<div class="col-lg-1">
+	</div>
+	<div class="col-lg-5">
+	<div class='panel panel-default text-center'>
 	    <div class='panel-heading'>
 	        <h2 class='panel-title text-center'>Billing Details</h2>
 	    </div>
@@ -49,32 +53,34 @@
 	        	</div>
 	    </div>
 	</div>
-	<div ng-controller="CartCtrl" class='col-sm-4'>
-	    <div class="panel panel-default">
+</div>
+	<div ng-controller="CartCtrl" class='col-lg-5'>
+	    <div class="panel panel-default text-center">
 	        <!-- Default panel contents -->
-	        <div class="panel-heading text-center">Order Summary</div>
-
+	        <div class="panel-heading text-center">
+	        	<h2 class='panel-title text-center'>Order Summary</h2>
+	        </div>
 	        <!-- Table -->
 	        <table class="table">
-	            <thead>
-	                <tr>
-	                    <th>Vacation</th>
-	                    <th>Price</th>
-	                    <th>Quantity</th>
-	                </tr>
-	            </thead>
 	                <tbody>
 	                    <tr ng-repeat="item in populatedItems">
 	                        <td>{{ item.item.name }}</td>
 	                        <td>{{ item.item.price | currency }}</td>
-	                        <td>{{ item.quantity }}</td>
+	                    </tr>
+	                    <tr>
+	                    	<td>Total Price:</td>
+	                    	<td>{{ total | currency }}</td>
+	                    	<td/>
 	                    </tr>
 	                </tbody>
 	        </table>
-	    </div>
-	    <div>
-	        <h2>Total Price: {{ total | currency }}</h2>
-	        <button ui-sref="cart">Edit Cart</button>
+	        <div>
+	            <button class="btn-warning" ui-sref="cart">Edit Cart</button>
+			</div>
+			<div></div>
 	    </div>
 	</div>
+	<div class="col-lg-1">
+	</div>
+</div>
 </section>
