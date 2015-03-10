@@ -7,7 +7,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('EditUserCtrl', function ($scope, $state, $kookies, AuthService, UserFactory, UserStatusFactory) {
+app.controller('EditUserCtrl', function ($scope, $state, $cookieStore, AuthService, UserFactory, UserStatusFactory) {
 
 	AuthService.getLoggedInUser().then(function (responseObj) {
 		$scope.toEdit = responseObj.user;
@@ -27,8 +27,7 @@ app.controller('EditUserCtrl', function ($scope, $state, $kookies, AuthService, 
 				AuthService.logout();
 				UserStatusFactory.isLoggedIn = false;
         		UserStatusFactory.isAdmin = false;
-        		$kookies.remove('cart');
-        		$kookies.remove('user');
+        		$cookieStore.remove('cart');
 			});
 		alert('Successfully Deleted');
 	};

@@ -1,5 +1,5 @@
 'use strict';
-app.factory('CartFactory', function ($http, $kookies) {
+app.factory('CartFactory', function ($http) {
 	return {
 		createCart: function() {
 			return $http.post('/api/cart').then(function (response) {
@@ -23,7 +23,7 @@ app.factory('CartFactory', function ($http, $kookies) {
 			});
 		},
 		deleteCart: function(cart) {
-			return $http.delete('/api/cart' + cart._id).then(function (response) {
+			return $http.delete('/api/cart/' + cart._id).then(function (response) {
 
 			});
 		},
@@ -45,6 +45,12 @@ app.factory('CartFactory', function ($http, $kookies) {
 		},
 		removeFromCart: function(cartId, productId) {
 			return $http.put('/api/cart/remove', {cartId: cartId, productId: productId}).then(function (response) {
+				return response.data;
+			});
+		},
+
+		clearCart: function(cartId) {
+			return $http.put('/api/cart/clear', {cartId: cartId }).then(function (response) {
 				return response.data;
 			});
 		}

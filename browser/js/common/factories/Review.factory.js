@@ -9,13 +9,13 @@ app.factory('ReviewFactory', function($http){
         getVacationReviews: function(vacationId){
             // return $http.get('');
         },
-        makeReview: function(newReview){
-            return $http.post('/api/review', newReview).then(function(){
-                console.log("New review successfully added!");
+        createReview: function(vacationId, userId, rating, newReview) {
+            return $http.post('/api/review', {review: newReview, user: userId, rating: rating, vacation: vacationId}).then(function(response){
+                return response.data;
             });
         },
         deleteReview: function(revId){
-            return $http.delete('/api/review', {params: {_id: revId} }).then(function(){
+            return $http.delete('/api/review/' + revId).then(function(){
                 console.log("Review successfully deleted.");
             });
         }
