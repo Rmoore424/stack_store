@@ -13,11 +13,9 @@
   	padding: 0;
   }
   .jumbo {
-	background-image: url("http://lorempixel.com/g/400/200");
-	background-size: cover;
-	height: 40vh;
+	 background-size: 100% 100%; 
+	 height: 40vh;
   }
-
   ul {
   	width: 100%;
   	height: 100vh;

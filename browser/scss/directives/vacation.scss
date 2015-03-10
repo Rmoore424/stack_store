@@ -1,12 +1,9 @@
 vacation {
-	// background-color: #E4FFEA;
 	border: 1px solid black;
-	// border-radius: 5px;
 	display: block;
 	margin-left: 6%;
 	margin-bottom: 15px;
 	background-repeat: no-repeat;
-	background-size: contain;
 	box-shadow: 5px 5px 5px #888888;
 
 	// .vacation-img {
@@ -32,6 +29,9 @@ vacation {
 		color: #D9C885;
 		display: inline;
 		margin-top: 5px;
+		margin-right: 10px;
+		margin-left: 10px;
+		font-weight: bold;
 	}
 
 	div{
@@ -49,13 +49,18 @@ vacation {
 		float: right;
 	}
 
-
-
 }
 
 vacation:hover > div {
 	background-color: rgba(0, 0, 0, 0.50);
 }
+
+
 vacation:hover > h2	{
 	font-size: 1em;	
+}
+
+vacation:hover {
+	cursor: pointer;
+	cursor: hand;
 }
