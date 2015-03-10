@@ -10,13 +10,13 @@ app.config(function ($stateProvider) {
 app.controller('EditUserCtrl', function ($scope, $state, $cookieStore, AuthService, UserFactory, UserStatusFactory) {
 
 	AuthService.getLoggedInUser().then(function (responseObj) {
-		$scope.toEdit = responseObj.user;
+		$scope.user = responseObj.user;
 	});
 
 	$scope.editOne = function (userToEdit) {
 		UserFactory.updateUser(userToEdit).then(function (user) {
 			$state.go('myAccount');
-			$scope.toEdit = user;
+			$scope.user = user;
 			alert('Successfully Edited');
 		});
 	};
