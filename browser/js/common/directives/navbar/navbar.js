@@ -52,21 +52,19 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
     };
 
     $scope.getOneVacationByName = function(productName) {
-        VacationsFactory.getOneVacationByName(productName).then(function (vacation) {
-            if (!vacation) {
-                $scope.vacationSearchByNameFoundNothing = true;
-            } else {
-                HomeViewFactory.vacations = [vacation];
-                $state.go('home');
-            }
-            
-        });
-    };
-        
-      
-            
-
-
+        $state.go('home');
+        $scope.$on('$stateChangeSuccess', function(event){
+            VacationsFactory.getOneVacationByName(productName).then(function (vacation) {
+                if(vacation) {
+                    HomeViewFactory.vacations = [vacation];
+                    $scope.$apply();
+                } else {
+                    $scope.vacationSearchByNameFoundNothing = true;
+                }
+            });   
+        })
+    };    
+    
 });
         //vacationsByCategory needs to be changed as well -RICH
         //should probably go in MainController
