@@ -53,16 +53,17 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
     };
 
      $scope.getOneVacationByName = function(productName) {
-        $state.go('home');
-        $scope.$on('$stateChangeSuccess', function(event){
+        $state.go('home').then(function(){
             VacationsFactory.getOneVacationByName(productName).then(function (vacation) {
                 if(vacation) {
                     HomeViewFactory.vacations = [vacation];
                 } else {
                     $scope.vacationSearchByNameFoundNothing = true;
                 }
-            });   
-        });
+            }); 
+        }
+    );
+        
 
     };    
     
