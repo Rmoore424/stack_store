@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CartFactory, AuthService, $window, CheckoutFactory) {
+app.controller('CheckoutCtrl', function ($scope, $state, $cookieStore, CartFactory, AuthService, $window, CheckoutFactory) {
 
 	AuthService.getLoggedInUser().then(function(user) {
 		$scope.user = user;

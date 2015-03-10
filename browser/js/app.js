@@ -1,7 +1,7 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'angular-carousel', 'ngKookies', 'angularPayments']);
+var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'angular-carousel', 'ngCookies', 'angularPayments']);
 
-app.controller('MainController', function ($scope, $state, $kookies, AuthService, UserFactory, UserStatusFactory, CartFactory) {
+app.controller('MainController', function ($scope, $state, $cookieStore, AuthService, UserFactory, UserStatusFactory, CartFactory) {
 
     $scope.userStatus = UserStatusFactory;
 
@@ -9,8 +9,7 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
         if (user) {
             UserStatusFactory.isLoggedIn = true;
             CartFactory.getUserCart(user).then(function (cart) {
-                cart = JSON.stringify(cart);
-                $kookies.set('cart', cart, {path: '/'});
+                $cookieStore.put('cart', cart);
            });
             if (user.admin) {
                 UserStatusFactory.isAdmin = true;
@@ -18,9 +17,7 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
         }
         else {
             CartFactory.createCart().then(function (cart) {
-                cart = JSON.stringify(cart);
-                $kookies.set('cart', cart, {path: '/'});
-
+                $cookieStore.put('cart', cart);
             });
         }
         
@@ -42,8 +39,7 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
         AuthService.logout();
         UserStatusFactory.isLoggedIn = false;
         UserStatusFactory.isAdmin = false;
-        $kookies.remove('cart');
-        $kookies.remove('user');
+        $cookieStore.remove('cart');
     };
 
 $scope.loginUser = function (user) {
@@ -51,8 +47,8 @@ $scope.loginUser = function (user) {
             if (returnedUser.email) {
                 UserStatusFactory.isLoggedIn = true;
                 CartFactory.getUserCart(returnedUser).then(function (cart) {
-                    cart = JSON.stringify(cart);
-                    $kookies.set('cart', cart, {path: '/'});
+                    //cart = JSON.stringify(cart);
+                    $cookieStore.put('cart', cart);
                     $state.go('home');
                 });
                 if (returnedUser.admin) {
