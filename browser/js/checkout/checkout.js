@@ -12,13 +12,15 @@ app.config(function ($stateProvider) {
 app.controller('CheckoutCtrl', function ($scope, $state, $cookieStore, CartFactory, AuthService, $window, OrderFactory, MathFactory) {
 
 	var cart;
-	AuthService.getLoggedInUser().then(function(user) {
-		$scope.user = user;
-		//$cookies.getObject('cart');
-		cart = $cookieStore.get('cart');
-		CartFactory.getItems(cart)
-    	.then( function(items) {
-    		$scope.total = MathFactory.getTotalPrice(items)
+	AuthService.getLoggedInUser().then(function(responseObj) {
+		if (responseObj.user) {
+			$scope.user = responseObj.user;
+		}
+			//$cookies.getObject('cart');
+			cart = $cookieStore.get('cart');
+			CartFactory.getItems(cart)
+	    	.then( function(items) {
+	    		$scope.total = MathFactory.getTotalPrice(items)
     	});
 	});
 
