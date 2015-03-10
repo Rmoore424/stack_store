@@ -10,7 +10,7 @@ app.directive('navbar', function () {
 app.controller('NavController', function ($scope, $state, VacationsFactory, CategoriesFactory, HomeViewFactory) {
     
     $scope.menuItems = [
-        { label: 'Home', state: 'home' },
+        { label: 'Stackations', state: 'home' },
         { label: 'About', state: 'about'},
     ];
 
