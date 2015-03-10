@@ -3,7 +3,6 @@ app.factory('CartFactory', function ($http, $kookies) {
 	return {
 		createCart: function() {
 			return $http.post('/api/cart').then(function (response) {
-				console.log("New cart created");
 				return response.data;
 			});
 		},

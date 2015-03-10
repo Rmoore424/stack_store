@@ -8,21 +8,33 @@ app.config(function ($stateProvider) {
 });
 
 
-app.controller('SignupController', function ($scope, $state, $kookies, CartFactory, UserFactory) {
+app.controller('SignupController', function ($scope, $state, $kookies, CartFactory, UserFactory, UserStatusFactory) {
+	
 	$scope.signup = function (user) {
 		UserFactory.createUser(user).then(function (responseObj) {
 			if (responseObj.error) {
-				alert(responseObj.error);
+				$scope.duplicateUser = true;
 			}
 			else {
-				var cartFromKookies = JSON.parse($kookies.get('cart'));
-	     		var cartId = cartFromKookies._id;	
-	     		CartFactory.setUserCart(cartId, responseObj.user).then(function (cart) {
-	     			alert('Signup Successful');
-	     			cart = JSON.stringify(cart);
-	     			$kookies.set('cart', cart, {path: '/'});
-				 	$state.go('login');
-				 });
+				if ($kookies.get('cart')) {
+					var cart = JSON.parse($kookies.get('cart'));
+		     		CartFactory.setUserCart(cart._id, responseObj.user).then(function (cart) {
+		     			cart = JSON.stringify(cart);
+		     			$kookies.set('cart', cart, {path: '/'});
+		     			UserStatusFactory.isLoggedIn = true;
+					 	$state.go('home');
+					 });
+				}
+				else {
+					CartFactory.createCart().then(function (newCart) {
+						CartFactory.setUserCart(newCart._id, responseObj.user).then(function (cart) {
+							cart = JSON.stringify(cart);
+							$kookies.set('cart', cart, {path: '/'});
+							UserStatusFactory.isLoggedIn = true;
+							$state.go('home');
+						});
+					});
+				}
 	     	}
 		});
 	};
