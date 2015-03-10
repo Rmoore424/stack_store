@@ -34,7 +34,7 @@ app.factory('CartFactory', function($http) {
 		},
 
 		deleteCart: function(cart) {
-			return $http.delete('/api/cart' + cart._id).then(function (response) {
+			return $http.delete('/api/cart/' + cart._id).then(function (response) {
 
 			})
 		},

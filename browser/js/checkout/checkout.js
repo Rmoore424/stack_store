@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CartFactory, AuthService, $window, CheckoutFactory) {
+app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CartFactory, AuthService, $window, OrderFactory) {
 
 	AuthService.getLoggedInUser().then(function(user) {
 		$scope.user = user;
@@ -26,11 +26,13 @@ app.controller('CheckoutCtrl', function ($scope, $state, $kookies, CartFactory, 
 	    if (result.error) {
 	        $window.alert('it failed! error: ' + result.error.message);
 	    } else {
-	        $window.alert('success! token: ' + result.id);
-	        CheckoutFactory.createOrder(result, $scope.cart).then(function (order) {
+	        $window.alert('Processing... wait a moment...');
+	        OrderFactory.createOrder(result, $scope.cart).then(function (order) {
 	        	console.log("stripeCallback called, order:", order);
-	        })
-
+	        	CartFactory.deleteCart($scope.cart).then(
+	        		$state.go('order-confirmation', {id: order._id})
+	        		);
+	        });
 	    }
 	};
 });

@@ -27,8 +27,8 @@ router.post('/', function (req, res, next) {
     });
 });
 
-router.delete('/', function (req, res, next) {
-	CartModel.findOneAndRemove( {_id: req.query._id }, function (err, cart) {
+router.delete('/:id', function (req, res, next) {
+	CartModel.findOneAndRemove( {_id: req.params.id }, function (err, cart) {
 		if (err) next(err);
 		res.send(cart);
 	});
