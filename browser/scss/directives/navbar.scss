@@ -38,6 +38,9 @@ navbar {
       }
     }
   }
+  input{
+    border-radius: 2px;
+  }
 
   .navbar-right {
     margin-right: 1%;
@@ -66,6 +69,7 @@ navbar {
     cursor: pointer;
     &.active {
       color: #D9620E;
+      font-weight: bold;
     }
     &:hover {
       transition: color 0.2s;
