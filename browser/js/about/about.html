@@ -1,18 +1,27 @@
 <section id="about">
-    
-	<h2 class="text-center">Stackations unLTD</h2>
+
+	<h2 class="text-center">Stackations LTD | The Meanest Vacation Makers</h2>
+
     <div class="panel">
     	Take a wonderful stackation with our services! From your local resort, to the furthest reaches of space, to the endless wonders of your favorite (not)fiction novel! Our experts have found the best fully stacked vacation spot for your enjoyment and pleasure. Gathering the mean of your resources, you can meet wild mongooses, ride an express train through the English Channel, view the weird angular forms of the Egyptian pyramids, or explore the various nodes of the old Silk Road.
     </div>
 
-    <!-- <div class="text-center">
-	    <ul style="display: inline; list-style-type: none;">
-	    	<li ng-repeat="maker in makers">{{maker}}</li>
-	    </ul>
-    </div> -->
+    <h2 class="text-center">Who are we?</h2>
 
     <div class="panel">
+        A group of really cool entrepreneurs who want to sell you vacations to various realms of the world. Wherever or whatever light has touched your eyes to witness, we bring it to you! Through rain, shine, solar flares, and other dangerous situations, we bring you the best of the best vacations to experience in your life. Learning from our trips to these locations, we can show you the world like you've never seen before!
+    </div>
+
+    <div class="panel">
+        <div ng-repeat="maker in makers" class="text-center col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <h3>{{maker}}</h3>
+            <img style="max-height: 150px; max-width: 150px;" src="http://www.westsydneybball.com.au/wordpress/wp-content/uploads/2014/06/No_photo.jpg"/>
+        </div>
+    </div>
+
+
+    <div class="panel">
+    <h2 class="text-center">What Else?</h2>
         This website--the very one at which you currently gaze--was created by a basic scaffolding concocted at Fullstack Academy. If you want to know more about how this scaffolding works, please message Joe about it!
     </div>
-    <img style="max-width: 600px; max-height: 600px; display: block; padding: 10px; margin-left: auto; margin-right: auto;" ng-repeat="image in images" ng-src="{{ image }}" />
 </section>
