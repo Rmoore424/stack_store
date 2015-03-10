@@ -8,8 +8,8 @@
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
         </ul>
-        <guestnav ng-show="!isLoggedIn"></guestnav>
-        <usernav ng-show="isLoggedIn"></usernav>
+        <guestnav ng-show="!userStatus.isLoggedIn"></guestnav>
+        <usernav ng-show="userStatus.isLoggedIn"></usernav>
     </div>
     <hr />
     <div class="container lower-container">
@@ -24,12 +24,7 @@
                     </div>
                   </div>
                 </form>
-            </div>
-            <div class="col-sm-3" ng-show="isAdmin">
-                <ul>
-                    <li><a ui-sref-active="active" ui-sref="admin">Go To Admin</a></li>
-                </ul>
-            </div>  
+            </div> 
             <div ng-show="vacationSearchByNameFoundNothing">
                 <p style="color:red">There is no vacation that matches "{{searchBy}}"</p>
             </div>

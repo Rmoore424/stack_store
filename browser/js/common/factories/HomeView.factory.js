@@ -2,5 +2,5 @@
 app.factory("HomeViewFactory", function () {
 	return {
 		vacations: []
-	}
+	};
 });

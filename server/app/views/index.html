@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <base href="/" />
-    <title>Stack Store</title>
+    <title>Stackations | The MEANest vacations yet!</title>
     <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/style.css" />
     <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.css" />
@@ -18,10 +18,20 @@
     <script src="/ngkookies/ngKookies.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/main.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript">
+      // This identifies your website in the createToken call below
+      Stripe.setPublishableKey('pk_test_YYmaIeIUiEeXDDK5qUD1Cx27');
+      // ...
+    </script>
+    <script type="text/javascript" 
+        src="/angular-payments/lib/angular-payments.js">
+</script>
 </head>
 <body ng-app="FullstackGeneratedApp" ng-controller="MainController">
 
     <navbar></navbar>
     <div ui-view></div>
+    <footer>© 2015 Stackations LTD.</footer>
 </body>
 </html>

@@ -14,9 +14,9 @@ router.get('/', function (req, res, next) {
 		});
 });
 
-//this route gets one vaction by id, look at req.params
-router.get('/:id', function (req, res, next) {
-	VacationModel.findOne({ _id: req.params.id })
+//this route gets one vaction by name
+router.get('/:name', function (req, res, next) {
+	VacationModel.findOne({ name: req.params.name })
 		.exec(function (err, vacation) {
 			if (err) next(err);
 			res.send(vacation);
@@ -57,7 +57,7 @@ router.put('/', function (req, res, next) {
 	VacationModel.findOneAndUpdate({_id: req.body._id}, req.body)
 		.exec(function (err, vacation) {
 			console.log(vacation);
-			if (err) next(err)
+			if (err) next(err);
 			res.send(vacation);
 		});
 });
@@ -65,7 +65,7 @@ router.put('/', function (req, res, next) {
 router.delete('/:id', function (req, res, next) {
 	VacationModel.findOneAndRemove({_id: req.params.id})
 		.exec(function (err, vacation) {
-			if (err) next(err)
+			if (err) next(err);
 			res.send(vacation);
 		});
 });
