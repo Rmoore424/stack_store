@@ -7,10 +7,22 @@ app.config(function ($stateProvider) {
 		controller: 'VacationPgCtrl',
 		templateUrl: 'js/vacationPage/vacationPage.html'
 	});
+
+    $stateProvider.state('vacation.review', {
+        templateUrl: 'js/makeReview/makeReview.html'
+    });
 });
 
-app.controller('VacationPgCtrl', function ($scope, $kookies, $stateParams, $state, VacationsFactory, ReviewFactory, CartFactory) {
+app.controller('VacationPgCtrl', function ($scope, $kookies, $stateParams, $state, VacationsFactory, ReviewFactory, AuthService, CartFactory) {
 	$scope.cart = JSON.parse($kookies.get('cart'));
+
+	AuthService.getLoggedInUser().then(function (responseObj) {
+		if (responseObj) {
+			if(responseObj.user) {
+				$scope.user = responseObj.user;
+			}
+		}
+	});
 
 	VacationsFactory.getOneVacation($stateParams.name).then(function(vacation) {
 		$scope.vacation = vacation;
@@ -45,20 +57,23 @@ app.controller('VacationPgCtrl', function ($scope, $kookies, $stateParams, $stat
 
 		}
 	};
+
+	$scope.getReviewPage = function () {
+		$state.go('vacation.review');
+	};
 	
+    $scope.leaveReview = function (vacationId, userId, rating, review) {
+        rating = Number(rating);
+        ReviewFactory.createReview(vacationId, userId, rating, review).then(function (review) {
+        	setUpReviews();
+        });
+    };
+
 	var setUpReviews = function (){
 	    ReviewFactory.getReviews($stateParams.id).then(function (returnedReviews){
 	        $scope.reviews = returnedReviews;
 	    });
 	};
-
-	$scope.showReviewTextBox = function () {
-		$scope.showReviewForm = true;
-	};
-
-	$scope.leaveReview = function (vacationId) {
-
-	}
 
 	setUpReviews();
 });

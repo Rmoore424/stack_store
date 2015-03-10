@@ -42,8 +42,11 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
         AuthService.logout();
         UserStatusFactory.isLoggedIn = false;
         UserStatusFactory.isAdmin = false;
-        $kookies.remove('cart');
-        $kookies.remove('user');
+         CartFactory.createCart().then(function (cart) {
+                cart = JSON.stringify(cart);
+                $kookies.set('cart', cart, {path: '/'});
+                console.log($kookies.get('cart'));
+            });
     };
 
 $scope.loginUser = function (user) {

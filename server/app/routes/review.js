@@ -13,7 +13,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:id', function (req, res, next) {
-	ReviewModel.find({product: req.params.id})
+	ReviewModel.find({vacation: req.params.id})
+		.populate('vacation')
+		.populate('user')
 		.exec(function (err, reviews) {
 			if (err) next(err);
 			res.send(reviews);
@@ -21,9 +23,9 @@ router.get('/:id', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    ReviewModel.create(req.body, function(err, review){
-    	if(err) next(err);
-    	res.send(review);
+    ReviewModel.create(req.body, function (err, review){
+	    if (err) next(err);
+	    res.send(review);
     });
 });
 
