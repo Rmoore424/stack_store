@@ -13,7 +13,7 @@ app.config(function ($stateProvider) {
 app.controller('CartCtrl', function ($scope, $stateParams, $cookieStore, $state, CartFactory, MathFactory) {
     //need to call a function that populates the product refs with the product properties
     var cart = $cookieStore.get('cart');
-
+    console.log($cookieStore.get('cart'));
     CartFactory.getItems(cart)
     	.then( function(items) {
     		$scope.populatedItems = items;	
