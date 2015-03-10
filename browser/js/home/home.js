@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('HomeCtrl', function ($scope, $state, $kookies, HomeViewFactory, VacationsFactory, CartFactory) {
+app.controller('HomeCtrl', function ($scope, $state, HomeViewFactory, VacationsFactory, CartFactory) {
 	$scope.homeView = HomeViewFactory;
 
     VacationsFactory.getVacations().then(function (vacations) {
