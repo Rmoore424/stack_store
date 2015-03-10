@@ -1,5 +1,5 @@
 'use strict';
-app.factory('CartFactory', function ($http, $kookies) {
+app.factory('CartFactory', function ($http) {
 	return {
 		createCart: function() {
 			return $http.post('/api/cart').then(function (response) {
