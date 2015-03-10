@@ -17,12 +17,6 @@ app.controller('HomeCtrl', function ($scope, $state, $kookies, HomeViewFactory, 
     });
 
     $scope.showCurrentVacation = function(vacation) {
-		$state.go('vacation', { id: vacation._id });
+		$state.go('vacation', { id: vacation._id , name: vacation.name});
 	};	
-
-    //maybe goes on main controller so VacationPgCtrl can access it too
- //    $scope.add = function(product) {
- //        CartFactory.addToCart(product);
-	// };
-
 });

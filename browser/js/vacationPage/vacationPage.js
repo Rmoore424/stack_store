@@ -52,5 +52,13 @@ app.controller('VacationPgCtrl', function ($scope, $kookies, $stateParams, $stat
 	    });
 	};
 
+	$scope.showReviewTextBox = function () {
+		$scope.showReviewForm = true;
+	};
+
+	$scope.leaveReview = function (vacationId) {
+
+	}
+
 	setUpReviews();
 });
