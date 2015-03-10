@@ -62,17 +62,13 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
                     $scope.vacationSearchByNameFoundNothing = true;
                 }
             });   
-        })
+        });
 
-        //go to the factory and get data
-        //maintain that data in scoped variable - aka vacation
-        // if no data ex--ists, return 'found nothing'
-        // if does exist - c- 
     };    
     
 });   
     
-});
+
         //vacationsByCategory needs to be changed as well -RICH
         //should probably go in MainController
 
