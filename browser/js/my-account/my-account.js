@@ -3,7 +3,7 @@ app.config(function ($stateProvider) {
     $stateProvider.state('myAccount', {
         url: '/myAccount',
         controller: 'EditUserCtrl',
-        templateUrl: 'js/my-account/my-account.html',
+        templateUrl: 'js/my-account/my-account.html'
     });
 });
 

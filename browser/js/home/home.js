@@ -21,8 +21,8 @@ app.controller('HomeCtrl', function ($scope, $state, $kookies, HomeViewFactory, 
 	};	
 
     //maybe goes on main controller so VacationPgCtrl can access it too
-    $scope.add = function(product) {
-        CartFactory.addToCart(product);
-	};
+ //    $scope.add = function(product) {
+ //        CartFactory.addToCart(product);
+	// };
 
 });

@@ -8,8 +8,8 @@
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
         </ul>
-        <guestnav ng-show="!isLoggedIn"></guestnav>
-        <usernav ng-show="isLoggedIn"></usernav>
+        <guestnav ng-show="!userStatus.isLoggedIn"></guestnav>
+        <usernav ng-show="userStatus.isLoggedIn"></usernav>
     </div>
     <hr />
     <div class="container lower-container">
