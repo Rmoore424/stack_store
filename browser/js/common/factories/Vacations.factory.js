@@ -38,6 +38,3 @@ app.factory("VacationsFactory", function ($http) {
 		}
 	};
 });
-
-//may want to pass id as argument for delete and update 
-//instead of whole vacation object -RICH

@@ -30,7 +30,6 @@ app.controller('CheckoutCtrl', function ($scope, $state, $cookieStore, CartFacto
 	    } else {
 	        $window.alert('Processing... wait a moment...');
 	        OrderFactory.createOrder(result, cart, $scope.total).then(function (order) {
-	        	console.log("stripeCallback called, order:", order);
 	        	CartFactory.clearCart(cart._id).then(function(emptyCart) {
 	        		$cookieStore.put('cart', emptyCart);
 	        		cart = emptyCart;

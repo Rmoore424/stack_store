@@ -4,12 +4,12 @@
 	<div class="col-lg-1">
 	</div>
 	<div class="col-lg-5">
-	<div class='panel panel-default text-center'>
+	<div class='panel panel-default text-center' ng-show="userStatus.isLoggedIn">
 	    <div class='panel-heading'>
 	        <h2 class='panel-title text-center'>Billing Details</h2>
 	    </div>
 	    <div class='panel-body'>
-	        <form name='checkoutForm' class='form-horizontal' ng-submit='checkoutForm.$valid && goToConfirm()' novalidate>
+	        <form name='checkoutForm' class='form-horizontal' novalidate>
 	            <div class='form-group'>
 	                <label class='col-sm-4 control-label'>First Name:</label>
 	                <div class="col-sm-8">
@@ -52,6 +52,15 @@
 	            <payment></payment>
 	        	</div>
 	    </div>
+	</div>
+
+	<div class='panel panel-default text-center' ng-show='!userStatus.isLoggedIn'>
+		<div class='panel-heading'>
+			<h2 class='panel-title'>Please Sign up to Check Out</h2>
+		</div>
+		<div class='panel-body'>
+			<button type='submit' class='btn btn-success' ui-sref='signup' ng-show="!userStatus.isLoggedIn">SignUp</button>
+		</div>
 	</div>
 </div>
 	<div ng-controller="CartCtrl" class='col-lg-5'>

@@ -81,8 +81,7 @@ router.put('/add', function (req, res, next) {
 router.put('/clear', function (req, res, next) {
 	CartModel.findOneAndUpdate( {_id: req.body.cartId}, {$set: { items: []}}, function (err, cart) {
 		if (err) next(err);
-		console.log("empty cart", cart);
-		res.status(200).end();
+		res.send(cart);
 	})
 })
 
