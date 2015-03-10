@@ -20,15 +20,18 @@ app.controller('AboutController', function ($scope) {
         'http://allinclusivebermuda.net/wp-content/uploads/2013/08/2601865E-188B-3B72-2E59A3F39194F3B8.jpg'
     ];
 
-    // $scope.makers = ['Eric', 'Richard', 'Alice', 'Heather'];
+    $scope.makers = ['Eric Gonzalo', 'Richard Moore', 'Alice Kindheart', 'Heather Pike'];
 
-    // var awesome_adj = ['awesome','breathtaking','amazing','sexy','sweet','cool','wonderful','mindblowing'];
+    function shuffleArray(array) {
+        //Fisher-Yates shuffle
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    };
 
-    // var randArrayEl = function(arr) {
-    //     return arr[Math.floor(Math.random() * arr.length)];
-    // };
-
-    // $scope.nameAwesome = function(){
-    //     return 
-    // }
+    shuffleArray($scope.makers);
 });

@@ -9,16 +9,33 @@
     text-align: center;
   }
   .jumbotron {
-  	height: 40vh;
-  	padding: 0;
+    position: relative; 
+    height: 40vh;
+    padding: 0;
   }
   .jumbo {
-	 background-size: 100% 100%; 
-	 height: 40vh;
+   background-size: 100% 100%; 
+   height: 40vh;
   }
   ul {
-  	width: 100%;
-  	height: 100vh;
+    width: 100%;
+    height: 100vh;
+  }
+  .image { 
+    position: absolute;
+    width: 100%; /* for IE 6 */
+
+     h2 { 
+        position: absolute; 
+        top: 0;
+        // left: 0;
+        width: 100%; 
+        color: #D9C885;
+        background: rgba(0, 0, 0, 0.5);
+     }
+     :hover > h2{
+        background: rgba(0, 0, 0, 0.8);
+        font-size: 33px;
+     }
   }
 }
-

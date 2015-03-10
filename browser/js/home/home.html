@@ -1,11 +1,10 @@
 <section id="home">
 	<div class="jumbotron">
-			<ul rn-carousel rn-carousel-auto-slide="5" class="image">
+			<ul rn-carousel rn-carousel-auto-slide="2" class="image">
 				<li ng-repeat="image in vacImages">
-					<div class="layer"><img class="jumbo" ng-src="{{image}}"></div>
-					<!-- need to place text inside of this carousel -->
+					<div class="layer"><img class="jumbo" ng-src="{{image.url}}"><h2>{{image.text}}</h2></div>
 				</li>
 			</ul>
 	</div>
-	<vacation class="col-xs-12 col-sm-5 col-md-5 col-lg-3" ng-repeat="vacation in homeView.vacations" style="background: Url({{vacation.imageUrl}}); background-size: cover;" ng-click="showCurrentVacation(vacation)"></vacation>
+	<vacation class="col-xs-11 col-sm-5 col-md-5 col-lg-3" ng-repeat="vacation in homeView.vacations" style="background: Url({{vacation.imageUrl}}); background-size: cover;" ng-click="showCurrentVacation(vacation)"></vacation>
 </section>
