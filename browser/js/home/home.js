@@ -21,9 +21,10 @@ app.controller('HomeCtrl', function ($scope, $state, $kookies, HomeViewFactory, 
 	};	
 
     $scope.vacImages = [
-        "http://www.bankingsense.com/wp-content/uploads/2014/07/vacations.jpg",
-        "http://img4.wikia.nocookie.net/__cb20140520211519/middleearthshadowofmordor7723/images/5/50/Yre1o.jpg",
-        "https://wallwidehd.com/wp-content/uploads/Jupiter-Surface-Painting-Wallpaper.jpg"
+        {url: "http://www.bankingsense.com/wp-content/uploads/2014/07/vacations.jpg", text: "Want Tropcial Stackations?"},
+        {url: "http://vignette3.wikia.nocookie.net/shadow-of-mordor/images/5/50/Yre1o.jpg/revision/latest?cb=20141222202027&path-prefix=es", text: "A Stackation within Middle Earth?"},
+        {url: "https://wallwidehd.com/wp-content/uploads/Jupiter-Surface-Painting-Wallpaper.jpg", text: "Maybe a Stackation in space!"}
+        
     ];
 
     //maybe goes on main controller so VacationPgCtrl can access it too

@@ -31,8 +31,8 @@ app.controller('CreateController', function ($scope, $compile, CategoriesFactory
             alert("Category is already present!");
             return;
         }
-
-        var categoryTemp ='<p id="'+categoryId+'">'+$scope.catEl.name+' <a ng-click="deleteCategory()" class="btn btn-danger">x</a></p>';
+// class="col-xs-1 col-sm-1 col-md-1 col-lg-1"
+        var categoryTemp ='<p id="'+categoryId+'">'+$scope.catEl.name+' <a ng-click="deleteCategory()" style="float: right" class="btn btn-danger">x</a></p>';
         var catComp = $compile(categoryTemp)($scope);
         $('#catDisplay').append(catComp);
     };

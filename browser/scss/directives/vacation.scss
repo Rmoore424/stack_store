@@ -6,11 +6,9 @@ vacation {
 	background-repeat: no-repeat;
 	box-shadow: 5px 5px 5px #888888;
 
-	// .vacation-img {
-		width: 100%;
-		margin-left: 5%;
-		height: 30vh;
-	// }
+	width: 100%;
+	margin-left: 5%;
+	height: 30vh;
 
 	p {
 		margin-top: 10px;
@@ -24,13 +22,14 @@ vacation {
 	}
 
 	h2 {
-		font-size: 1.2em;
+		font-size: 1.1em;
 		padding: 2px;
 		color: #D9C885;
 		display: inline;
-		margin-top: 5px;
-		margin-right: 10px;
-		margin-left: 10px;
+		margin: 5px;
+		// margin-top: 5px;
+		// margin-right: 10px;
+		// margin-left: 10px;
 		font-weight: bold;
 	}
 
@@ -48,6 +47,9 @@ vacation {
 	.right{
 		float: right;
 	}
+	.shadowbox{
+		overflow: hidden;
+	}
 
 }
 
@@ -57,7 +59,7 @@ vacation:hover > div {
 
 
 vacation:hover > h2	{
-	font-size: 1em;	
+	font-size: 1.5em;	
 }
 
 vacation:hover {
