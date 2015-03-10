@@ -52,19 +52,25 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
       });
     };
 
-    $scope.getOneVacationByName = function(productName) {
+     $scope.getOneVacationByName = function(productName) {
         $state.go('home');
         $scope.$on('$stateChangeSuccess', function(event){
             VacationsFactory.getOneVacationByName(productName).then(function (vacation) {
                 if(vacation) {
                     HomeViewFactory.vacations = [vacation];
-                    $scope.$apply();
                 } else {
                     $scope.vacationSearchByNameFoundNothing = true;
                 }
             });   
         })
+
+        //go to the factory and get data
+        //maintain that data in scoped variable - aka vacation
+        // if no data ex--ists, return 'found nothing'
+        // if does exist - c- 
     };    
+    
+});   
     
 });
         //vacationsByCategory needs to be changed as well -RICH
