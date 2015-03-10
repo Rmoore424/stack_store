@@ -14,7 +14,10 @@
     <hr />
     <div class="container lower-container">
         <div class="row">
-            <dropdown options="categories" click="getVacationsByCategory(item)" title="'Search By Categories'" class="col-sm-3"></dropdown>
+            <div class ='col-sm-3'>
+                <dropdown options="categories" click="getVacationsByCategory(item)" title="'Search By Categories'"></dropdown>
+                <button class='btn btn-default btn-sm' ng-click='getAllVacations()'>All</button>
+            </div>
             <div class="col-sm-6">
                 <form name="searchForm"class="form-inline" ng-submit="getOneVacationByName(searchBy)" >
                   <div class="form-group">

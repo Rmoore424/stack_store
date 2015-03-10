@@ -46,9 +46,10 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
     });
 
     $scope.getVacationsByCategory = function(categoryId) {
-      VacationsFactory.getVacationsByCategory(categoryId).then(function (vacations) {
-        HomeViewFactory.vacations = vacations;
-        $state.go('home');
+        $state.go('home').then(function() {
+            VacationsFactory.getVacationsByCategory(categoryId).then(function (vacations) {
+                HomeViewFactory.vacations = vacations;
+            });
       });
     };
 
@@ -61,12 +62,18 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
                     $scope.vacationSearchByNameFoundNothing = true;
                 }
             }); 
+        });
+    }
+
+        $scope.getAllVacations = function() {
+            $state.go('home').then(function() {
+                VacationsFactory.getVacations().then(function (vacations) {
+                    HomeViewFactory.vacations = vacations;
+                });
+            });
         }
-    );
         
 
-    };    
-    
 });   
     
 
