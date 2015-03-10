@@ -9,34 +9,25 @@ app.config(function ($stateProvider) {
 });
 
 
-app.controller('CartCtrl', function ($scope, $stateParams, $kookies, $state, CartFactory) {
-    //need to call a function that populates the product refs with the product properties
-    $scope.cart = JSON.parse($kookies.get('cart'));
-    // $scope.populatedItems;
 
-    var getTotalPrice = function (items) {
-    	var total = 0;
-	    for(var i = 0; i < items.length; i++){
-	        var item = items[i];
-	        if (item) {
-	        	total += (item.item.price * item.quantity);
-	        }
-	    }
-		$scope.total = total;
-		$scope.populatedItems = items;
-	};
-    CartFactory.getItems($scope.cart)
-    	.then(getTotalPrice);
+app.controller('CartCtrl', function ($scope, $stateParams, $cookieStore, $state, CartFactory, MathFactory) {
+    //need to call a function that populates the product refs with the product properties
+    var cart = $cookieStore.get('cart');
+
+    CartFactory.getItems(cart)
+    	.then( function(items) {
+    		$scope.populatedItems = items;	
+    		$scope.total = MathFactory.getTotalPrice(items)
+    	});
 
 	$scope.removeFromCart = function(productToRemove, idx) {
-		$scope.cart.items.splice(idx, 1);
+		cart.items.splice(idx, 1);
 		$scope.populatedItems.splice(idx, 1);
-		var cart = JSON.stringify($scope.cart);
-		$kookies.set('cart', cart, {path: '/'});
+		$cookieStore.put('cart', cart);
 
-		CartFactory.removeFromCart($scope.cart._id, productToRemove._id).then(function () {
-             getTotalPrice($scope.populatedItems);
-		 });
+		CartFactory.removeFromCart(cart._id, productToRemove._id).then(function () {
+             $scope.total = MathFactory.getTotalPrice($scope.populatedItems);
+         });
 	};
 });
 

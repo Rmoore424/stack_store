@@ -13,8 +13,8 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('VacationPgCtrl', function ($scope, $kookies, $stateParams, $state, VacationsFactory, ReviewFactory, AuthService, CartFactory) {
-	$scope.cart = JSON.parse($kookies.get('cart'));
+app.controller('VacationPgCtrl', function ($scope, $cookieStore, $stateParams, $state, VacationsFactory, ReviewFactory, AuthService, CartFactory) {
+	var cart = $cookieStore.get('cart');
 
 	AuthService.getLoggedInUser().then(function (responseObj) {
 		if (responseObj) {
@@ -31,27 +31,25 @@ app.controller('VacationPgCtrl', function ($scope, $kookies, $stateParams, $stat
 	$scope.add = function (productToAdd) {
 		var inCart = false;
 		var addedItem = {item: productToAdd._id, quantity: 1};
-		var cart;
 
-		$scope.cart.items.forEach(function (item, idx) {
+		cart.items.forEach(function (item, idx) {
 			if (item.item == productToAdd._id) {
 				item.quantity += 1;
 				inCart = true;
-				cart = JSON.stringify($scope.cart);
-				$kookies.set('cart', cart, {path: '/'});
+				$cookieStore.put('cart', cart);
 				
-				CartFactory.updateCart($scope.cart._id, item, idx).then(function () {
+				CartFactory.updateCart(cart._id, item, idx).then(function () {
 					$state.go('cart');
 				});
 			}
 		});
 
 		if (!inCart) {
-			$scope.cart.items.push(addedItem);
-			cart = JSON.stringify($scope.cart);
-			$kookies.set('cart', cart, {path: '/'});
+			cart.items.push(addedItem);
+			//cart = JSON.stringify($scope.cart);
+			$cookieStore.put('cart', cart);
 			
-			CartFactory.addToCart($scope.cart._id, addedItem).then(function () {
+			CartFactory.addToCart(cart._id, addedItem).then(function () {
 				$state.go('cart');
 			});
 

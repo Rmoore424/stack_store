@@ -9,8 +9,16 @@ var stripe = require("stripe")(
 );
 
 
+router.get('/:id', function (req, res, next) {
+	OrderModel.findOne({ _id: req.params.id })
+		.exec(function (err, order) {
+			if (err) next(err);
+			res.send(order);
+		});
+});
+
 router.post('/', function(req, res, next) {
-    console.log(req.body.token);
+    console.log("type of total", typeof req.body.total);
     stripe.charges.create({
         amount: 4000, //need to insert cart total here in pennies
         currency: "usd",
@@ -20,19 +28,18 @@ router.post('/', function(req, res, next) {
         // asynchronously called
         if (err) next(err);
         console.log("charge created", charge);
-        CartModel.findOne({
-            _id: req.body.cart._id
-        }).exec(function(err, cart) {
-            console.log("cart found:", cart);
-            OrderModel.create({
-                user: cart.user,
-                //items: cart.items,
-                token: req.body.token,
-                total_charge: 4000 //need to insert cart total here
-            }, function(err, order) {
-                if (err) next(err);
-                res.send(order);
-            });
+        console.log("user", req.body.cart.user);
+        console.log("items", req.body.cart.items);
+        console.log("token", req.body.token);
+        OrderModel.create({
+            user: req.body.cart.user,
+            items: req.body.cart.items,
+            token: req.body.token,
+            total_charge: 4000 //need to insert cart total here
+        }, function(err, order) {
+            if (err) console.log(err);
+            res.send(order);
         });
     });
 });
+
