@@ -1,21 +1,19 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'angular-carousel', 'ngKookies']);
+var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt', 'angular-carousel', 'ngKookies', 'angularPayments']);
 
-app.controller('MainController', function ($scope, $state, $kookies, AuthService, UserFactory, CartFactory) {
-    //$kookies.set('cookie', 'stackation', { expires: 2000000, path: '/'});
+app.controller('MainController', function ($scope, $state, $kookies, AuthService, UserFactory, UserStatusFactory, CartFactory) {
 
-    $scope.isLoggedIn = false;
-    $scope.isAdmin = false;
+    $scope.userStatus = UserStatusFactory;
 
     AuthService.getLoggedInUser().then(function (user) {
         if (user) {
-            $scope.isLoggedIn = true;
+            UserStatusFactory.isLoggedIn = true;
             CartFactory.getUserCart(user).then(function (cart) {
                 cart = JSON.stringify(cart);
                 $kookies.set('cart', cart, {path: '/'});
            });
             if (user.admin) {
-                $scope.isAdmin = true;
+                UserStatusFactory.isAdmin = true;
             }
         }
         else {
@@ -42,22 +40,23 @@ app.controller('MainController', function ($scope, $state, $kookies, AuthService
 
     $scope.logoutUser = function () {
         AuthService.logout();
-        $scope.isLoggedIn = false;
-        $scope.isAdmin = false;
+        UserStatusFactory.isLoggedIn = false;
+        UserStatusFactory.isAdmin = false;
+        $kookies.remove('cart');
     };
 
-    $scope.loginUser = function (user) {
-        AuthService.login(user).then(function (response) {
-            if (response.email) {
-                $scope.isLoggedIn = true;
-                CartFactory.getUserCart(response).then(function (cart) {
+$scope.loginUser = function (user) {
+        AuthService.login(user).then(function (returnedUser) {
+            if (returnedUser) {
+                UserStatusFactory.isLoggedIn = true;
+                CartFactory.getUserCart(returnedUser).then(function (cart) {
                     cart = JSON.stringify(cart);
                     $kookies.set('cart', cart, {path: '/'});
                     $state.go('home');
                 });
-                if (response.admin) {
-                    $scope.isAdmin = true;
-                }
+            }
+            if (returnedUser.admin) {
+                UserStatusFactory.isAdmin = true;
             }
         });
     };

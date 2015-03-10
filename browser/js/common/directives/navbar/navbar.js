@@ -15,6 +15,7 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
     ];
 
     $scope.userOptions = [
+        { label: 'Checkout', state: 'checkout'},
         { label: 'My Account', state: 'myAccount'},
         { label: 'My Orders', state: 'orders'},
         { label: 'Log Out', state: 'login', click: 'logoutUser()'}
@@ -30,6 +31,10 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
         { label: 'Make Vacation', state: 'makeVacation'}
     ];
 
+    $scope.search = [
+        { label: 'Search', state: 'vacations'}
+    ];
+
     CategoriesFactory.getCategories().then(function (categories) {
         $scope.categories = categories;
     });
@@ -40,6 +45,18 @@ app.controller('NavController', function ($scope, $state, VacationsFactory, Cate
         $state.go('home');
       });
     };
+
+    $scope.getOneVacationByName = function(productName) {
+        VacationsFactory.getOneVacationByName(productName).then(function (vacation) {
+            HomeViewFactory.vacations = [vacation];
+            $state.go('home');
+            
+        });
+    };
+        
+      
+            
+
 
 });
         //vacationsByCategory needs to be changed as well -RICH

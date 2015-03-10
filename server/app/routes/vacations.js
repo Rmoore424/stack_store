@@ -23,6 +23,17 @@ router.get('/:name', function (req, res, next) {
 		});
 });
 
+//this route looks for one vacation using the vacation name
+router.get('/search/:name', function (req, res, next) {
+	console.log(req.params);
+	VacationModel.findOne({ name: req.params.name })
+		.exec(function (err, vacation) {
+			if (err) next(err);
+			console.log(req.params.name);
+			res.send(vacation);
+		})
+});
+
 //this routes gets all vacations and filters by category
 router.get('/category/:id', function (req, res, next) {
 	VacationModel.find({})
@@ -46,7 +57,7 @@ router.put('/', function (req, res, next) {
 	VacationModel.findOneAndUpdate({_id: req.body._id}, req.body)
 		.exec(function (err, vacation) {
 			console.log(vacation);
-			if (err) next(err)
+			if (err) next(err);
 			res.send(vacation);
 		});
 });
@@ -54,7 +65,7 @@ router.put('/', function (req, res, next) {
 router.delete('/:id', function (req, res, next) {
 	VacationModel.findOneAndRemove({_id: req.params.id})
 		.exec(function (err, vacation) {
-			if (err) next(err)
+			if (err) next(err);
 			res.send(vacation);
 		});
 });
