@@ -6,7 +6,7 @@
 	    </div>
 	    <div class='panel-body'>
 	        <form name='checkoutForm' class='form-horizontal' ng-submit='checkoutForm.$valid && goToConfirm()' novalidate>
-	            <div class='form-group' ng-controller=>
+	            <div class='form-group'>
 	                <label class='col-sm-4 control-label'>First Name:</label>
 	                <div class="col-sm-8">
 	                    <input type="text" ng-model="user.first_name" required />
@@ -62,6 +62,7 @@
 	                    <th>Price</th>
 	                    <th>Quantity</th>
 	                </tr>
+	            </thead>
 	                <tbody>
 	                    <tr ng-repeat="item in populatedItems">
 	                        <td>{{ item.item.name }}</td>

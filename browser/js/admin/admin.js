@@ -34,7 +34,7 @@ app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory,
 	$scope.adminCreate = function (option) {
 		$scope.currentOption = option;
 		$state.go('admin.create' + option.name);
-	}
+	};
 
 	var resolveFind = function (returnedValue) {
 		if (returnedValue) {
@@ -45,7 +45,7 @@ app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory,
 		else {
 			alert('Does Not Exist');
 		}
-	}
+	};
 
 	$scope.findOne = function (searchParam) {
 		if ($scope.currentOption.name === "User") {
