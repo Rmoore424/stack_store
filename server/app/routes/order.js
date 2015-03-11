@@ -26,6 +26,14 @@ router.get('/', function (req, res, next) {
         });
 });
 
+router.get('/user/:id', function (req, res, next) {
+    OrderModel.find({user: req.params.id})
+    .populate('items.item')
+        .exec(function (err, orders) {
+            res.send(orders);
+        });
+});
+
 router.post('/', function (req, res, next) {
     console.log("type of total", typeof req.body.total);
     stripe.charges.create({
@@ -52,7 +60,6 @@ router.put('/status', function (req, res, next) {
     OrderModel.findOneAndUpdate({_id: req.body.orderId}, {$set: {status: req.body.orderStatus}})
         .exec(function (err, order) {
             if (err) next(err);
-            console.log(order);
             res.status(200).end();
         });
 });
