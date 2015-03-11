@@ -2,9 +2,26 @@
 	width: 80%;
 	margin-top: 20px;
 	margin-bottom: 20px;
+
+	ul {
+		list-style-type: none;
+		padding-left: 0;
+	}
 }
 
 .admin-col {
 	margin-bottom: 10px;
 	padding-left: 45px;
+}
+
+.order-list {
+	list-style-type: none;
+
+	li {
+		font-size: 0.9em;
+	}
+}
+
+#total {
+	margin-top: 10px;
 }

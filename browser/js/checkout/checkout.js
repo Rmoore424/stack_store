@@ -16,7 +16,6 @@ app.controller('CheckoutCtrl', function ($scope, $state, $cookieStore, CartFacto
 		if (responseObj.user) {
 			$scope.user = responseObj.user;
 		}
-			//$cookies.getObject('cart');
 			cart = $cookieStore.get('cart');
 			CartFactory.getItems(cart)
 	    	.then( function(items) {

@@ -17,7 +17,24 @@ router.get('/:id', function (req, res, next) {
 		});
 });
 
-router.post('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
+    OrderModel.find({})
+        .populate('items.item')
+        .exec(function (err, orders) {
+            if (err) next(err);
+            res.send(orders);
+        });
+});
+
+router.get('/user/:id', function (req, res, next) {
+    OrderModel.find({user: req.params.id})
+    .populate('items.item')
+        .exec(function (err, orders) {
+            res.send(orders);
+        });
+});
+
+router.post('/', function (req, res, next) {
     console.log("type of total", typeof req.body.total);
     stripe.charges.create({
         amount: 4000, //need to insert cart total here in pennies
@@ -27,10 +44,6 @@ router.post('/', function(req, res, next) {
     }, function(err, charge) {
         // asynchronously called
         if (err) next(err);
-        console.log("charge created", charge);
-        console.log("user", req.body.cart.user);
-        console.log("items", req.body.cart.items);
-        console.log("token", req.body.token);
         OrderModel.create({
             user: req.body.cart.user,
             items: req.body.cart.items,
@@ -41,5 +54,13 @@ router.post('/', function(req, res, next) {
             res.send(order);
         });
     });
+});
+
+router.put('/status', function (req, res, next) {
+    OrderModel.findOneAndUpdate({_id: req.body.orderId}, {$set: {status: req.body.orderStatus}})
+        .exec(function (err, order) {
+            if (err) next(err);
+            res.status(200).end();
+        });
 });
 

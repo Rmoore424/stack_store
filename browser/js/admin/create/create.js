@@ -2,19 +2,19 @@
 
 app.config(function ($stateProvider) {
 	$stateProvider.state('admin.createCategory', {
-		url: '/createCategory',
+		url: '/create/category',
 		controller: 'CreateController',
 		templateUrl: 'js/admin/create/createCategory.html'
 	});
 
 	$stateProvider.state('admin.createUser', {
-		url: '/createUser',
+		url: '/create/user',
 		controller: 'CreateController',
 		templateUrl: '/js/admin/create/createUser.html'
 	});
 
 	$stateProvider.state('admin.createVacation', {
-		url: '/createVacation',
+		url: '/create/vacation',
 		controller: 'CreateController',
 		templateUrl: '/js/admin/create/createVacation.html'
 	});
@@ -31,7 +31,6 @@ app.controller('CreateController', function ($scope, $compile, CategoriesFactory
             alert("Category is already present!");
             return;
         }
-// class="col-xs-1 col-sm-1 col-md-1 col-lg-1"
         var categoryTemp ='<p id="'+categoryId+'">'+$scope.catEl.name+' <a ng-click="deleteCategory()" style="float: right" class="btn btn-danger">x</a></p>';
         var catComp = $compile(categoryTemp)($scope);
         $('#catDisplay').append(catComp);
@@ -53,14 +52,24 @@ app.controller('CreateController', function ($scope, $compile, CategoriesFactory
     
     $scope.submitCategory = function(newCategory){
         CategoriesFactory.createCategory(newCategory).then(function(){
+            alert("Category Added");
             $scope.newCategory = {};
         });
         displayCategories();
     };
 
+    $scope.submitVacation = function(newVacation) {
+        newVacation.category = catArr;
+        VacationsFactory.createVacation(newVacation).then(function (vacation) {
+            alert("Vacation Added");
+            $scope.newVacation = {};
+        });
+    };
+
     $scope.submitUser = function(newUser) {
-    	UserFactory.createUser(newUser).then(function (user) {
-    		console.log(user);
-    	});
+        UserFactory.createUser(newUser).then(function (user) {
+            alert("User Added");
+            $scope.user = {}       
+        });
     };
 });

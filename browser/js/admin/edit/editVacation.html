@@ -4,32 +4,44 @@
             <h2 class='panel-title'>Edit {{currentOption.name}}</h2>
         </div>
         <div class='panel-body'>
-            <form name='editVacationForm' ng-submit='editVacationForm.$valid && editOne(toEdit)'>
+            <form name='editVacationForm'>
                 <div class='form-group'>
-                    <label class="control-label col-sm-12">Name</label>
+                    <label class="control-label col-sm-12">Name*</label>
                     <input type="text" ng-model="toEdit.name" required />
                 </div>
                 <div class='form-group'>
-                    <label class="control-label col-sm-12">Description</label>
+                    <label class="control-label col-sm-12">Description*</label>
                     <input type="text" ng-model="toEdit.description" required />
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-12">Price</label>
+                    <label class="control-label col-sm-12">Price*</label>
                     <input type='number' ng-model='toEdit.price' required />
                 </div>
                 <div class='form-group'>
                     <label class="control-label col-sm-12">Region</label>
-                    <input type='text' name="region" ng-model='toEdit.region' required />
+                    <input type='text' name="region" ng-model='toEdit.region' />
                 </div>
                 <div class='form-group'>
-                    <label class="control-label col-sm-12">Categories</label>
-                    <input type='text' name="category" ng-model='toEdit.category' required />
+                    <label class='control-label col-sm-12'>
+                        Add Category</label>
+                        <select ng-model="catEl" ng-options='category as category.name for category in categories'>
+                        </select>
+                        <div class='btn btn-primary btn-xs' ng-click="addCategory(catEl)">Add Category</div>
+                    <label class="control-label col-sm-12">Remove Category</label>
+                    <ul>
+                        <li ng-repeat="category in vacationCategories">
+                            {{category.name}}
+                            <div class='btn btn-danger btn-circle btn-xs' ng-click="removeCategory($index, category._id, toEdit._id)">X</div>
+                        </li>
+                    </ul>
+
+                   <!-- <input type='text' name="category" ng-model='toEdit.category' required /> -->
                 </div>
                 <div class='form-group'>
                     <label class="control-label col-sm-12">ImageUrl</label>
                     <input type='text' name="imageUrl" ng-model='toEdit.imageUrl' />
                 </div>
-                <button type='submit' class='btn-success'>Save Changes</button>
+                <button type='submit' class='btn-success' ng-click="editOne(toEdit)">Save Changes</button>
             </form>
              <button class="btn-danger" ng-click="deleteOne(toEdit)">Delete Category</button>
         </div>

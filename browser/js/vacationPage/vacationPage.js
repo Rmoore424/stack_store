@@ -2,7 +2,7 @@
 
 app.config(function ($stateProvider) {
 	$stateProvider.state('vacation', {
-		url: '/:name/:id',
+		url: '/vacation/:name/:id',
 		params: { id: null },
 		controller: 'VacationPgCtrl',
 		templateUrl: 'js/vacationPage/vacationPage.html'

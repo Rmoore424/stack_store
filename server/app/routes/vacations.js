@@ -17,6 +17,7 @@ router.get('/', function (req, res, next) {
 //this route gets one vaction by name
 router.get('/:name', function (req, res, next) {
 	VacationModel.findOne({ name: req.params.name })
+		.populate('category')
 		.exec(function (err, vacation) {
 			if (err) next(err);
 			res.send(vacation);
@@ -58,6 +59,12 @@ router.put('/', function (req, res, next) {
 		.exec(function (err, vacation) {
 			console.log(vacation);
 			if (err) next(err);
+			res.send(vacation);
+		});
+});
+router.put('/remove/category', function (req, res, next) {
+	VacationModel.findOneAndUpdate({_id: req.body.vacationId}, {$pull: {category: req.body.categoryId}})
+		.exec(function (err, vacation) {
 			res.send(vacation);
 		});
 });
