@@ -12,7 +12,14 @@
 					</li>
 
 					<li class='col-sm-12' id='total'class='text-center'><strong>TOTAL:</strong> {{order.total | currency}}</li>
-					<li class='col-sm-12'>Order Status: {{order.status}}</li>
+					<li class='col-sm-12'>Order Status: {{order.status}}
+						<select ng-model="order.status">
+							<option>Created</option>
+							<option>Processing</option>
+							<option>Completed</option>
+						</select>
+						<button class='btn btn-primary' ng-click="editStatus(order._id, order.status)">Edit Status</button>
+					</li>
 				</ul>
 			</div>
 	</div>

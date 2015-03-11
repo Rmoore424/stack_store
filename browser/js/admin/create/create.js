@@ -52,14 +52,24 @@ app.controller('CreateController', function ($scope, $compile, CategoriesFactory
     
     $scope.submitCategory = function(newCategory){
         CategoriesFactory.createCategory(newCategory).then(function(){
+            alert("Category Added");
             $scope.newCategory = {};
         });
         displayCategories();
     };
 
+    $scope.submitVacation = function(newVacation) {
+        newVacation.category = catArr;
+        VacationsFactory.createVacation(newVacation).then(function (vacation) {
+            alert("Vacation Added");
+            $scope.newVacation = {};
+        });
+    };
+
     $scope.submitUser = function(newUser) {
-    	UserFactory.createUser(newUser).then(function (user) {
-    		console.log(user);
-    	});
+        UserFactory.createUser(newUser).then(function (user) {
+            alert("User Added");
+            $scope.user = {}       
+        });
     };
 });

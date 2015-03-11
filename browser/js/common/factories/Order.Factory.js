@@ -16,6 +16,11 @@ app.factory('OrderFactory', function($http) {
 			return $http.get('/api/order').then(function (response) {
 				return response.data;
 			});
+		},
+		updateOrderStatus: function (orderId, orderStatus) {
+			return $http.put('/api/order/status', {orderId: orderId, orderStatus: orderStatus}).then(function (response) {
+				return response.data;
+			});
 		}
 	}
 });

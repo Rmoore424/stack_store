@@ -32,7 +32,6 @@ app.controller('EditController', function ($scope, $state, $stateParams, UserFac
 			});
 		}
 		else if ($stateParams.option === "Vacation") {
-			console.log(oneToEdit);
 			oneToEdit.category = catArr;
 			VacationsFactory.updateVacation(oneToEdit).then(function (vacation) {
 				$state.go('admin');

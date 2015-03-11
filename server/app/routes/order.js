@@ -26,7 +26,7 @@ router.get('/', function (req, res, next) {
         });
 });
 
-router.post('/', function(req, res, next) {
+router.post('/', function (req, res, next) {
     console.log("type of total", typeof req.body.total);
     stripe.charges.create({
         amount: 4000, //need to insert cart total here in pennies
@@ -46,5 +46,14 @@ router.post('/', function(req, res, next) {
             res.send(order);
         });
     });
+});
+
+router.put('/status', function (req, res, next) {
+    OrderModel.findOneAndUpdate({_id: req.body.orderId}, {$set: {status: req.body.orderStatus}})
+        .exec(function (err, order) {
+            if (err) next(err);
+            console.log(order);
+            res.status(200).end();
+        });
 });
 

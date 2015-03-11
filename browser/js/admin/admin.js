@@ -76,4 +76,10 @@ app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory,
 			$state.go('admin.orders');
 		});
 	};
+
+	$scope.editStatus = function (orderId, orderStatus) {
+		OrderFactory.updateOrderStatus(orderId, orderStatus).then(function (order) {
+			alert('Order Status Updated');
+		});
+	};
 });
