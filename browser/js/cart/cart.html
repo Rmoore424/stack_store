@@ -1,29 +1,33 @@
 <section id="cart">
 	
-	<div class="panel panel-default">
+	<div class="panel panel-info">
   <!-- Default panel contents -->
   <div class="panel-heading text-center">Shopping Cart</div>
 
   <!-- Table -->
-  <table class="table">
+  <table class="table text-center">
     <thead>
     	<tr>
-    		<th>Vacation</th>
-    		<th>Price</th>
-    		<th>Quantity</th>
+    		<th class="text-center">Vacation</th>
+    		<th class="text-center">Price</th>
+    		<th class="text-center">Quantity</th>
     	</tr>
 	<tbody>
 		<tr ng-repeat="item in populatedItems">
 			<td>{{ item.item.name }}</td>
 			<td>{{ item.item.price | currency }}</td>
-			<td>{{ item.quantity }}</td>
-			<td><button ng-click="removeFromCart({{item}}, $index)">Remove from Cart</button></td>
+			<td>{{ item.quantity }}
+				<button ng-click="increaseQty({{item}}, $index)"><span class="glyphicon glyphicon-plus"></span></button>
+				<button ng-click="decreaseQty({{item}}, $index)"><span class="glyphicon glyphicon-minus"></span></button>
+				<button ng-click="removeFromCart({{item}}, $index)">Remove from Cart</button>
+			</td>
+			
 		</tr>
 	</tbody>
   </table>
 </div>
 	<div class="text-center">
-		<h2>Total Price: {{ total | currency }}</h2>
+		<h3>Total Price: {{ total | currency }}</h3>
 		<button class="btn-success" ui-sref="checkout">Checkout</button>
 	</div>
 </section>
