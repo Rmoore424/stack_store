@@ -1,0 +1,18 @@
+<section ng-repeat="order in orders">
+	<div class='panel panel-info text-center'>
+		<div class='panel-heading'>
+			<h2 class='panel-title'>Order #: {{order._id}}</h2>
+		</div>
+			<div class="panel-body">
+				<ul class='order-list'>
+					<li class="col-sm-12" ng-repeat="item in order.items">
+						<div class="col-sm-6 text-left"><strong>{{item.item.name}}</strong></div>
+						<div class="col-sm-3">{{item.item.price | currency}}</div>
+						<div class="col-sm-3">Quantity: {{item.quantity}}</div>
+					</li>
+
+					<li class='col-sm-12' id='total'class='text-center'><strong>TOTAL:</strong> {{order.total | currency}}</li>
+				</ul>
+			</div>
+	</div>
+</section>

@@ -11,6 +11,11 @@ app.factory('OrderFactory', function($http) {
 			return $http.get('/api/order/' + id).then(function (response) {
 				return response.data;
 			});
+		},
+		getOrders: function () {
+			return $http.get('/api/order').then(function (response) {
+				return response.data;
+			});
 		}
 	}
 });

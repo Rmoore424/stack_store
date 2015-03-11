@@ -15,9 +15,14 @@ app.config(function ($stateProvider) {
 		url: '/edit',
 		templateUrl: 'js/admin/findOneToEdit.html'
 	});
+
+	$stateProvider.state('admin.orders', {
+		url: '/orders',
+		templateUrl: 'js/admin/orders.html'
+	})
 });
 
-app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory, VacationsFactory, CategoriesFactory){
+app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory, VacationsFactory, CategoriesFactory, OrderFactory, MathFactory){
 
 	$scope.currentOption = $scope.adminOptions[0];
 	$scope.adminOptions = [
@@ -57,5 +62,15 @@ app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory,
 		else if ($scope.currentOption.name === "Category") {
 			CategoriesFactory.getOneCategory(searchParam).then(resolveFind);
 		}
+	};
+
+	$scope.showOrders = function () {
+		OrderFactory.getOrders().then(function (orders) {
+			$scope.orders = orders;
+			$scope.orders.forEach(function (order) {
+				order.total = MathFactory.getTotalPrice(order.items);
+			});
+			$state.go('admin.orders');
+		});
 	};
 });

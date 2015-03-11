@@ -17,6 +17,15 @@ router.get('/:id', function (req, res, next) {
 		});
 });
 
+router.get('/', function (req, res, next) {
+    OrderModel.find({})
+        .populate('items.item')
+        .exec(function (err, orders) {
+            if (err) next(err);
+            res.send(orders);
+        });
+});
+
 router.post('/', function(req, res, next) {
     console.log("type of total", typeof req.body.total);
     stripe.charges.create({
@@ -27,10 +36,6 @@ router.post('/', function(req, res, next) {
     }, function(err, charge) {
         // asynchronously called
         if (err) next(err);
-        console.log("charge created", charge);
-        console.log("user", req.body.cart.user);
-        console.log("items", req.body.cart.items);
-        console.log("token", req.body.token);
         OrderModel.create({
             user: req.body.cart.user,
             items: req.body.cart.items,
