@@ -44,6 +44,9 @@ app.controller('AdminCtrl', function ($scope, $state, $stateParams, UserFactory,
 	var resolveFind = function (returnedValue) {
 		if (returnedValue) {
 			$scope.toEdit = returnedValue;
+			if (returnedValue.category) {
+				$scope.vacationCategories = returnedValue.category;
+			}
 			var childView = ".edit" + $scope.currentOption.name;
 			$state.go('admin.edit' + childView, {option: $scope.currentOption.name, id: $scope.toEdit._id});
 		}

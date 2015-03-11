@@ -35,6 +35,11 @@ app.factory("VacationsFactory", function ($http) {
 			return $http.put('/api/vacations', vacation).then(function (response) {
 				return response.data;
 			});
+		},
+		getVacationAndRemoveCategory: function (categoryId, vacationId) {
+			return $http.put('/api/vacations/remove/category', {categoryId: categoryId, vacationId: vacationId}).then(function (response) {
+				return response.data;
+			})
 		}
 	};
 });

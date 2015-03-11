@@ -20,6 +20,11 @@ $stateProvider.state('admin.edit.editUser', {
 });
 
 app.controller('EditController', function ($scope, $state, $stateParams, UserFactory, CategoriesFactory, VacationsFactory) {
+	var catArr = [];
+	CategoriesFactory.getCategories().then(function (categories) {
+		$scope.categories = categories;
+	});
+
 	$scope.editOne = function (oneToEdit) {
 		if ($stateParams.option === "User") {
 			UserFactory.updateUser(oneToEdit).then(function (user) {
@@ -27,6 +32,8 @@ app.controller('EditController', function ($scope, $state, $stateParams, UserFac
 			});
 		}
 		else if ($stateParams.option === "Vacation") {
+			console.log(oneToEdit);
+			oneToEdit.category = catArr;
 			VacationsFactory.updateVacation(oneToEdit).then(function (vacation) {
 				$state.go('admin');
 			});
@@ -57,4 +64,15 @@ app.controller('EditController', function ($scope, $state, $stateParams, UserFac
 		}
 		alert('Successfully Deleted');
 	};
+
+	$scope.removeCategory = function(idx, categoryId, vacationId) {
+		$scope.vacationCategories.splice(idx, 1);
+		VacationsFactory.getVacationAndRemoveCategory(categoryId, vacationId)
+	};
+
+	$scope.addCategory = function(catEl) {
+		catArr.push(catEl._id);
+		$scope.vacationCategories.push(catEl);
+	}
+
 });
