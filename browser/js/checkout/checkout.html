@@ -1,10 +1,8 @@
 <section id="checkout">
 <h1 class="text-center">Checkout</h1>
 <div>
-	<div class="col-lg-1">
-	</div>
-	<div class="col-lg-5">
-	<div class='panel panel-default text-center' ng-show="userStatus.isLoggedIn">
+	<div class="col-lg-6">
+	<div class='panel panel-default text-center' style="width: 90%;" ng-show="userStatus.isLoggedIn">
 	    <div class='panel-heading'>
 	        <h2 class='panel-title text-center'>Billing Details</h2>
 	    </div>
@@ -54,7 +52,7 @@
 	    </div>
 	</div>
 
-	<div class='panel panel-default text-center' ng-show='!userStatus.isLoggedIn'>
+	<div class='panel panel-default text-center' style="width: 90%;" ng-show='!userStatus.isLoggedIn'>
 		<div class='panel-heading'>
 			<h2 class='panel-title'>Please Sign up to Check Out</h2>
 		</div>
@@ -63,8 +61,8 @@
 		</div>
 	</div>
 </div>
-	<div ng-controller="CartCtrl" class='col-lg-5'>
-	    <div class="panel panel-default text-center">
+	<div ng-controller="CartCtrl" class='col-lg-6'>
+	    <div class="panel panel-default text-center" style="width: 90%;">
 	        <!-- Default panel contents -->
 	        <div class="panel-heading text-center">
 	        	<h2 class='panel-title text-center'>Order Summary</h2>
@@ -73,23 +71,32 @@
 	        <table class="table">
 	                <tbody>
 	                    <tr ng-repeat="item in populatedItems">
-	                        <td>{{ item.item.name }}</td>
+	                        <td class="text-right">{{ item.item.name }}</td>
 	                        <td>{{ item.item.price | currency }}</td>
 	                    </tr>
 	                    <tr>
-	                    	<td>Total Price:</td>
-	                    	<td>{{ total | currency }}</td>
+	                    	<td class="text-right"><h4>Subtotal:</h4></td>
+	                    	<td><h4>{{ total | currency }}</h4></td>
+	                    	<td/>
+	                    </tr>
+	                    <tr>
+	                    	<td class="text-right">Promo Code</td>
+	                    	<td><input type="text" ng-model="promo"/> <button class="btn btn-primary" ng-click="applyPromo(promo)">Apply</button><p ng-show="{{invalidCode}}">Invalid Code!</p></td>
+	                    </tr>
+	                    <tr>
+	                    	<td class="text-right"><h3>Total Price:</h3></td>
+	                    	<td><h3>{{ finalTotal | currency }}</h3></td>
 	                    	<td/>
 	                    </tr>
 	                </tbody>
 	        </table>
 	        <div>
-	            <button class="btn-warning" ui-sref="cart">Edit Cart</button>
+	            <button class="btn btn-warning" ui-sref="cart">Edit Cart</button>
+	            <br>
+	            <br>
 			</div>
 			<div></div>
 	    </div>
-	</div>
-	<div class="col-lg-1">
 	</div>
 </div>
 </section>
