@@ -9,7 +9,7 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('CheckoutCtrl', function ($scope, $state, $cookieStore, CartFactory, AuthService, $window, OrderFactory, MathFactory) {
+app.controller('CheckoutCtrl', function ($scope, $state, $cookieStore, CartFactory, AuthService, $window, OrderFactory, MathFactory, PromoFactory) {
 
 	var cart;
 	AuthService.getLoggedInUser().then(function(responseObj) {
@@ -23,6 +23,21 @@ app.controller('CheckoutCtrl', function ($scope, $state, $cookieStore, CartFacto
 	    		$scope.total = MathFactory.getTotalPrice(items)
     	});
 	});
+
+	$scope.invalidCode = false;
+
+	$scope.applyPromo = function (code) {
+			console.log("applyPromo called", PromoFactory.promoCheck(code));
+			if (PromoFactory.promoCheck(code)) {
+				$scope.total = $scope.total - ($scope.total/10);
+				console.log("new total", $scope.total);
+			}
+			else {
+				invalidCode = true;
+			}
+			$scope.digest;
+	}
+
 
 	$scope.stripeCallback = function (code, result) {
 	    if (result.error) {
