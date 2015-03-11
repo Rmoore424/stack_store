@@ -21,21 +21,22 @@ app.controller('CheckoutCtrl', function ($scope, $state, $cookieStore, CartFacto
 			CartFactory.getItems(cart)
 	    	.then( function(items) {
 	    		$scope.total = MathFactory.getTotalPrice(items)
+	    		$scope.finalTotal = $scope.total;
     	});
 	});
 
 	$scope.invalidCode = false;
+	
 
 	$scope.applyPromo = function (code) {
 			console.log("applyPromo called", PromoFactory.promoCheck(code));
 			if (PromoFactory.promoCheck(code)) {
-				$scope.total = $scope.total - ($scope.total/10);
+				$scope.finalTotal = $scope.total - ($scope.total/10);
 				console.log("new total", $scope.total);
 			}
 			else {
 				invalidCode = true;
 			}
-			$scope.digest;
 	}
 
 
@@ -44,7 +45,7 @@ app.controller('CheckoutCtrl', function ($scope, $state, $cookieStore, CartFacto
 	        $window.alert('it failed! error: ' + result.error.message);
 	    } else {
 	        $window.alert('Processing... wait a moment...');
-	        OrderFactory.createOrder(result, cart, $scope.total).then(function (order) {
+	        OrderFactory.createOrder(result, cart, $scope.finalTotal).then(function (order) {
 	        	CartFactory.clearCart(cart._id).then(function(emptyCart) {
 	        		$cookieStore.put('cart', emptyCart);
 	        		cart = emptyCart;

@@ -21,8 +21,8 @@ app.controller('HomeCtrl', function ($scope, $state, HomeViewFactory, VacationsF
 	};	
 
     $scope.vacImages = [
-        {url: "http://www.bankingsense.com/wp-content/uploads/2014/07/vacations.jpg", text: "Want Tropcial Stackations?"},
-        {url: "http://vignette3.wikia.nocookie.net/shadow-of-mordor/images/5/50/Yre1o.jpg/revision/latest?cb=20141222202027&path-prefix=es", text: "A Stackation within Middle Earth?"},
+        {url: "http://www.bankingsense.com/wp-content/uploads/2014/07/vacations.jpg", text: "Want Tropical Stackations?"},
+        {url: "http://vignette3.wikia.nocookie.net/shadow-of-mordor/images/5/50/Yre1o.jpg/revision/latest?cb=20141222202027&path-prefix=es", text: "A Stackation to Middle Earth?"},
         {url: "https://wallwidehd.com/wp-content/uploads/Jupiter-Surface-Painting-Wallpaper.jpg", text: "Maybe a Stackation in space!"}
         
     ];
