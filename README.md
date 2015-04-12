@@ -1,3 +1,6 @@
+#Stackations unLtd.
+![Badge of Honor](https://img.shields.io/badge/Built%20at-Fullstack-green.svg?style=flat-square)
+
 Stackations unLtd. is a fictional fullstack ecommerce application using the JavaScript MEAN stack: MongoDB, AngularJS, Express, and Node.js.
 
 ![Stackations Screenshot](https://raw.githubusercontent.com/Rmoore424/stack_store/screenshots/screenshots/FireShot%20Capture%20-%20Stackations%20I%20The%20MEANest%20vacation_%20-%20https___shrouded-waters-1630.herokuapp.com_.png)
