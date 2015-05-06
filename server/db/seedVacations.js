@@ -47,7 +47,7 @@ var vacations = [
 	description: 'Looking for a magical ring that could give you ultimate power? This is the vacation for you!',
 	price: 2500,
 	category: 'Fictional',
-	imageUrl: 'http://thesevensees.com/wp-content/uploads/2012/12/Hobbit_Bilbo-Gandalf-at-Bag-End.jpg'
+	imageUrl: 'https://coolinterviews.files.wordpress.com/2013/12/the-shire.jpeg'
 	},
 	{name: 'Jurassic Park',
 	description: 'Dinosaurs!!',
